@@ -1,0 +1,76 @@
+h1
+{
+  font-family: Arial;
+}
+
+input[type=submit]
+{
+  width: 8%;
+  height: 3%;
+  background-color: white;
+  color: rgb(	30,144,255);
+  font-weight: bold;
+  border-radius: 20px;
+  border-color:	gray;
+}
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+input[type=text]
+{
+    background: transparent;
+    border: white;
+    border-bottom: 1px solid #000000;
+}
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 48%;
+  padding: 10px;
+  height: 350px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.centerImg
+{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width:10%;
+  height:10%;
+}
+
+div.a
+{
+  text-align: center;
+  position: relative;
+}
+
+div.b
+{
+  position: relative;
+  left: 50;
+}
+
+div.c
+{
+  position: relative;
+  left: 30;
+}
+
+div.d
+{
+  position: relative;
+  left: 50;
+}
+
+div.e
+{
+  position: relative;
+  right: 15;
+}
