@@ -7,25 +7,15 @@ body
   background-size: cover;
 }
 
-.body_div{
-  display: flex;
-  flex-direction: row;
-}
-
-.open_account{
-  flex: 2;
-}
-
 .center
 {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 20%;
   transform: translate(-50%, -50%);
-  width: 0px;
+  width: 300px;
   background: white;
   border-radius: 20px;
-  flex: 3;
 }
 
 .center h1
@@ -101,10 +91,10 @@ input[type = "submit"]
 
 /* logo, graybar, header are 1*/
 #logo{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 10px;
+display: block;
+margin-left: auto;
+margin-right: auto;
+padding-top: 10px;
   width: 95px;
   height: 95px;
 }
@@ -149,8 +139,7 @@ header{
   text-align: center;
 }
 
-.nav_column:hover{
+.nav_column:hover
+{
   text-decoration: underline;
 }
-
-
