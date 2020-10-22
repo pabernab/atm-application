@@ -78,7 +78,7 @@ input[type=submit]
 input[type=submit]:hover {
 
 }
-input[type=text]
+input[type=text], input[type=password]
 {
 
     background: transparent;
@@ -87,6 +87,7 @@ input[type=text]
     border-top: 0;
     border-left: 0;
     border-right: 0;
+    outline: none;
 }
 /* Create two equal columns that floats next to each other */
 .column {
