@@ -3,20 +3,31 @@ body
   margin: 0;
   padding: 0;
   background: linear-gradient(120deg, #72D5A0, #095D30);
-  background-image: url('login_background_temp.png');
-  background-size: cover;
+  /* background-image: url('login_background_temp.png'); */
+  /* background-size: cover; */
 }
+
+.body_div{
+  display: flex;
+  flex-direction: row;
+}
+
+.left{
+  float: 1;
+}
+
 
 .center
 {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 20%;
   transform: translate(-50%, -50%);
   width: 300px;
   background: white;
   border-radius: 20px;
 }
+
 
 .center h1
 {
@@ -91,10 +102,10 @@ input[type = "submit"]
 
 /* logo, graybar, header are 1*/
 #logo{
-display: block;
-margin-left: auto;
-margin-right: auto;
-padding-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
   width: 95px;
   height: 95px;
 }
@@ -139,7 +150,8 @@ header{
   text-align: center;
 }
 
-.nav_column:hover
-{
+.nav_column:hover{
   text-decoration: underline;
 }
+
+
