@@ -94,3 +94,16 @@ input[type = "submit"]
   margin: 100px;
   font-size: large;
 }
+
+#logo
+{
+
+display: block;
+margin-left: auto;
+margin-right: auto;
+padding-top: 10px;
+  width: 95px;
+  height: 95px;
+
+
+}
