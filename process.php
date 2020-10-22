@@ -1,6 +1,11 @@
 <?php
 
-$firstname = $_POST['firstName'];
+$firstName = $_POST['firstName'];
+$lastName = $_POST['lastName'];
+$email = $_POST['email'];
+$username = $_POST['username'];
+$password = $_POST['password'];
+
 
 
 //database connection
@@ -17,7 +22,12 @@ $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
 
   else
   {
-    $stmt = $conn->prepare("insert int")
+    $stmt = $conn->prepare("insert into login_info(username, password, firstName, lastName) values(?, ?, ?, ?)");
+		$stmt->bind_param("ssss", $username, $passowrd, $firstName, $lastName);
+		$stmt->execute();
+		echo "registration successful";
+		$stmt->close();
+		$conn->close();
   }
 
 //$con->close();
