@@ -70,13 +70,16 @@ input[type=submit]
   border-color:	gray;
 }
 input[type=submit]:hover {
-  
+
 }
 input[type=text]
 {
     background: transparent;
     border: white;
     border-bottom: 1px solid #000000;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
 }
 /* Create two equal columns that floats next to each other */
 .column {
