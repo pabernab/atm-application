@@ -10,7 +10,7 @@ body
 .center
 {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 20%;
   transform: translate(-50%, -50%);
   width: 300px;
@@ -127,7 +127,7 @@ header{
   flex-direction: row;
   justify-content: center;
 }
- 
+
 #column{
   flex: 1;
   color: lightslategray;
@@ -142,4 +142,40 @@ header{
 .nav_column:hover
 {
   text-decoration: underline;
+}
+
+.canvas
+{
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(130%, -60%);
+  width: 500px;
+  height: 300px;
+  background: white;
+  border-radius: 20px;
+  opacity: 0.7;
+}
+
+.canvas h1
+{
+  color: #2E2E2E;
+}
+
+form .savings
+{
+    position: relative;
+    left: 220px;
+    transform: translate(4%, 100%);
+    color: #088A68;
+    font-size: 20px;
+}
+
+form .checking
+{
+  position: relative;
+  transform: translate(-5%, 100%);
+  color: #088A68;
+  font-size: 20px;
+
 }
