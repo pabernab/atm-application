@@ -1,14 +1,36 @@
 <?php
 
-$firstName = $_POST['firstName'];
-$lastName = $_POST['lastName'];
-$email = $_POST['email'];
-$username = $_POST['username'];
-$password = $_POST['password'];
+
 
 
 
 //database connection
+
+$host="mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com";
+$user="butteadmin";
+$password="buttcmpe131";
+$dbname="bank_schema";
+
+$con = new mysqli($host, $user, $password, $dbname, $port, $socket)
+	or die ('Could not connect to the database server' . mysqli_connect_error());
+
+//Register users
+
+$firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
+$lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
+$email = mysqli_real_escape_string($conn, $_POST['email']);
+$username = mysqli_real_escape_string($conn, $_POST['username']);
+$password = mysqli_real_escape_string($conn, $_POST['password']);
+
+$registration_query = "INSERT INTO $dbname (password, username, firstName, lastName) VALUES ('$password', '$username','$firstName','$lastName')";
+mysqli_query($conn,$registration_query);
+
+
+
+
+
+
+
 
 $host="mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com";
 $port=3306;
@@ -17,24 +39,9 @@ $user="butteadmin";
 $password="";
 $dbname="bank_schema";
 
-$con = new mysqli($host, $user, $password, $dbname, $port, $socket)
-	or die ('Could not connect to the database server' . mysqli_connect_error());
 
-  else
-  {
-    $stmt = $conn->prepare("insert into login_info(username, password, firstName, lastName) values(?, ?, ?, ?)");
-		$stmt->bind_param("ssss", $username, $passowrd, $firstName, $lastName);
-		$stmt->execute();
-		echo "registration successful";
-		$stmt->close();
-		$conn->close();
-  }
 
 //$con->close();
-
-
-
-
 
 
 
