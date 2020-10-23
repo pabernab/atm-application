@@ -16,6 +16,7 @@ body
   width: 300px;
   background: white;
   border-radius: 20px;
+  opacity: 0.7;
 }
 
 .center h1
