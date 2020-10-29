@@ -26,13 +26,32 @@ background: linear-gradient(0deg, rgba(16,177,117,1) 0%, rgba(6,100,51,1) 100%);
 
 button
 {
-  margin-left: 500px;
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin-left: 380px;
   display: inline-block;
   height: 400px;
+  width: 400px;
+  background-color: white;
+  border-radius: 50px;
+  color: #007BE6;
+  font-size: 35px;
 
 }
 
+#buttonLayout
+{
+  padding-top: 150px;
+}
+
+
+
 #checking
+{
+
+}
+
+#savings
 {
 
 }
