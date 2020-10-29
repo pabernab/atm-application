@@ -14,8 +14,9 @@ header{
     margin-left: auto;
     margin-right: auto;
     padding-top: 10px;
-      width: 95px;
-      height: 95px;
+    width: 95px;
+    height: 95px;
+    text-align: center;
 }
 
 #graybar{
@@ -34,3 +35,12 @@ body{
     background-image: url('login_background_temp.png');
     background-size: cover;
 }
+
+.greeting{
+    text-align: center;
+    padding: 5%;
+    background-color: burlywood; 
+    font-size: 250%;
+}
+
+ 
