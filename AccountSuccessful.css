@@ -43,4 +43,13 @@ body{
     font-size: 250%;
 }
 
- 
+.details{
+    text-align: center;
+    background-color: #72D5A0; 
+    font-size: 100%;
+    border-spacing: 100px 100px;
+}
+
+.detailsElement{
+    padding-bottom: 4%;
+}
