@@ -34,3 +34,31 @@ body{
     background-size: cover;
 }
 
+/* layout is flexed, id column is this nav */
+#nav_layout{
+    background-color: palegoldenrod;
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-style: groove;
+}
+  
+  #column{
+    flex: 1;
+    color: lightslategray;
+}
+  
+  /* Temp click effect */
+  .nav_column{
+    cursor: pointer;
+    text-align: center;
+}
+  
+  .nav_column:hover{
+    text-decoration: underline;
+}
+  
