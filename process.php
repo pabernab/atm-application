@@ -1,57 +1,51 @@
 <?php
+    // these are our login values associated with the AWS
+    // database instance, found here: 
+    // https://us-west-1.console.aws.amazon.com/rds/home?region=us-west-1#database:id=mysqldb;is-cluster=false
+    $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
+    $serverUserName = 'butteadmin';
+    $serverPassword = 'buttecmpe131';
+    $dbname = 'registration';
 
+    // creating a new server connection using our preset AWS login values
+    $mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
 
+    // simple error catch if we are unable to connect to the MySQL Database
+    if ($mysqli->connect_errno) {
+        echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
 
+    // test display of host connection info
+    echo $mysqli->host_info . "\n";
+    
 
+    // data points we will be inserting into the database
+    // pulled from the registration form
+    $userName = $_POST["userName"];
+    $userPassword = $_POST["userPassword"];
+    $userEmailAddress = $_POST["userEmailAddress"];
+    $userFirstName = $_POST["userFirstName"];
+    $userLastName = $_POST["userLastName"];
 
-//database connection
+    
+    // simple sql syntax to insert into our registration
+    // database, formatted for visual clarity
+    $sql = "INSERT into userRegistration (
+        userName,
+        userPassword,
+        userEmailAddress,
+        userFirstName,
+        userLastName
+    ) 	VALUES (
+        '$userName',
+        '$userPassword',
+        '$userEmailAddress',
+        '$userFirstName',
+        '$userLastName'
+    )";
 
-$host="mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com";
-$user="butteadmin";
-$password="buttcmpe131";
-$dbname="bank_schema";
-
-$con = new mysqli($host, $user, $password, $dbname, $port, $socket)
-	or die ('Could not connect to the database server' . mysqli_connect_error());
-
-//Register users
-
-$firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
-$lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
-$email = mysqli_real_escape_string($conn, $_POST['email']);
-$username = mysqli_real_escape_string($conn, $_POST['username']);
-$password = mysqli_real_escape_string($conn, $_POST['password']);
-
-$registration_query = "INSERT INTO $dbname (password, username, firstName, lastName) VALUES ('$password', '$username','$firstName','$lastName')";
-mysqli_query($conn,$registration_query);
-
-
-
-
-
-
-
-
-$host="mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com";
-$port=3306;
-$socket="";
-$user="butteadmin";
-$password="";
-$dbname="bank_schema";
-
-
-
-//$con->close();
-
-
-
-
-
-
-
-
-
-
-
+    // querying our connected database with the given data points
+    // inserting form information
+    $results = mysqli_query($mysqli, $sql);
 
 ?>
