@@ -29,9 +29,9 @@ header{
 body{
     margin: 0;
     padding: 0;
-    background: linear-gradient(120deg, #72D5A0, #095D30);
     background-image: url('login_background_temp.png');
     background-size: cover;
+    background-color: #F0F0F0;
 }
 
 /* layout is flexed, id column is this nav */
@@ -62,3 +62,53 @@ body{
     text-decoration: underline;
 }
   
+.sectionLayout{
+    padding: 1%;
+    padding-top: 3%;
+}
+
+.barLayout{
+    border-style: groove;
+    background-color: white;
+    padding: 0.5%;
+    padding-left: 2%;
+    font-size: large;
+}
+
+.contentLayout{
+    border-left-style: groove;
+    border-right-style: groove;
+    border-bottom-style: groove;
+    background-color: white;
+    padding: 0.5%;
+    padding-left: 2%;
+    display: flex;
+    
+}
+
+.availableBalance{
+    flex: 10;
+    font-size: 150%;
+    padding-top: 1%;
+}
+
+.transferMoney {
+    flex: 1;
+    padding-top: 1%;
+    color: skyblue;
+}
+
+a:link{
+    text-decoration: none;
+    color: skyblue;
+}
+
+a:visited{
+    text-decoration: none;
+    color: darkcyan;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
