@@ -73,11 +73,6 @@ Latest commit 9ad9322 7 days ago
 
     
 
-                // simple test pathing
-                echo "<br>";
-                echo "Passwords are equal";
-                echo "<br>";
-    
                 // data points we will be selecting from the database
                 $userName = $_POST["userName"];
                 $userPassword = $_POST["userPassword"];
