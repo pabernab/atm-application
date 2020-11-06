@@ -52,12 +52,12 @@ input[type=submit]:hover {
 
 }
 
-/* h1
+p.regularFont
 {
-  font-weight: 300;
+  font-weight: lighter;
   font-family: 'Roboto', sans-serif;
-  font-size: 65;
-} */
+  font-size: 30;
+}
 
 p.regularAmount
 {
