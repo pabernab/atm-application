@@ -60,7 +60,9 @@ Latest commit 9ad9322 7 days ago
     
     // all forms are properly filled and no null submissions
     if (isset($_POST["userName"]) 
-        && isset($_POST["userPassword"]) 
+        && isset($_POST["userPassword"])) 
+
+        {
        
 
             // simple test pathing
@@ -111,6 +113,8 @@ Latest commit 9ad9322 7 days ago
 
 
     }
+
+
     else {
 
         echo "<br>";
