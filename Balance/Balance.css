@@ -34,34 +34,47 @@ body{
     background-color: #F0F0F0;
 }
 
+ button
+{
+  padding: 0
+  display: inline-block;
+  height: 30px;
+  width: 100px;
+  background-color: white;
+  border-radius: 0px;
+  color: green;
+  font-size: 15px;
+  transform: translate(-10px, -100px);
+}
+
 /* layout is flexed, id column is this nav */
 #nav_layout{
     background-color: palegoldenrod;
     padding: 10px;
     margin: auto;
     text-align: center;
-  
+
     display: flex;
     flex-direction: row;
     justify-content: center;
     border-style: groove;
 }
-  
+
   #column{
     flex: 1;
     color: lightslategray;
 }
-  
+
   /* Temp click effect */
   .nav_column{
     cursor: pointer;
     text-align: center;
 }
-  
+
   .nav_column:hover{
     text-decoration: underline;
 }
-  
+
 .sectionLayout{
     padding: 1%;
     padding-top: 3%;
@@ -83,7 +96,7 @@ body{
     padding: 0.5%;
     padding-left: 2%;
     display: flex;
-    
+
 }
 
 .availableBalance{
@@ -111,4 +124,3 @@ a:visited{
 a:hover{
     text-decoration: underline;
 }
-
