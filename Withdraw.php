@@ -31,19 +31,17 @@
 
 
     <!-- File input -->
-    <form name = checker>
-      <!-- <label for="myfile">Select a file:</label> -->
-      <input type="file" id="myfile" name= "depositpic" accept= "image/png, image/jpeg">
-    <form>
+
+      <p class = "regularFont">
+        Put in value between 0.00 to 4000.00
+      </p>
 
       <br>
       <br>
-      <p class = "regularFont">
-        Put in value between 0.00 to 4000.00
+      
     </form>
-      </p>
-      <br>
-      <br>
+
+
 
     <form name = "ValueInput">
       <input type = "number" name = "amount" min = "0.00" max = "4000.00" step = "0.01">
