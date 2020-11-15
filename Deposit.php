@@ -8,7 +8,7 @@
     <link rel = "stylesheet" href = "Style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
 
-    <title> Checkup </title>
+    <title> Deposit </title>
 
   </head>
 
