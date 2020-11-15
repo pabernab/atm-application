@@ -26,7 +26,13 @@
     <center>
 
       <p class = regularFont>
+        Deposit
+        <br>
+        <br>
         Upload File
+
+        <br>
+
       </p>
 
 
