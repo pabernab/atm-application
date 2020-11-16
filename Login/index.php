@@ -151,7 +151,7 @@
 
     					if($logged_in && $results)
     					{
-    						header('Location: Balance/Balance.php');
+    						header('Location: Balance/Balance/Balance.php');
     					}
 
     				?>
