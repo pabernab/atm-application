@@ -6,13 +6,13 @@ $serverUserName = 'butteadmin';
 $serverPassword = 'buttecmpe131';
 $dbname = 'registration';
 
-// creating a new server connection using our preset AWS login values
-$mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
-
-// simple error catch if we are unable to connect to the MySQL Database
-if ($mysqli->connect_errno) {
-  echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-}
+// // creating a new server connection using our preset AWS login values
+// $mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
+//
+// // simple error catch if we are unable to connect to the MySQL Database
+// if ($mysqli->connect_errno) {
+//   echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+// }
 
 
 
@@ -26,7 +26,7 @@ if ($mysqli->connect_errno) {
 
 
 //END CONNECTION
-  mysqli_close($mysqli);
+// mysqli_close($mysqli);
 
 
 ?>

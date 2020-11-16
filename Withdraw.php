@@ -1,23 +1,31 @@
 <?php
 
-// CONNECTING SERVER
-$serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
-$serverUserName = 'butteadmin';
-$serverPassword = 'buttecmpe131';
-$dbname = 'registration';
+// CONNECTING SERVER (FOR YOU TO EDIT)
+// $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
+// $serverUserName = 'butteadmin';
+// $serverPassword = 'buttecmpe131';
+// $dbname = 'registration';
+//
+// // creating a new server connection using our preset AWS login values
+// $mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
+//
+// // simple error catch if we are unable to connect to the MySQL Database
+// if ($mysqli->connect_errno) {
+//   echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+// }
 
-// creating a new server connection using our preset AWS login values
-$mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
 
-// simple error catch if we are unable to connect to the MySQL Database
-if ($mysqli->connect_errno) {
-  echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+$conn = mysqli_connect("localhost", "root", "", "users");
+
+if (!$conn)
+{
+  die("Connection failed: " . mysqli_connect_error());
 }
 
-//AccountNumber
-$checkAcc = $_POST["checkingAccountNumber"];
-//It's balance
-$MaxBalance = $_POST["userCheckingAccountBalance"];
+// //AccountNumber
+// $checkAcc = $_POST["checkingAccountNumber"];
+// //It's balance
+// $MaxBalance = $_POST["userCheckingAccountBalance"];
 
 
 
@@ -28,7 +36,7 @@ $MaxBalance = $_POST["userCheckingAccountBalance"];
 
 
 //END CONNECTION
-  mysqli_close($mysqli);
+//  mysqli_close($mysqli);
 
 
 ?>
@@ -74,6 +82,18 @@ $MaxBalance = $_POST["userCheckingAccountBalance"];
 
     <!-- When you take out money -->
     <form action="/Project/Withdraw.php" method="post">
+      <p class = "regularFont">
+      <label for="AccountNumber">Choose an account:</label>
+      <select name="AccountNumber" id="AccountNumber">
+        <option value="volvo">Checking</option>
+        <option value="saab">Savings</option>
+      </select>
+    </p>
+
+      <br>
+      <br>
+      <br>
+
       <input type = "number" name = "amount" min = "0.00" max = "4000.00" step = "0.01">
       <input type = "submit" value = "submit">
     </form>
