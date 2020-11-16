@@ -125,7 +125,7 @@
         <input type = "submit" value = "Sign In">
         <div class = "pass">Forgot Password?</div>
         <div class = "signup_link">
-          Need an account? <a href="Registration.php">Sign up</a>
+          Need an account? <a href="Registration/Registration.php">Sign up</a>
       </form>
     </div>
     <div class = "canvas">
