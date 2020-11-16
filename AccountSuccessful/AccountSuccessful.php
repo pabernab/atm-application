@@ -13,13 +13,13 @@
             <img id = "logo" src="logo.png"/>
         </header>
 
-        
+
         <!-- gray bar -->
         <div id="graybar"></div>
 
         <!-- thank you message -->
         <div class="greeting">Thank you for opening an account with us!</div>
-        
+
         <!-- details: account/routing number/types -->
         <!-- Remove hardcode numbers & type, values should be from the the database -->
         <!-- Values here just for demonstration -->
@@ -34,7 +34,7 @@
         <!-- homepage button -->
         <!-- replace '#' with url link to homepage -->
         <div class="homepageDiv">
-            <button href="#" class="homepageButton">Return to Homepage</button>
+            <button class="homepageButton" onclick="location.href='Balance.php'">Return to Homepage</button>
         </div>
 
 
