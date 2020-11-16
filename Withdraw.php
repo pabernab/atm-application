@@ -21,6 +21,7 @@ if (!$conn)
 {
   die("Connection failed: " . mysqli_connect_error());
 }
+// When you change this make sure it change Name to userName
 
 $sql1 = "SELECT userCheckingAccountBalance FROM money WHERE Name = 'allen'";
 $sql2 = "SELECT userSavingsAccountBalance FROM money WHERE Name = 'allen'";
@@ -29,8 +30,9 @@ $results1 = mysqli_query($conn,$sql1);
 $results2 = mysqli_query($conn,$sql2);
 //echo $results;
 
-
-
+$input = $_POST["amount"];
+$typeAcc = $_POST["AccountNumber"];
+echo $typeAcc;
 // //Name
 // $name = $_POST["Name"];
 // // //Balance
@@ -84,7 +86,7 @@ $results2 = mysqli_query($conn,$sql2);
       <p class = "regularFont">
       <br>
 
-
+      <!-- SHOWS AMOUNT FOR USER -->
       Checking account: $
       <?php
         $results1 = mysqli_query($conn,$sql1);
@@ -102,16 +104,20 @@ $results2 = mysqli_query($conn,$sql2);
       ?>
       <br>
     </p>
+
+    <!-- END =- -->
     </form>
 
 
     <!-- When you take out money -->
-    <form action="/Project/Withdraw.php" method="post">
+    <!-- ALSO CHECK DIRECTORY -->
+    <form action="/Deposit_Withdraw1/atm-application/Withdraw.php" method="post">
       <p class = "regularFont">
       <label for="AccountNumber">Choose an account:</label>
-      <select name="AccountNumber" id="AccountNumber">
-        <option value="Checkinga">Checking</option>
-        <option value="Acc">Savings</option>
+      <select name="AccountNumber">
+        <option value="null">--Choose--</option>
+        <option value="Checking">Checking</option>
+        <option value="Savings">Savings</option>
       </select>
     </p>
 
