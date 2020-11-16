@@ -1,6 +1,6 @@
 <?php
 
-// CONNECTING SERVER (FOR YOU TO EDIT)
+// CONNECTING SERVER (FOR YOU TO EDIT) --------------------------------
 // $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
 // $serverUserName = 'butteadmin';
 // $serverPassword = 'buttecmpe131';
@@ -15,17 +15,28 @@
 // }
 
 
-$conn = mysqli_connect("localhost", "root", "", "users");
+$conn = mysqli_connect("localhost", "root", "", "moneytest");
 
 if (!$conn)
 {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-// //AccountNumber
-// $checkAcc = $_POST["checkingAccountNumber"];
-// //It's balance
-// $MaxBalance = $_POST["userCheckingAccountBalance"];
+$sql1 = "SELECT userCheckingAccountBalance FROM money WHERE Name = 'allen'";
+$sql2 = "SELECT userSavingsAccountBalance FROM money WHERE Name = 'allen'";
+
+$results1 = mysqli_query($conn,$sql1);
+$results2 = mysqli_query($conn,$sql2);
+//echo $results;
+
+
+
+// //Name
+// $name = $_POST["Name"];
+// // //Balance
+// $checkAcc = $_POST["userCheckingAccountBalance"];
+// // //Savings
+// $MaxBalance = $_POST["userSavingsAccountBalance"];
 
 
 
@@ -35,7 +46,7 @@ if (!$conn)
 
 
 
-//END CONNECTION
+//END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
 //  mysqli_close($mysqli);
 
 
@@ -59,7 +70,7 @@ if (!$conn)
     <div id="graybar">
     </div>
 
-    <br><br>
+    <br>
     <!-- TITLE -->
     <center>
 
@@ -67,16 +78,30 @@ if (!$conn)
         Withdraw
       </p>
 
-
-    <!-- File input -->
-
       <p class = "regularFont">
         Put in value between 0.00 to 4000.00
       </p>
+      <p class = "regularFont">
+      <br>
+
+
+      Checking account: $
+      <?php
+        $results1 = mysqli_query($conn,$sql1);
+        $row1 = mysqli_fetch_assoc($results1);
+        echo $row1["userCheckingAccountBalance"];
+      ?>
 
       <br>
-      <br>
 
+      Savings account: $
+      <?php
+        $results2 = mysqli_query($conn,$sql2);
+        $row2 = mysqli_fetch_assoc($results2);
+        echo $row2["userSavingsAccountBalance"];
+      ?>
+      <br>
+    </p>
     </form>
 
 
@@ -85,10 +110,12 @@ if (!$conn)
       <p class = "regularFont">
       <label for="AccountNumber">Choose an account:</label>
       <select name="AccountNumber" id="AccountNumber">
-        <option value="volvo">Checking</option>
-        <option value="saab">Savings</option>
+        <option value="Checkinga">Checking</option>
+        <option value="Acc">Savings</option>
       </select>
     </p>
+
+
 
       <br>
       <br>
