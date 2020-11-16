@@ -14,8 +14,10 @@ if ($mysqli->connect_errno) {
   echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
-
-
+//AccountNumber
+$checkAcc = $_POST["checkingAccountNumber"];
+//It's balance
+$MaxBalance = $_POST["userCheckingAccountBalance"];
 
 
 
@@ -70,8 +72,8 @@ if ($mysqli->connect_errno) {
     </form>
 
 
-
-    <form name = "ValueInput">
+    <!-- When you take out money -->
+    <form action="/Project/Withdraw.php" method="post">
       <input type = "number" name = "amount" min = "0.00" max = "4000.00" step = "0.01">
       <input type = "submit" value = "submit">
     </form>
