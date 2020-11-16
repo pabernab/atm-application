@@ -76,9 +76,8 @@
                 // making sure we were able to insert the information properly into
                 // our MySQL database
                 if ($results){
-                    echo "<br>";
-                    echo "\n\nInformation inserted into database.\n\n";
-                    echo "<br>";
+                  header('Location: AccountCreation.php');
+
 
                 }
 
@@ -142,7 +141,7 @@
     <br>
     Last Name: -->
 
-      <form action="process.php" method="post">
+      <form action="" method="post">
 
         <div class = "row">
           <!-- LEFT -->
