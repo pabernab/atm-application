@@ -12,7 +12,7 @@
             <meta name="viewport" content="width=device-width">
             <img id = "logo" src="logo.png"/>
         </header>
-
+        
         <!-- gray bar -->
         <div id="graybar"></div>
 
@@ -21,18 +21,17 @@
         <nav id="nav_layout">
         <div id="column"></div>
         <div id="column"></div>
-
-
+    
+    
         <div id="column"><a class="nav_column">Deposit/Withdrawal</a></div>|
-
+    
         <div id="column"><a class="nav_column">Transfer</a></div>|
-
+    
         <div id="column"><a class="nav_column">Open Account</a></div>
-
-
+    
+    
         <div id="column"></div>
         <div id="column"></div>
-        <button id = "Logout" type = "button" name = "button">Logout</button>
         </nav>
 
         <section class="sectionLayout">
