@@ -28,7 +28,7 @@
 
 
 
-          <button id = "savings" onclick="location.href='AccoungSuccessful/AccountSuccessful/AccountSuccessful.php'" type="button" name="button">Savings</button>
+          <button id = "savings" onclick="location.href='AccountSuccessful/AccountSuccessful/AccountSuccessful.php'" type="button" name="button">Savings</button>
 
 
 
