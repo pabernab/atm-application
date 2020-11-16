@@ -76,7 +76,7 @@
                 // making sure we were able to insert the information properly into
                 // our MySQL database
                 if ($results){
-                  header('Location: AccountCreation.php');
+                  header('Location: AccountCreation/AccountCreation.php');
 
 
                 }
