@@ -21,12 +21,21 @@
         <nav id="nav_layout">
         <div id="column"></div>
         <div id="column"></div>
+<<<<<<< HEAD:Balance/Balance.php
     
     
         <div id="column"><a class="nav_column">Deposit/Withdrawal</a></div>|
     
         <div id="column"><a class="nav_column">Transfer</a></div>|
     
+=======
+
+
+        <div id="column"><a class="nav_column">Deposit/Withdrawal</a></div>
+
+        <div id="column"><a class="nav_column">Transfer</a></div>
+
+>>>>>>> 7a22e43c34f93c17fb86cb5165879d46099792bc:Balance/Balance.html
         <div id="column"><a class="nav_column">Open Account</a></div>
     
     
