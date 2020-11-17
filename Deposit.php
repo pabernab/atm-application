@@ -26,56 +26,61 @@ $sql2 = "SELECT userSavingsAccountBalance FROM money WHERE Name = 'allen'";
 
 if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 {
-  $input = $_POST["amount"];
-  $typeAcc = $_POST["AccountNumber"];
-  if($typeAcc === 'Checking')
+  if(!empty($_POST["picture"]))
   {
-    try
-    {
-      $results1 = mysqli_query($conn,$sql1);
-      $row1 = mysqli_fetch_assoc($results1);
-      //Updated value
-      $num = $row1["userCheckingAccountBalance"] + $input;
-      // PLEASE CHECK
-      $sqlUpdate = "UPDATE money SET userCheckingAccountBalance = $num WHERE Name = 'allen'";
+    $input = $_POST["amount"];
+    $typeAcc = $_POST["AccountNumber"];
 
-      $stmt = $conn->prepare($sqlUpdate);
-      $stmt->execute();
-            //echo $stmt->rowCount() . " records UPDATED successfully";
-            //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
-            //  mysqli_close($mysqli);
-      }
-      catch (PDOException $e)
-      {
-        echo $sql . "<br>" . $e->getMessage();
-      }
-  }
-  else if($typeAcc === 'Savings')
-  {
-    $results2 = mysqli_query($conn,$sql2);
-    $row2 = mysqli_fetch_assoc($results2);
+    //PICTUREFILE
+    $pictureFile = $_POST["picture"];
 
-    if($row2["userSavingsAccountBalance"] >= $input)
+    if($typeAcc === 'Checking')//WHEN USER SELECTS CHECKING ACCOUNT
     {
       try
       {
+        $results1 = mysqli_query($conn,$sql1);
+        $row1 = mysqli_fetch_assoc($results1);
         //Updated value
-        $num = $row2["userSavingsAccountBalance"] + $input;
-          // PLEASE CHECK
-        $sqlUpdate = "UPDATE money SET userSavingsAccountBalance = $num WHERE Name = 'allen'";
+        $num = $row1["userCheckingAccountBalance"] + $input;
+        // PLEASE CHECK
+        $sqlUpdate = "UPDATE money SET userCheckingAccountBalance = $num WHERE Name = 'allen'";
 
         $stmt = $conn->prepare($sqlUpdate);
         $stmt->execute();
-        //echo $stmt->rowCount() . " records UPDATED successfully";
-        //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
-        //  mysqli_close($mysqli);
-      }
+              //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
+              //  mysqli_close($mysqli);
+        }
         catch (PDOException $e)
         {
           echo $sql . "<br>" . $e->getMessage();
         }
-      }
     }
+    else if($typeAcc === 'Savings')//WHEN USER SELECTS SAVINGS ACCOUNT
+    {
+      $results2 = mysqli_query($conn,$sql2);
+      $row2 = mysqli_fetch_assoc($results2);
+
+      if($row2["userSavingsAccountBalance"] >= $input)
+      {
+        try
+        {
+          //Updated value
+          $num = $row2["userSavingsAccountBalance"] + $input;
+            // PLEASE CHECK
+          $sqlUpdate = "UPDATE money SET userSavingsAccountBalance = $num WHERE Name = 'allen'";
+
+          $stmt = $conn->prepare($sqlUpdate);
+          $stmt->execute();
+          //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
+          //  mysqli_close($mysqli);
+        }
+          catch (PDOException $e)
+          {
+            echo $sql . "<br>" . $e->getMessage();
+          }
+        }
+      }
+  }
   }
 
 
@@ -128,7 +133,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
         Please input png/jpeg file
       <!-- <label for="myfile">Select a file:</label> -->
       </p>
-      <input type="file" name= "depositpic" accept= "image/png, image/jpeg">
+      <input type="file" name= "picture" accept= "image/png, image/jpeg">
 
       <p class = "regularFont">
         Put in value between 0.00 to 4000.00
@@ -177,7 +182,11 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
         {
           echo '<span style="color:RED;text-align:center;">ERROR: You did not select which account.</span>';
         }
-        
+        if(empty($_POST["picture"]))
+        {
+          echo '<span style="color:RED;text-align:center;">ERROR: Please Upload file.</span>';
+        }
+
       }
 
       ?>

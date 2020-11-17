@@ -46,7 +46,6 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
-          //echo $stmt->rowCount() . " records UPDATED successfully";
           //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
           //  mysqli_close($mysqli);
         }
@@ -72,7 +71,6 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
-          //echo $stmt->rowCount() . " records UPDATED successfully";
           //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
           //  mysqli_close($mysqli);
         }
