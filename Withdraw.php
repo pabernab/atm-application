@@ -25,61 +25,64 @@ if (!$conn)
 $sql1 = "SELECT userCheckingAccountBalance FROM money WHERE Name = 'allen'";
 $sql2 = "SELECT userSavingsAccountBalance FROM money WHERE Name = 'allen'";
 
-$input = $_POST["amount"];
-$typeAcc = $_POST["AccountNumber"];
-
-if($typeAcc === 'Checking')
+if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 {
-  $results1 = mysqli_query($conn,$sql1);
-  $row1 = mysqli_fetch_assoc($results1);
+  $input = $_POST["amount"];
+  $typeAcc = $_POST["AccountNumber"];
 
-  if($row1["userCheckingAccountBalance"] >= $input)
+  if($typeAcc === 'Checking')
   {
-    try
-    {
-      //Updated value
-      $num = $row1["userCheckingAccountBalance"] - $input;
-        // PLEASE CHECK
-      $sqlUpdate = "UPDATE money SET userCheckingAccountBalance = $num WHERE Name = 'allen'";
+      $results1 = mysqli_query($conn,$sql1);
+      $row1 = mysqli_fetch_assoc($results1);
 
-      $stmt = $conn->prepare($sqlUpdate);
-      $stmt->execute();
-      //echo $stmt->rowCount() . " records UPDATED successfully";
-      //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
-      //  mysqli_close($mysqli);
-    }
-    catch (PDOException $e)
-    {
-      echo $sql . "<br>" . $e->getMessage();
-    }
-  }
-}
-else if($typeAcc === 'Savings')
-{
-  $results2 = mysqli_query($conn,$sql2);
-  $row2 = mysqli_fetch_assoc($results2);
+      if($row1["userCheckingAccountBalance"] >= $input)
+      {
+        try
+        {
+          //Updated value
+          $num = $row1["userCheckingAccountBalance"] - $input;
+            // PLEASE CHECK
+          $sqlUpdate = "UPDATE money SET userCheckingAccountBalance = $num WHERE Name = 'allen'";
 
-  if($row2["userSavingsAccountBalance"] >= $input)
-  {
-    try
-    {
-      //Updated value
-      $num = $row2["userSavingsAccountBalance"] - $input;
-        // PLEASE CHECK
-      $sqlUpdate = "UPDATE money SET userSavingsAccountBalance = $num WHERE Name = 'allen'";
-
-      $stmt = $conn->prepare($sqlUpdate);
-      $stmt->execute();
-      //echo $stmt->rowCount() . " records UPDATED successfully";
-      //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
-      //  mysqli_close($mysqli);
+          $stmt = $conn->prepare($sqlUpdate);
+          $stmt->execute();
+          //echo $stmt->rowCount() . " records UPDATED successfully";
+          //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
+          //  mysqli_close($mysqli);
+        }
+        catch (PDOException $e)
+        {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+      }
     }
-    catch (PDOException $e)
+    else if($typeAcc === 'Savings')
     {
-      echo $sql . "<br>" . $e->getMessage();
-    }
-  }
+      $results2 = mysqli_query($conn,$sql2);
+      $row2 = mysqli_fetch_assoc($results2);
 
+      if($row2["userSavingsAccountBalance"] >= $input)
+      {
+        try
+        {
+          //Updated value
+          $num = $row2["userSavingsAccountBalance"] - $input;
+            // PLEASE CHECK
+          $sqlUpdate = "UPDATE money SET userSavingsAccountBalance = $num WHERE Name = 'allen'";
+
+          $stmt = $conn->prepare($sqlUpdate);
+          $stmt->execute();
+          //echo $stmt->rowCount() . " records UPDATED successfully";
+          //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
+          //  mysqli_close($mysqli);
+        }
+        catch (PDOException $e)
+        {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+      }
+
+    }
 }
 
 
@@ -164,18 +167,21 @@ else if($typeAcc === 'Savings')
     $row2 = mysqli_fetch_assoc($results2);
 
     //If user did not select account
-    if($_POST["AccountNumber"] === "null")
+    if(isset($_POST["AccountNumber"]) && isset($row1["userCheckingAccountBalance"]) && $row2["userSavingsAccountBalance"] )
     {
-      echo '<span style="color:RED;text-align:center;">ERROR: You did not select which account.</span>';
-    }
-    //If user puts in more than account number
-    else if($row1["userCheckingAccountBalance"] < $input)
-    {
-      echo '<span style="color:RED;text-align:center;">ERROR: The amount you entered is greater than the amount you have.</span>';
-    }
-    else if($row2["userSavingsAccountBalance"] < $input)
-    {
-      echo '<span style="color:RED;text-align:center;">ERROR: The amount you entered is greater than the amount you have.</span>';
+      if($_POST["AccountNumber"] === "null")
+      {
+        echo '<span style="color:RED;text-align:center;">ERROR: You did not select which account.</span>';
+      }
+      //If user puts in more than account number
+      else if($row1["userCheckingAccountBalance"] < $input)
+      {
+        echo '<span style="color:RED;text-align:center;">ERROR: The amount you entered is greater than the amount you have.</span>';
+      }
+      else if($row2["userSavingsAccountBalance"] < $input)
+      {
+        echo '<span style="color:RED;text-align:center;">ERROR: The amount you entered is greater than the amount you have.</span>';
+      }
     }
 
     ?>
