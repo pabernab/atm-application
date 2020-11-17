@@ -24,8 +24,70 @@ if (!$conn)
 $sql1 = "SELECT userCheckingAccountBalance FROM money WHERE Name = 'allen'";
 $sql2 = "SELECT userSavingsAccountBalance FROM money WHERE Name = 'allen'";
 
+if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
+{
+  $input = $_POST["amount"];
+  $typeAcc = $_POST["AccountNumber"];
 
+  $num = $row1["userCheckingAccountBalance"] + $input;
 
+  
+
+  //
+  // if($typeAcc === 'Checking')
+  // {
+  //     $results1 = mysqli_query($conn,$sql1);
+  //     $row1 = mysqli_fetch_assoc($results1);
+  //
+  //
+  //       try
+  //       {
+  //         //Updated value
+  //         $num = $row1["userCheckingAccountBalance"] + $input;
+  //           // PLEASE CHECK
+  //         $sqlUpdate = "UPDATE money SET userCheckingAccountBalance = $num WHERE Name = 'allen'";
+  //
+  //         $stmt = $conn->prepare($sqlUpdate);
+  //         $stmt->execute();
+  //         //echo $stmt->rowCount() . " records UPDATED successfully";
+  //         //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
+  //         //  mysqli_close($mysqli);
+  //       }
+  //       catch (PDOException $e)
+  //       {
+  //         echo $sql . "<br>" . $e->getMessage();
+  //       }
+  //
+  //       echo "hit1";
+  //
+  //   }
+  //   else if($typeAcc === 'Savings')
+  //   {
+  //     $results2 = mysqli_query($conn,$sql2);
+  //     $row2 = mysqli_fetch_assoc($results2);
+  //
+  //
+  //       try
+  //       {
+  //         //Updated value
+  //         $num = $row2["userSavingsAccountBalance"] + $input;
+  //           // PLEASE CHECK
+  //         $sqlUpdate = "UPDATE money SET userSavingsAccountBalance = $num WHERE Name = 'allen'";
+  //
+  //         $stmt = $conn->prepare($sqlUpdate);
+  //         $stmt->execute();
+  //         //echo $stmt->rowCount() . " records UPDATED successfully";
+  //         //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
+  //         //  mysqli_close($mysqli);
+  //       }
+  //       catch (PDOException $e)
+  //       {
+  //         echo $sql . "<br>" . $e->getMessage();
+  //       }
+  //
+  //       echo "hit2";
+  //   }
+}
 
 
 //END CONNECTION
@@ -59,20 +121,25 @@ $sql2 = "SELECT userSavingsAccountBalance FROM money WHERE Name = 'allen'";
       <p class = regularFont>
         Deposit
         <br>
-
-
-
       </p>
+
+      <form action="/Deposit_Withdraw1/atm-application/Deposit.php" method="post">
+        <p class = "regularFont">
+          <label for="AccountNumber">Choose an account:</label>
+          <select name="AccountNumber">
+            <option value="null">--Choose--</option>
+            <option value="Checking">Checking</option>
+            <option value="Savings">Savings</option>
+          </select>
+        </p>
 
 
     <!-- File input -->
-    <form name = checker>
       <p class = "regularFont">
         Please input png/jpeg file
       <!-- <label for="myfile">Select a file:</label> -->
       </p>
-      <input type="file" id="myfile" name= "depositpic" accept= "image/png, image/jpeg">
-    </form>
+      <input type="file" name= "depositpic" accept= "image/png, image/jpeg">
 
       <p class = "regularFont">
         Put in value between 0.00 to 4000.00
@@ -101,10 +168,42 @@ $sql2 = "SELECT userSavingsAccountBalance FROM money WHERE Name = 'allen'";
 
   <!-- END =- -->
       </p>
+
+
+      <br>
+
+      <!-- PRINTS OUT ERRORS -->
+
+      <?php
+
+      $results1 = mysqli_query($conn,$sql1);
+      $row1 = mysqli_fetch_assoc($results1);
+      $results2 = mysqli_query($conn,$sql2);
+      $row2 = mysqli_fetch_assoc($results2);
+
+      //If user did not select account
+      if(isset($_POST["AccountNumber"]) && isset($row1["userCheckingAccountBalance"]) && isset($row2["userSavingsAccountBalance"]) )
+      {
+        if($_POST["AccountNumber"] === "null")
+        {
+          echo '<span style="color:RED;text-align:center;">ERROR: You did not select which account.</span>';
+        }
+      // //If user puts in more than account number
+      // else if($row1["userCheckingAccountBalance"] < $input)
+      // {
+      //   echo '<span style="color:RED;text-align:center;">ERROR: The amount you entered is greater than the amount you have.</span>';
+      // }
+        // else if($row2["userSavingsAccountBalance"] < $input)
+        // {
+        //   echo '<span style="color:RED;text-align:center;">ERROR: The amount you entered is greater than the amount you have.</span>'/;
+        // }
+      }
+
+      ?>
+      <!-- END PRINT ERROR -->
       <br>
       <br>
 
-    <form name = "ValueInput">
       <input type = "number" name = "amount" min = "0.00" max = "4000.00" step = "0.01">
       <input type = "submit" value = "submit">
     </form>

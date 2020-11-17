@@ -154,7 +154,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
         <option value="Checking">Checking</option>
         <option value="Savings">Savings</option>
       </select>
-    </p>
+      </p>
 
 
     <!-- PRINTS OUT ERRORS -->
@@ -167,7 +167,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
     $row2 = mysqli_fetch_assoc($results2);
 
     //If user did not select account
-    if(isset($_POST["AccountNumber"]) && isset($row1["userCheckingAccountBalance"]) && $row2["userSavingsAccountBalance"] )
+    if(isset($_POST["AccountNumber"]) && isset($row1["userCheckingAccountBalance"]) && isset($row2["userSavingsAccountBalance"]) )
     {
       if($_POST["AccountNumber"] === "null")
       {
