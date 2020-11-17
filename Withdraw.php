@@ -22,31 +22,40 @@ if (!$conn)
   die("Connection failed: " . mysqli_connect_error());
 }
 // When you change this make sure it change Name to userName
-
 $sql1 = "SELECT userCheckingAccountBalance FROM money WHERE Name = 'allen'";
 $sql2 = "SELECT userSavingsAccountBalance FROM money WHERE Name = 'allen'";
 
-$results1 = mysqli_query($conn,$sql1);
-$results2 = mysqli_query($conn,$sql2);
-//echo $results;
-
 $input = $_POST["amount"];
 $typeAcc = $_POST["AccountNumber"];
-echo $typeAcc;
-// //Name
-// $name = $_POST["Name"];
-// // //Balance
-// $checkAcc = $_POST["userCheckingAccountBalance"];
-// // //Savings
-// $MaxBalance = $_POST["userSavingsAccountBalance"];
 
+if($typeAcc === 'Checking')
+{
+  $results1 = mysqli_query($conn,$sql1);
+  $row1 = mysqli_fetch_assoc($results1);
 
+  if($row1["userCheckingAccountBalance"] >= $input)
+  {
+    echo "success 1";
+  }
+  else if($row1["userCheckingAccountBalance"] < $input)
+  {
+    echo "failure 1";
+  }
+}
+else if($typeAcc === 'Savings')
+{
+  $results2 = mysqli_query($conn,$sql2);
+  $row2 = mysqli_fetch_assoc($results2);
 
-
-
-
-
-
+  if($row2["userSavingsAccountBalance"] >= $input)
+  {
+    echo "success 2";
+  }
+  else if($row2["userSavingsAccountBalance"] < $input)
+  {
+    echo "failure 2";
+  }
+}
 
 //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
 //  mysqli_close($mysqli);
@@ -83,8 +92,9 @@ echo $typeAcc;
       <p class = "regularFont">
         Put in value between 0.00 to 4000.00
       </p>
+
       <p class = "regularFont">
-      <br>
+
 
       <!-- SHOWS AMOUNT FOR USER -->
       Checking account: $
@@ -120,6 +130,24 @@ echo $typeAcc;
         <option value="Savings">Savings</option>
       </select>
     </p>
+
+
+    <!-- PRINTS OUT ERRORS -->
+
+    <?php
+    //If user did not select account
+    if($_POST["AccountNumber"] === "null")
+    {
+      echo '<span style="color:RED;text-align:center;">ERROR: You did not select which account.</span>';
+    }
+    //If user puts in more than account number
+    // else if($_POST["amount"] === )
+    // {
+    //   echo '<span style="color:RED;text-align:center;">ERROR: The amount you entered is greater than the amount you have.</span>';
+    // }
+
+    ?>
+    <!-- END PRINT ERROR -->
 
 
 
