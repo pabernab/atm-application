@@ -73,3 +73,10 @@ body{
     text-align: center;
     font-size: 450%;
 }
+
+.resizeTextboxPin{
+    width: 600px;
+    height: 150px;
+    text-align: center;
+    font-size: 450%;
+}
