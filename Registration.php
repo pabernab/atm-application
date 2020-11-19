@@ -81,7 +81,7 @@ session_start();
                 // making sure we were able to insert the information properly into
                 // our MySQL database
                 if ($results){
-                  header('Location: AccountCreation/AccountCreation.php');
+                  header('Location: ../Balance/Balance/PinPages/CreatePin.php');
 
 
                 }
