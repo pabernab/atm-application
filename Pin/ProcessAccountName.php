@@ -1,4 +1,10 @@
 <?php
+session_start();
+if(isset($_POST["entryValue"]) && isset($_POST["inputValue"])){
+
+    $_SESSION["entryValue"] = $_POST["entryValue"];
+    $_SESSION["inputValue"] = $_POST["inputValue"];
+}
 
 
 $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
@@ -14,7 +20,7 @@ if ($mysqli->connect_errno) {
 }
 
 // accept form value
-// @Paul need to use sessions to find current user, then we can make this 'where userName = $userName' or something
+// @paul use sessions to change this checkingAccountNumber
 $findAccountBalance = 'SELECT userCheckingAccountBalance from userRegistration where checkingAccountNumber = "23481698419";';
 
 $resultBalance = mysqli_query($mysqli, $findAccountBalance);
@@ -42,6 +48,7 @@ $currentBalance = $userBalance;
 $postBalance = $currentBalance - $transferValue;
 
 // need to somehow track current user so we know who to 
+// modify value of ? 
 $updateBalances = 
 "UPDATE userRegistration
 SET userCheckingAccountBalance = $currentBalance - $transferValue
@@ -60,6 +67,7 @@ if ($currentBalance > $transferValue){
         echo "<br>";
         echo "\n\nTransfer complete. Balance has been updated.\n\n";
         echo "<br>";
+        header('Location: ../transactionconfirmation/transactionconfirmation.php');
         
     }
     
@@ -81,7 +89,10 @@ else {
 
 
 
-// close connection
+
+
+
+
 mysqli_close($mysqli);
 
 
