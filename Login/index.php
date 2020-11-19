@@ -96,7 +96,7 @@
     <div id="graybar"></div>
 
     <!-- deposit/withdraw & transfer & open account nagivations/
-          empty divs are for layout purposes -->
+          empty divs are for layout purposes
     <nav id="nav_layout">
       <div id="column"></div>
       <div id="column"></div>
@@ -111,7 +111,7 @@
 
       <div id="column"></div>
       <div id="column"></div>
-    </nav>
+    </nav> -->
 
     <!-- <describe this> -->
     <div class = "center">
