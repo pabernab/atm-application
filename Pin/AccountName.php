@@ -19,7 +19,17 @@
 
         <!-- thank you message -->
         <div class="greeting">Please enter the Transfer amount:</div>
+        <?php
+        session_start();
+
+        if(isset($_POST["entryValue"]) && isset($_POST["inputValue"])){
+
+            $_SESSION["entryValue"] = $_POST["entryValue"];
+            $_SESSION["inputValue"] = $_POST["inputValue"];
+        }
+
         
+        ?>
         <!-- details: account/routing number/types -->
         <!-- Remove hardcode numbers & type, values should be from the the database -->
         <!-- Values here just for demonstration -->
@@ -38,8 +48,7 @@
                 <!-- Continue button -->
                 <!-- replace '#' with url link -->
                 <div class="homepageDiv">
-                    <button href="#" class="homepageButton">Back</button>
-                    <button href="#" class="homepageButton">Continue</button>
+                    <button href="#" class="homepageButton" type="submit">Continue</button>
                 </div>
             </form>
         </div>
