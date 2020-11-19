@@ -69,7 +69,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           //Updated value
           $num = $row2["userSavingsAccountBalance"] + $input;
             // PLEASE CHECK
-          $sqlUpdate = "UPDATE money SET userSavingsAccountBalance = $num WHERE Name = 'AllenB'";
+          $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = 'AllenB'";
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
