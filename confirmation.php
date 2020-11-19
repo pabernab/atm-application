@@ -1,8 +1,6 @@
 <?php
+session_start();
 
-
-//END CONNECTION
-mysqli_close($mysqli);
 
 
 ?>
@@ -30,6 +28,22 @@ mysqli_close($mysqli);
       <br><br><br><br>
       <p class = "regularFont">
         You're all done.
+
+        <br><br>
+
+        Your new total is: $
+
+      <?php
+
+      echo $_SESSION["amount"];
+
+      ?>
+
+
+      <br><br>
+
+      Thank You!
+
       </p>
 
       <form>

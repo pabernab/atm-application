@@ -13,6 +13,7 @@ $conn = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3
 if ($conn->connect_errno) {
   echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
 }
+session_start();
 
 // When you change this make sure it change Name to userName
 $sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = 'AllenB'";
@@ -42,7 +43,12 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
         $stmt = $conn->prepare($sqlUpdate);
         $stmt->execute();
               //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
+
+        $_SESSION["amount"] = $num;
+
         mysqli_close($conn);
+
+        header("Location: confirmation.php");
 
         //GO TO NEXT PAGE HERE
         }
@@ -68,8 +74,10 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
           //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
-           mysqli_close($conn);
 
+          $_SESSION["amount"] = $num;
+           mysqli_close($conn);
+           header("Location: confirmation.php");
            //Go to NEXT PAGE HERE
         }
           catch (PDOException $e)
