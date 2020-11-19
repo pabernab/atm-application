@@ -23,15 +23,29 @@
       </p>
 
       <p class = "regularAmount">
-        $10000.00
+        <?php
+        session_start();
+        if(isset($_POST["entryValue"]) && isset($_POST["inputValue"])){
+
+          $_SESSION["entryValue"] = $_POST["entryValue"];
+          $_SESSION["inputValue"] = $_POST["inputValue"];
+        }
+
+        $amountTransferred = $_SESSION["entryValue"];
+        echo 'Amount transferred: ' . $amountTransferred . "<br>";
+
+
+        ?>
       </p>
 
       <p class = "regularFont">
         Type: Deposit
         <br>
         <br>
-        Transaction ID: 9234983298
-
+        <?php
+        $randomID = (string) rand(1000000000, 9999999999);
+        echo 'Transaction ID: ' . $randomID . "<br>";
+        ?>
       </p>
 
       <form>
