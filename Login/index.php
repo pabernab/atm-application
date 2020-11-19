@@ -1,11 +1,17 @@
 <?php
+
+
+session_start();
+
+
+
 	$logged_in  = false;
 	if (isset($_POST["userlogin"]) && isset($_POST["loginpassword"]))
 			{
 				if ($_POST["userlogin"] && $_POST["loginpassword"])
 				{
-					$username = $_POST["userlogin"];
-					$password = $_POST["loginpassword"];
+					$_SESSION["username"] = $_POST["userlogin"];
+					$_SESSION["password"] = $_POST["loginpassword"];
 
 
 					//create connection
@@ -125,7 +131,7 @@
         <input type = "submit" value = "Sign In">
         <div class = "pass">Forgot Password?</div>
         <div class = "signup_link">
-          Need an account? <a href="../../Registration/Registration.php">Sign up</a>
+          Need an account? <a href="Registration/Registration.php">Sign up</a>
       </form>
     </div>
     <div class = "canvas">
@@ -151,7 +157,7 @@
 
     					if($logged_in && $results)
     					{
-    						header('Location: ../../Balance/Balance/Balance.php');
+    						header('Location: Balance/Balance/Balance.php');
     					}
 
     				?>
