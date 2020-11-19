@@ -15,13 +15,16 @@
         echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
    
-    $createPin = 9997;
+    // pulls from AccountName.php
+    $createPin = $_POST["pinValue"];
     // need to somehow track current user so we know who to 
     // modify value of ? 
+    // @Paul change value where userName = 
+    // using sessions
     $updatePin = 
     "UPDATE userRegistration
     SET userPinNumber = $createPin
-    WHERE userName = 'clown';";
+    WHERE userName = 'Aristotle';";
 
     // querying our connected database with the given data points
     // inserting form information
@@ -31,7 +34,8 @@
     //echo $myTestStatement . "<br>";
 
     echo "result :" . $results . "<br>";
-    // making sure we were able to insert the information properly into
+    
+    // making sure we were able to insert the pin properly into
     // our MySQL database
     if ($results){
         echo "<br>";
@@ -41,7 +45,7 @@
     }
 
     // in the event we somehow were unable to insert the information
-    // thus not being able to create the account
+    // thus not being able to modify the pin
     else {
         echo "<br>";
         echo "Error: Information not inserted into database.";
