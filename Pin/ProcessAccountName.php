@@ -18,10 +18,12 @@ $mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname,
 if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
+$userName = $_SESSION["userName"];
 
+// echo 'userName is ' . $userName;
 // accept form value
 // @paul use sessions to change this checkingAccountNumber
-$findAccountBalance = 'SELECT userCheckingAccountBalance from userRegistration where checkingAccountNumber = "23481698419";';
+$findAccountBalance = "SELECT userCheckingAccountBalance from userRegistration where userName = '$userName';";
 
 $resultBalance = mysqli_query($mysqli, $findAccountBalance);
 
@@ -50,9 +52,19 @@ $postBalance = $currentBalance - $transferValue;
 // need to somehow track current user so we know who to 
 // modify value of ? 
 $updateBalances = 
+// "UPDATE userRegistration
+// SET userCheckingAccountBalance = $currentBalance - $transferValue
+// WHERE userName = '$userName'
+// UPDATE userRegistration
+// SET userCheckingAccountBalance = '$transferValue'
+// WHERE userCheckingAccountNumber = '$accountNumber';";
 "UPDATE userRegistration
 SET userCheckingAccountBalance = $currentBalance - $transferValue
-WHERE checkingAccountNumber = '$accountNumber';";
+WHERE userName = '$userName';
+
+-- UPDATE userRegistration
+-- SET userCheckingAccountBalance = $transferValue
+-- WHERE userCheckingAccountNumber = $accountNumber;";
 
 echo "Updating balance<br><br>" . "Current Balance: $currentBalance <br>" . "Post Transfer Balance: $postBalance <br>";
 
