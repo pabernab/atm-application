@@ -14,11 +14,10 @@ if ($mysqli->connect_errno) {
   echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
 
-$sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = 'allen'";
+$sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = 'AllenB'";
 
 $results1 = mysqli_query($mysqli,$sql1);
 $row1 = mysqli_fetch_assoc($results1);
-
 
 echo $row1['userCheckingAccountBalance'];
 echo "100";

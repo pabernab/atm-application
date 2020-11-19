@@ -1,29 +1,22 @@
 <?php
 
-// CONNECTING SERVER (FOR YOU TO EDIT) --------------------------------
-// $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
-// $serverUserName = 'butteadmin';
-// $serverPassword = 'buttecmpe131';
-// $dbname = 'registration';
-//
-// // creating a new server connection using our preset AWS login values
-// $mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
-//
-// // simple error catch if we are unable to connect to the MySQL Database
-// if ($mysqli->connect_errno) {
-//   echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-// }
 
+$serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
+$serverUserName = 'butteadmin';
+$serverPassword = 'buttecmpe131';
+$dbname = 'registration';
 
-$conn = mysqli_connect("localhost", "root", "", "moneytest");
+// creating a new server connection using our preset AWS login values
+$conn = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
 
-if (!$conn)
-{
-  die("Connection failed: " . mysqli_connect_error());
+// simple error catch if we are unable to connect to the MySQL Database
+if ($conn->connect_errno) {
+  echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
 }
+
 // When you change this make sure it change Name to userName
-$sql1 = "SELECT userCheckingAccountBalance FROM money WHERE Name = 'allen'";
-$sql2 = "SELECT userSavingsAccountBalance FROM money WHERE Name = 'allen'";
+$sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = 'AllenB'";
+$sql2 = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = 'AllenB'";
 
 if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 {
@@ -42,12 +35,14 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           //Updated value
           $num = $row1["userCheckingAccountBalance"] - $input;
             // PLEASE CHECK
-          $sqlUpdate = "UPDATE money SET userCheckingAccountBalance = $num WHERE Name = 'allen'";
+          $sqlUpdate = "UPDATE userRegistration SET userCheckingAccountBalance = $num WHERE userName = 'AllenB'";
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
-          //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
-          //  mysqli_close($mysqli);
+          //END CONNECTION
+           mysqli_close($conn);
+
+           //GO to next Page here
         }
         catch (PDOException $e)
         {
@@ -67,12 +62,14 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           //Updated value
           $num = $row2["userSavingsAccountBalance"] - $input;
             // PLEASE CHECK
-          $sqlUpdate = "UPDATE money SET userSavingsAccountBalance = $num WHERE Name = 'allen'";
+          $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = 'AllenB'";
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
           //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
-          //  mysqli_close($mysqli);
+          mysqli_close($conn);
+
+          // Go to next page here
         }
         catch (PDOException $e)
         {
