@@ -7,7 +7,11 @@
     <title></title>
   </head>
   <body>
-
+    <?php
+      if(isset($_POST['inputValue'])) {
+        $amount = $_POST['inputValue'];
+      }
+    ?>
 
     <header>
         <img id = "logo" src="logo.png"/>
@@ -16,11 +20,18 @@
     <div id="graybar">
     </div>
 
-  <h1>Please confirm the amount: </h1>
+  <h1>Please confirm the amount: <br>
+    <?php
+      echo $amount;
+      
+    ?>
+  
+  </h1>
+
 
   <div id = buttonLayout>
 
-    <button id = "Re-Enter" type="button" name="button">Re-Enter</button>
+    <button id = "Re-Enter" onclick="location.href='../Pin/AmountTransferring.html'" type="button">Re-Enter</button>
     <button id = "Confirm" type="button" name="button">Confirm</button>
 
 
