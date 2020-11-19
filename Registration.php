@@ -2,6 +2,8 @@
 
 
 <?php
+
+session_start();
     // these are our login values associated with the AWS
     // database instance, found here:
     // https://us-west-1.console.aws.amazon.com/rds/home?region=us-west-1#database:id=mysqldb;is-cluster=false
@@ -51,6 +53,9 @@
                 $userEmailAddress = $_POST["userEmailAddress"];
                 $userFirstName = $_POST["userFirstName"];
                 $userLastName = $_POST["userLastName"];
+
+                $_SESSION["userName"] = $userName;
+                $_SESSION["userPassword"] = $userPassword;
 
 
                 // simple sql syntax to insert into our registration
@@ -103,9 +108,6 @@
     }
     else {
 
-        echo "<br>";
-        echo "All forms must be filled.";
-        echo "<br>";
     }
         // close connection
         mysqli_close($mysqli);
