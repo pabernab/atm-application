@@ -43,8 +43,8 @@
         
     }
 
-    // in the event we somehow were unable to insert the information
-    // thus not being able to create the account
+    // somehow we couldn't process this transfer
+    // needs more work on user explanation
     else {
         echo "<br>";
         echo "Could not process transfer.";
