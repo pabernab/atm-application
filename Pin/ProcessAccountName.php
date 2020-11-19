@@ -14,6 +14,7 @@ if ($mysqli->connect_errno) {
 }
 
 // accept form value
+// @Paul need to use sessions to find current user, then we can make this 'where userName = $userName' or something
 $findAccountBalance = 'SELECT userCheckingAccountBalance from userRegistration where checkingAccountNumber = "23481698419";';
 
 $resultBalance = mysqli_query($mysqli, $findAccountBalance);
@@ -41,7 +42,6 @@ $currentBalance = $userBalance;
 $postBalance = $currentBalance - $transferValue;
 
 // need to somehow track current user so we know who to 
-// modify value of ? 
 $updateBalances = 
 "UPDATE userRegistration
 SET userCheckingAccountBalance = $currentBalance - $transferValue
@@ -79,29 +79,6 @@ else {
     echo "Current balance must exceed transfer value. <br>";
 }
 
-
-
-
-
-
-// if ($result !== false){
-
-//     $currentBalance = mysqli_fetch_field($result.name);
-
-//     echo "<br>" . "Current balance: $currentBalance " . "<br>";
-// }
-// else {
-
-//     echo "<br>" . "Failed." . "<br>";
-// }
-// somehow pass account number to process transfer 
-// if ($mysqli->query('SELECT userCheckingAccountBalance from userRegistration where userName = "bkc";') === TRUE ){ 
-//     echo "<br>" . "Query works." . "<br>";
-// }
-// else {
-//     echo "<br>" . "Query failed." . "<br>";
-// }
-// simple error catch if we are unable to connect to the MySQL Database
 
 
 // close connection
