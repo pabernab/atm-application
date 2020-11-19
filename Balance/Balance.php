@@ -12,7 +12,7 @@
             <meta name="viewport" content="width=device-width">
             <img id = "logo" src="logo.png"/>
         </header>
-        
+
         <!-- gray bar -->
         <div id="graybar"></div>
 
@@ -21,24 +21,16 @@
         <nav id="nav_layout">
         <div id="column"></div>
         <div id="column"></div>
-<<<<<<< HEAD:Balance/Balance.php
-    
-    
-        <div id="column"><a class="nav_column">Deposit/Withdrawal</a></div>|
-    
-        <div id="column"><a class="nav_column">Transfer</a></div>|
-    
-=======
 
 
         <div id="column"><a class="nav_column">Deposit/Withdrawal</a></div>
 
         <div id="column"><a class="nav_column">Transfer</a></div>
 
->>>>>>> 7a22e43c34f93c17fb86cb5165879d46099792bc:Balance/Balance.html
+
         <div id="column"><a class="nav_column">Open Account</a></div>
-    
-    
+
+
         <div id="column"></div>
         <div id="column"></div>
         </nav>
@@ -69,6 +61,9 @@
                 <div class="transferMoney"><a href="#">Transfer Money</a></div>
                 <div class="transferMoney"><a href="#">Account Info</a></div>
             </div>
+            <button id = "Logout" type="button" name="button">Logout</button>
+            <!-- <<<<<<< HEAD:Balance/Balance.php
+            >>>>>>> 7a22e43c34f93c17fb86cb5165879d46099792bc:Balance/Balance.html -->
         </section>
 
 

@@ -44,7 +44,7 @@ body{
   border-radius: 0px;
   color: green;
   font-size: 15px;
-  transform: translate(-10px, -100px);
+  transform: translate(1000px, -400px);
 }
 
 /* layout is flexed, id column is this nav */
@@ -63,7 +63,7 @@ body{
   #column{
     flex: 1;
     color: lightslategray;
-    transform: translate(50px, 0px);
+    transform: translate(0px, 0px);
 }
 
   /* Temp click effect */
