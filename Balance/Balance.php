@@ -60,10 +60,9 @@
                 </div>
                 <div class="transferMoney"><a href="#">Transfer Money</a></div>
                 <div class="transferMoney"><a href="#">Account Info</a></div>
+                <div class="transferMoney"> <button>what</button></div>
             </div>
             <button id = "Logout" type="button" name="button">Logout</button>
-            <!-- <<<<<<< HEAD:Balance/Balance.php
-            >>>>>>> 7a22e43c34f93c17fb86cb5165879d46099792bc:Balance/Balance.html -->
         </section>
 
 
