@@ -39,6 +39,7 @@ if ($resultBalance->num_rows > 0 ){
 else {
     echo "<br> Row is 0.";
 }
+
 $userBalance = 0;
 $transferValue = $_POST["entryValue"];
 $accountNumber = $_POST["inputValue"];
@@ -58,21 +59,43 @@ $updateCurrentUserBalances =
 SET userCheckingAccountBalance = $currentBalance - $transferValue
 WHERE userName = '$userName';";
 
+
+$findTransferUserAccountBalance = 
+"SELECT userCheckingAccountBalance 
+FROM userRegistration 
+WHERE checkingAccountNumber = $accountNumber;";
+
+$findTransferUserBalance = mysqli_query($mysqli, $findTransferUserAccountBalance);
+
+$transferUserAccountBalance = 0;
+
+if ($findTransferUserBalance->num_rows > 0 ){
+
+    $row = $findTransferUserBalance->fetch_assoc();
+
+    echo "<br>UserBalance: " . $row["userCheckingAccountBalance"];
+    $transferUserAccountBalance = $row["userCheckingAccountBalance"];
+    
+}
+else {
+    echo "<br> Row is 0.";
+}
+
 $updateTransferUserBalances =
 
 "UPDATE userRegistration
-SET userCheckingAccountBalance = $transferValue
-WHERE CheckingAccountNumber = $accountNumber;";
+SET userCheckingAccountBalance = $transferUserAccountBalance + $transferValue
+WHERE checkingAccountNumber = $accountNumber;";
 
 
 echo "Updating balance<br><br>" . "Current Balance: $currentBalance <br>" . "Post Transfer Balance: $postBalance <br>";
 
 // querying our connected database with the given data points
 // inserting form information
-$results = mysqli_query($mysqli, $updateCurrentUserBalances);
 
 if ($currentBalance > $transferValue){
-
+    $results = mysqli_query($mysqli, $updateCurrentUserBalances);
+    
     if ($results){
         
         $transferResults = mysqli_query($mysqli, $updateTransferUserBalances);
