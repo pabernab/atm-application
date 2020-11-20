@@ -3,8 +3,6 @@
 
 session_start();
 
-
-
 	$logged_in  = false;
 	if (isset($_POST["userlogin"]) && isset($_POST["loginpassword"]))
 			{
@@ -129,7 +127,7 @@ session_start();
           <input type = "password" name= "loginpassword" placeholder="Password" required>
         </div>
         <input type = "submit" value = "Sign In">
-        <div class = "pass">Forgot Password?</div>
+        
         <div class = "signup_link">
           Need an account? <a href="Registration/Registration.php">Sign up</a>
       </form>
