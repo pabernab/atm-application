@@ -90,7 +90,7 @@ if ($currentBalance > $transferValue){
         echo "<br>";
         echo "Error: Information not inserted into database.";
         echo "<br>";
-        
+        header('Location: AccountName.php');
         echo "<br>";
     }
 
@@ -98,6 +98,7 @@ if ($currentBalance > $transferValue){
 else {
 
     echo "Current balance must exceed transfer value. <br>";
+    header('Location: AccountName.php');
 }
 
 
