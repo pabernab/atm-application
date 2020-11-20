@@ -11,7 +11,6 @@
         <header>
             <meta name="viewport" content="width=device-width">
             <img id = "logo" src="logo.png"/>
-
         </header>
 
         <!-- gray bar -->
@@ -61,17 +60,12 @@
                 </div>
                 <div class="transferMoney"><a href="#">Transfer Money</a></div>
                 <div class="transferMoney"><a href="#">Account Info</a></div>
-                <div class="transferMoney"> <button>what</button></div>
             </div>
-            <center>
-            <button id = "Logout" type="button" name="button">Logout</button>
-<<<<<<< HEAD
-=======
-          </center>
-
-            <!-- <<<<<<< HEAD:Balance/Balance.php
-            >>>>>>> 7a22e43c34f93c17fb86cb5165879d46099792bc:Balance/Balance.html -->
->>>>>>> 82642272191f4cc9f87d49e85a1bc291475cf840
+            <form action="../AmountConfirmation/confirmation.php" method="POST">
+                <div>
+                    <button type="submit" id="Logout">Logout</button>
+                </div>
+            </form>
         </section>
 
 
