@@ -3,6 +3,7 @@
         <meta charset = "utf-8">
         <title>Balance</title>
         <link rel = "stylesheet" href = "Balance.css">
+        <button id = "Logout" type="button" name="button">Logout</button>
     </head>
 
 
@@ -63,7 +64,7 @@
                 <div class="transferMoney"><a href="#">Account Info</a></div>
             </div>
             <center>
-            <button id = "Logout" type="button" name="button">Logout</button>
+
           </center>
 
             <!-- <<<<<<< HEAD:Balance/Balance.php
