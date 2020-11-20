@@ -75,21 +75,11 @@
                 <div class="transferMoney"><a href="#">Transfer Money</a></div>
                 <div class="transferMoney"><a href="#">Account Info</a></div>
             </div>
-<<<<<<< HEAD
             <form action="../AmountConfirmation/confirmation.php" method="POST">
                 <div>
                     <button type="submit" id="Logout">Logout</button>
                 </div>
             </form>
-=======
-            <center>
-              <!-- LOGOUT -->
-              <button id = "Logout" type="button" name="button">Logout</button>
-          </center>
-
-            <!-- <<<<<<< HEAD:Balance/Balance.php
-            >>>>>>> 7a22e43c34f93c17fb86cb5165879d46099792bc:Balance/Balance.html -->
->>>>>>> a14ce2761a0d4269ced1baa9ffe5c4c7df712d63
         </section>
 
 
