@@ -39,6 +39,7 @@ if ($resultBalance->num_rows > 0 ){
 else {
     echo "<br> Row is 0.";
 }
+$userBalance = 0;
 $transferValue = $_POST["entryValue"];
 $accountNumber = $_POST["inputValue"];
 
@@ -48,38 +49,38 @@ echo "<br> AccountNumber: $accountNumber <br>";
 echo "<br> Transfer value: " . $transferValue . "<br>Account number: " . $accountNumber . "<br>";
 $currentBalance = $userBalance;
 $postBalance = $currentBalance - $transferValue;
-
+//echo "<br>" . $userName . "<br>";
 // need to somehow track current user so we know who to 
 // modify value of ? 
-$updateBalances = 
-// "UPDATE userRegistration
-// SET userCheckingAccountBalance = $currentBalance - $transferValue
-// WHERE userName = '$userName'
-// UPDATE userRegistration
-// SET userCheckingAccountBalance = '$transferValue'
-// WHERE userCheckingAccountNumber = '$accountNumber';";
+$updateCurrentUserBalances = 
+
 "UPDATE userRegistration
 SET userCheckingAccountBalance = $currentBalance - $transferValue
-WHERE userName = '$userName';
+WHERE userName = '$userName';";
 
--- UPDATE userRegistration
--- SET userCheckingAccountBalance = $transferValue
--- WHERE userCheckingAccountNumber = $accountNumber;";
+$updateTransferUserBalances =
+
+"UPDATE userRegistration
+SET userCheckingAccountBalance = $transferValue
+WHERE CheckingAccountNumber = $accountNumber;";
+
 
 echo "Updating balance<br><br>" . "Current Balance: $currentBalance <br>" . "Post Transfer Balance: $postBalance <br>";
 
 // querying our connected database with the given data points
 // inserting form information
-$results = mysqli_query($mysqli, $updateBalances);
-
+$results = mysqli_query($mysqli, $updateCurrentUserBalances);
 
 if ($currentBalance > $transferValue){
 
     if ($results){
-        echo "<br>";
-        echo "\n\nTransfer complete. Balance has been updated.\n\n";
-        echo "<br>";
-        header('Location: ../transactionconfirmation/transactionconfirmation.php');
+        
+        $transferResults = mysqli_query($mysqli, $updateTransferUserBalances);
+
+        if ($transferResults){
+
+            header('Location: ../transactionconfirmation/transactionconfirmation.php');
+        }
         
     }
     
@@ -101,6 +102,22 @@ else {
 
 
 
+// $updateTransferUserBalance = 
+// "UPDATE userRegistration
+// SET userCheckingBalance = $transferValue
+// WHERE userCheckingAccountNumber = $accountNumber;";
+
+// $secondResults = mysqli_query($mysqli, $updateTransferUserBalance);
+
+// if ($secondResults){
+//     //header('Location: ../transactionconfirmation/transactionconfirmation.php');
+//     echo "Gottem";
+// }
+
+// else {
+//     echo "<br> Couldn't update second sql statement.";
+//     //header('Location: AccountName.php');
+// }
 
 
 
