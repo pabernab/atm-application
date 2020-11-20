@@ -44,7 +44,7 @@ body{
   border-radius: 0px;
   color: green;
   font-size: 15px;
-  transform: translate(1000px, -400px);
+  /* transform: translate(1000px, -400px); */
 }
 
 /* layout is flexed, id column is this nav */
