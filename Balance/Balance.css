@@ -38,10 +38,8 @@ body{
 {
   padding: 0;
   display: inline-block;
-  float:right;
-  position:relative;
-  right:100px;
-  top: 50px;
+
+
 
   height: 30px;
   width: 100px;
