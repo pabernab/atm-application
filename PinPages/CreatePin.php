@@ -50,23 +50,8 @@ $pinValue = '2222';
         }
     }
 
-
-
     // making sure we were able to insert the information properly into
     // our MySQL database
-  
-
-
-
-
-
-
-
-
-
-
-
-
  ?>
 
 
@@ -95,6 +80,14 @@ $pinValue = '2222';
 
         <!-- thank you message -->
         <div class="greeting">Please create a 4 digit PIN:</div>
+
+
+
+
+        <!-- Below is very messy, need to refactor, some forms are not needed. -->
+
+
+
 
         <!-- details: account/routing number/types -->
         <!-- Remove hardcode numbers & type, values should be from the the database -->

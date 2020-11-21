@@ -22,13 +22,13 @@
 
 
 
-  <button id = "checking" onclick="location.href='AccountSuccessful/AccountSuccessful/AccountSuccessful.php'" type="button" name="button">Checking</button>
+    <button id = "checking" onclick="location.href='../Account_Successful/AccountSuccessful.php'" type="button" name="button">Checking</button>
 
 
 
 
 
-          <button id = "savings" onclick="location.href='AccountSuccessful/AccountSuccessful/AccountSuccessful.php'" type="button" name="button">Savings</button>
+    <button id = "savings" onclick="location.href='../Account_Successful/AccountSuccessful.php'" type="button" name="button">Savings</button>
 
 
 
