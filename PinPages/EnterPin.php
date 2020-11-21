@@ -47,7 +47,7 @@ $pinCorrect = false;
                 if ($row["userPinNumber"] === $pinValue)
                 {
                   $pinCorrect = true;
-                  header('Location: Pin/AccountName.php');
+                  header('Location: ../Pin/AccountName.php');
                 }
 
                 else
