@@ -111,7 +111,7 @@ print_r($_SESSION);
         <!-- homepage button -->
         <!-- replace '#' with url link to homepage -->
         <div class="homepageDiv">
-            <button class="homepageButton" onclick="location.href='../../../../Balance/Balance/Balance.php'">Return to Homepage</button>
+            <button class="homepageButton" onclick="location.href='../Balance/Balance.php'">Return to Homepage</button>
         </div>
 
 

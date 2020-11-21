@@ -70,9 +70,9 @@ session_start();
         <div id="column"></div>
 
 
-        <div id="column"><a class="nav_column" href="PinPages/EnterPin2.php">Deposit/Withdrawal</a></div>
+        <div id="column"><a class="nav_column" href="../PinPages/EnterPin2.php">Deposit/Withdrawal</a></div>
 
-        <div id="column"><a class="nav_column" href="PinPages/EnterPin.php">Transfer</a></div>
+        <div id="column"><a class="nav_column" href="../PinPages/EnterPin.php">Transfer</a></div>
 
 
         <div id="column"><a class="nav_column">Open Account</a></div>
@@ -91,7 +91,7 @@ session_start();
                     <br>
                     <a style="font-size: 50%;">Available Balance</a>
                 </div>
-                <div class="transferMoney"><a href="PinPages/EnterPin.php">Transfer Money</a></div>
+                <div class="transferMoney"><a href="../PinPages/EnterPin.php">Transfer Money</a></div>
                 <div class="transferMoney"><a href="#">Account Info</a></div>
             </div>
 
@@ -105,13 +105,10 @@ session_start();
                     <br>
                     <a style="font-size: 50%;">Available Balance</a>
                 </div>
-                <div class="transferMoney"><a href="PinPages/EnterPin.php">Transfer Money</a></div>
+                <div class="transferMoney"><a href="../PinPages/EnterPin.php">Transfer Money</a></div>
                 <div class="transferMoney"><a href="#">Account Info</a></div>
             </div>
 
-         
-            <!-- <<<<<<< HEAD:Balance/Balance.php
-            >>>>>>> 7a22e43c34f93c17fb86cb5165879d46099792bc:Balance/Balance.html -->
         </section>
 
   

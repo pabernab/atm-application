@@ -71,7 +71,7 @@ $pinValue = '2222';
         <!-- bank logo -->
         <header>
             <meta name="viewport" content="width=device-width">
-            <img id = "logo" src="Pin/logo.png"/>
+            <img id = "logo" src="../Pin/logo.png"/>
         </header>
 
 

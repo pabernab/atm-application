@@ -90,7 +90,7 @@ $pinCorrect = false;
     <head>
         <meta charset = "utf-8">
         <title>Account Successful</title>
-        <link rel = "stylesheet" href = "Pin/Pin.css">
+        <link rel = "stylesheet" href = "../Pin/Pin.css">
     </head>
 
 
@@ -98,7 +98,7 @@ $pinCorrect = false;
         <!-- bank logo -->
         <header>
             <meta name="viewport" content="width=device-width">
-            <img id = "logo" src="Pin/logo.png"/>
+            <img id = "logo" src="../Pin/logo.png"/>
         </header>
 
 

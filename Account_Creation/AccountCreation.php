@@ -20,22 +20,15 @@
 
   <div id = buttonLayout>
 
+    <!-- Checking Button -->
+    <button id = "checking" onclick="location.href='../Account_Successful/AccountSuccessful.php'"
+     type="button" name="button">Checking</button>
 
-
-    <button id = "checking" onclick="location.href='../Account_Successful/AccountSuccessful.php'" type="button" name="button">Checking</button>
-
-
-
-
-
-    <button id = "savings" onclick="location.href='../Account_Successful/AccountSuccessful.php'" type="button" name="button">Savings</button>
-
-
-
+    <!-- Savings Button -->
+    <button id = "savings" onclick="location.href='../Account_Successful/AccountSuccessful.php'"
+     type="button" name="button">Savings</button>
 
   </div>
-
-
 
   </body>
 </html>
