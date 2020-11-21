@@ -94,7 +94,7 @@ $pinValue = '2222';
         <!-- Values here just for demonstration -->
         <div class="textbox">
             <form action= "" method="post">
-                <input type="password" class="resizeTextbox" name="pinValue">
+                <input type="password" class="resizeTextbox" name="pinValue" maxlength = "4">
 
                        <!-- Continue button -->
         <!-- replace '#' with url link -->
