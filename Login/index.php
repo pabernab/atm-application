@@ -109,12 +109,12 @@ session_start();
       <div id="column"></div>
       <div id="column"></div>
 
+			<!-- Below bank logo -->
+      <div id="column"><a class="nav_column"></a></div>|
 
-      <div id="column"><a class="nav_column">Deposit/Withdrawal</a></div>|
+      <div id="column"><a class="nav_column"></a></div>|
 
-      <div id="column"><a class="nav_column">Transfer</a></div>|
-
-      <div id="column"><a class="nav_column">Open Account</a></div>
+      <div id="column"><a class="nav_column"></a></div>
 
 
       <div id="column"></div>
@@ -124,6 +124,7 @@ session_start();
     <!-- <describe this> -->
     <div class = "center">
       <form method = "post">
+				<!-- Left Side Field -->
         <div class = "txt_field">
           <input type = "text" name = "userlogin" placeholder="Username" required>
         </div>
@@ -135,6 +136,8 @@ session_start();
           Need an account? <a href="../Registration/Registration.php">Sign up</a>
       </form>
     </div>
+
+		<!-- Right Side field -->
     <div class = "canvas">
       <form method = "post">
         <h1 style = "font-family: Franklin Gothic Medium">Your Money. Secured.</h1>
