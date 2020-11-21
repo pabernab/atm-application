@@ -41,7 +41,7 @@ $pinValue = '2222';
     
         if ($results)
         {
-            header('Location: ../../../Registration/AccountCreation/AccountCreation.php');
+            header('Location: ../Account_Creation/AccountCreation.php');
         }
 
         else
@@ -78,7 +78,7 @@ $pinValue = '2222';
     <head>
         <meta charset = "utf-8">
         <title>PIN Creation</title>
-        <link rel = "stylesheet" href = "Pin/Pin.css">
+        <link rel = "stylesheet" href = "../Pin/Pin.css">
     </head>
 
 

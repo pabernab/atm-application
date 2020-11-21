@@ -81,9 +81,7 @@ session_start();
                 // making sure we were able to insert the information properly into
                 // our MySQL database
                 if ($results){
-                  header('Location: ../Balance/Balance/PinPages/CreatePin.php');
-
-
+                  header('Location: ../PinPages/CreatePin.php');
                 }
 
                 // in the event we somehow were unable to insert the information
@@ -227,8 +225,10 @@ session_start();
 
           </div>
 
+          <!-- Can some one explain why the Create Account button is pointing to this html file? -->
+          <!-- I set it to point to CreatPin.php file -->
           <center>
-            <input id ="CreateButton" onclick="location.href='AccountCreation.html'" type="submit" value = "Create Account">
+            <input id ="CreateButton" onclick="location.href='../PinPages/CreatePin.php'" type="submit" value = "Create Account">
           </center>
 
       </form>
