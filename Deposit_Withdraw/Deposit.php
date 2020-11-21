@@ -33,6 +33,23 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
     //PICTUREFILE
     $pictureFile = $_POST["picture"];
 
+
+    //UPLOADS FILE INTO FILE PATH IMAGES
+    $info = pathinfo($_FILES['picture']['name']);
+    $ext = $info['extension']; // get the extension of the file
+
+    //PUT RANDOMIZED NUMBER HERE
+    $name = 2837838383;
+
+    $newname = "{$name}.".$ext;
+    $target = 'images/'.$newname;
+    move_uploaded_file( $_FILES['picture']['tmp_name'], $target);
+
+    //THIS UPLOADS FILE INTO IMAGE FOLDER IN Deposit_Withdraw
+
+
+
+
     if($typeAcc === 'Checking')//WHEN USER SELECTS CHECKING ACCOUNT
     {
       try
