@@ -1,10 +1,45 @@
 <?php
 
+session_start();
 
+
+// these are our login values associated with the AWS
+    // database instance, found here:
+    // https://us-west-1.console.aws.amazon.com/rds/home?region=us-west-1#database:id=mysqldb;is-cluster=false
+    $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
+    $serverUserName = 'butteadmin';
+    $serverPassword = 'buttecmpe131';
+    $dbname = 'registration';
+
+    // creating a new server connection using our preset AWS login values
+    $mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
+
+    // simple error catch if we are unable to connect to the MySQL Database
+    if ($mysqli->connect_errno) {
+        echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+
+    // test display of host connection info
+    // echo $mysqli->host_info . "\n";
+
+    $setBalance = "SELECT userCheckingAccountBalance
+    FROM userRegistration
+    WHERE userName = '{$_SESSION['userName']}' ";
+
+
+    $results = mysqli_query($mysqli, $setBalance);
+
+    $row = mysqli_fetch_assoc($results);
+
+    $balance = $row['userCheckingAccountBalance'];
 
 
 
 ?>
+
+
+
+
 
 
 <html>
@@ -13,6 +48,9 @@
         <title>Balance</title>
         <link rel = "stylesheet" href = "Balance.css">
     </head>
+
+
+
 
 
     <body>
@@ -32,9 +70,9 @@
         <div id="column"></div>
 
 
-        <div id="column"><a class="nav_column">Deposit/Withdrawal</a></div>
+        <div id="column"><a class="nav_column" href="PinPages/EnterPin2.php">Deposit/Withdrawal</a></div>
 
-        <div id="column"><a class="nav_column">Transfer</a></div>
+        <div id="column"><a class="nav_column" href="PinPages/EnterPin.php">Transfer</a></div>
 
 
         <div id="column"><a class="nav_column">Open Account</a></div>
@@ -49,11 +87,11 @@
             <!-- Replace hard coded balance with php code -->
             <div class="barLayout">Checking Accounts</div>
             <div class="contentLayout">
-                <div class="availableBalance">$2,301.29
+                <div class="availableBalance">$<?php echo htmlspecialchars($balance); ?>
                     <br>
                     <a style="font-size: 50%;">Available Balance</a>
                 </div>
-                <div class="transferMoney"><a href="#">Transfer Money</a></div>
+                <div class="transferMoney"><a href="PinPages/EnterPin.php">Transfer Money</a></div>
                 <div class="transferMoney"><a href="#">Account Info</a></div>
             </div>
 
@@ -63,20 +101,20 @@
             <!-- Replace hard coded balance with php code -->
             <div class="barLayout">Savings Accounts</div>
             <div class="contentLayout">
-                <div class="availableBalance">$4,121.21
+                <div class="availableBalance">$0.000
                     <br>
                     <a style="font-size: 50%;">Available Balance</a>
                 </div>
-                <div class="transferMoney"><a href="#">Transfer Money</a></div>
+                <div class="transferMoney"><a href="PinPages/EnterPin.php">Transfer Money</a></div>
                 <div class="transferMoney"><a href="#">Account Info</a></div>
             </div>
-            <form action="../AmountConfirmation/confirmation.php" method="POST">
-                <div>
-                    <button type="submit" id="Logout">Logout</button>
-                </div>
-            </form>
+
+         
+            <!-- <<<<<<< HEAD:Balance/Balance.php
+            >>>>>>> 7a22e43c34f93c17fb86cb5165879d46099792bc:Balance/Balance.html -->
         </section>
 
+  
 
     </body>
 </html>

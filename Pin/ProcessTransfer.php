@@ -15,7 +15,7 @@
         echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
    
-    $userName = $_SESSION["userName"];
+
     $getTransferValue = $_POST["inputValue"];
     // need to somehow track current user so we know who to 
     // modify value of ? 
@@ -24,7 +24,7 @@
     $updateBalances = 
     "UPDATE userRegistration
     SET userCheckingAccountBalance = $currentBalance - $getTransferValue
-    WHERE userName = '$userName';";
+    WHERE userName = 'Aristotle';";
 
     // querying our connected database with the given data points
     // inserting form information
@@ -43,8 +43,8 @@
         
     }
 
-    // in the event we somehow were unable to insert the information
-    // thus not being able to create the account
+    // somehow we couldn't process this transfer
+    // needs more work on user explanation
     else {
         echo "<br>";
         echo "Could not process transfer.";

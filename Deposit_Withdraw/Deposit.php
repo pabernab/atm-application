@@ -1,5 +1,10 @@
 <?php
 
+
+session_start();
+
+print_r($_SESSION);
+
 //CONNECTING SERVER
 $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
 $serverUserName = 'butteadmin';
@@ -13,11 +18,10 @@ $conn = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3
 if ($conn->connect_errno) {
   echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
 }
-session_start();
 
 // When you change this make sure it change Name to userName
-$sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = 'AllenB'";
-$sql2 = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = 'AllenB'";
+$sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = '{$_SESSION['userName']}'";
+$sql2 = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = '{$_SESSION['userName']}'";
 
 if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 {
@@ -38,17 +42,12 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
         //Updated value
         $num = $row1["userCheckingAccountBalance"] + $input;
         // PLEASE CHECK
-        $sqlUpdate = "UPDATE userRegistration SET userCheckingAccountBalance = $num WHERE userName = 'AllenB'";
+        $sqlUpdate = "UPDATE userRegistration SET userCheckingAccountBalance = $num WHERE userName = '{$_SESSION['userName']}'";
 
         $stmt = $conn->prepare($sqlUpdate);
         $stmt->execute();
               //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
-
-        $_SESSION["amount"] = $num;
-
         mysqli_close($conn);
-
-        header("Location: confirmation.php");
 
         //GO TO NEXT PAGE HERE
         }
@@ -69,15 +68,13 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           //Updated value
           $num = $row2["userSavingsAccountBalance"] + $input;
             // PLEASE CHECK
-          $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = 'AllenB'";
+          $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = '{$_SESSION['userName']}'";
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
           //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
-
-          $_SESSION["amount"] = $num;
            mysqli_close($conn);
-           header("Location: confirmation.php");
+
            //Go to NEXT PAGE HERE
         }
           catch (PDOException $e)

@@ -3,6 +3,10 @@
 
 session_start();
 
+
+
+
+
 	$logged_in  = false;
 	if (isset($_POST["userlogin"]) && isset($_POST["loginpassword"]))
 			{
@@ -100,7 +104,7 @@ session_start();
     <div id="graybar"></div>
 
     <!-- deposit/withdraw & transfer & open account nagivations/
-          empty divs are for layout purposes
+          empty divs are for layout purposes -->
     <nav id="nav_layout">
       <div id="column"></div>
       <div id="column"></div>
@@ -115,7 +119,7 @@ session_start();
 
       <div id="column"></div>
       <div id="column"></div>
-    </nav> -->
+    </nav>
 
     <!-- <describe this> -->
     <div class = "center">
@@ -127,9 +131,9 @@ session_start();
           <input type = "password" name= "loginpassword" placeholder="Password" required>
         </div>
         <input type = "submit" value = "Sign In">
-        
+        <div class = "pass">Forgot Password?</div>
         <div class = "signup_link">
-          Need an account? <a href="../Registration/Registration.php">Sign up</a>
+          Need an account? <a href="Registration/Registration.php">Sign up</a>
       </form>
     </div>
     <div class = "canvas">

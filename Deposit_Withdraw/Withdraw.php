@@ -13,7 +13,6 @@ $conn = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3
 if ($conn->connect_errno) {
   echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
 }
-session_start();
 
 // When you change this make sure it change Name to userName
 $sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = 'AllenB'";
@@ -42,9 +41,6 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           $stmt->execute();
           //END CONNECTION
            mysqli_close($conn);
-           $_SESSION["amount"] = $num;
-
-           header("Location: confirmation.php");
 
            //GO to next Page here
         }
@@ -72,9 +68,6 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           $stmt->execute();
           //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
           mysqli_close($conn);
-          $_SESSION["amount"] = $num;
-
-          header("Location: confirmation.php");
 
           // Go to next page here
         }

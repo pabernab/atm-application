@@ -15,7 +15,7 @@
         echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
    
-    $userName = $_SESSION["userName"];
+    // pulls from AccountName.php
     $createPin = $_POST["pinValue"];
     // need to somehow track current user so we know who to 
     // modify value of ? 
@@ -24,7 +24,7 @@
     $updatePin = 
     "UPDATE userRegistration
     SET userPinNumber = $createPin
-    WHERE userName = '$userName';";
+    WHERE userName = 'Aristotle';";
 
     // querying our connected database with the given data points
     // inserting form information
