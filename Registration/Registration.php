@@ -228,7 +228,7 @@ session_start();
           </div>
 
           <center>
-            <input id ="CreateButton" onclick="location.href='AccountCreation.html'" type="submit" value = "Create Account">
+            <input id ="CreateButton" onclick="location.href='../Account_Creation/AccountCreation.php'" type="submit" value = "Create Account">
           </center>
 
       </form>

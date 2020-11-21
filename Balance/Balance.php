@@ -12,11 +12,6 @@
         <meta charset = "utf-8">
         <title>Balance</title>
         <link rel = "stylesheet" href = "Balance.css">
-<<<<<<< HEAD
-=======
-
-
->>>>>>> a14ce2761a0d4269ced1baa9ffe5c4c7df712d63
     </head>
 
 
