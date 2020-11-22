@@ -7,11 +7,30 @@ function submission()
   let pass1 = document.forms["myForm"]["userPassword"].value;
   let pass2 = document.forms["myForm"]["repassword"].value;
 
-  if(firstname === "" || lastname === "" || email === ""  || username === "" || pass1 === "" || pass2 === "" )
+  if(!email.includes("@") || !email.includes(".com"))
   {
-    alert("Field is missing");
+    alert("Invalid email");
     return false;
   }
+
+  if (firstname === "" || lastname === "" || email === ""  || username === "" || pass1 === "" || pass2 === "" )
+  {
+    alert("meh");
+     return false;
+  }
+
+  //Checks password dont match or not
+  if(pass1 === pass2)
+  {
+    alert("hit");
+  }
+  else
+  {
+    alert("The passwords don't match");
+  }
+
+  //Checks if email is valid
+
 
   // if (firstname === "test" || lastname === "test" || email === "test"  || username === "test" || pass1 === "test" || pass2 === "test" )
   //   {
@@ -25,5 +44,8 @@ function submission()
   //     document.forms["myForm"]["input"].value = "userInput";
   //      return true;
   //   }
+
+
+  //Refresh page
     return false;
 }
