@@ -3,11 +3,8 @@
 
 session_start();
 
-
-
-
-
 	$logged_in  = false;
+
 	if (isset($_POST["userlogin"]) && isset($_POST["loginpassword"]))
 			{
 				if ($_POST["userlogin"] && $_POST["loginpassword"])
@@ -33,7 +30,8 @@ session_start();
 						die("Connection failed: " . mysqli_connect_error());
 					}
 
-
+					$username = $_POST["userlogin"];
+					$password = $_POST["loginpassword"];
 
           $sql = "SELECT userPassword FROM userRegistration WHERE userName = '$username'";
 
@@ -42,8 +40,15 @@ session_start();
           if($results)
 					{
                 $row = mysqli_fetch_assoc($results);
-                if ($row["userPassword"] === $password)
+
+								if($row === null)//If database doesnt have a user input
+								{
+									echo "Username you entered does not appear in the database.";
+								}
+
+                else if ($row["userPassword"] === $password)
                 {
+									//Logged in Should change page here
                   $logged_in = true;
                   $sql = "SELECT * FROM userRegistration";
                   $results = mysqli_query($conn, $sql);
@@ -69,14 +74,17 @@ session_start();
 			}
 		}
 
-		if ($_SERVER['REQUEST_METHOD'] === 'POST')
-		{
-		  $file = '/tmp/sample-app.log';
-		  $message = file_get_contents('php://input');
-		  file_put_contents($file, date('Y-m-d H:i:s') . " Received message: " . $message . "\n", FILE_APPEND);
-		}
-		else
-		{
+
+		//Server Stuff
+		// if ($_SERVER['REQUEST_METHOD'] === 'POST')
+		// {
+		//   $file = '/tmp/sample-app.log';
+		//   $message = file_get_contents('php://input');
+		//   file_put_contents($file, date('Y-m-d H:i:s') . " Received message: " . $message . "\n", FILE_APPEND);
+		// }
+		// else
+		// {
+		// }
 
   ?>
 
@@ -156,15 +164,14 @@ session_start();
     </div>
 
 
-    				<?php
-					}
+	<!-- } -->
+					<?php
+    					// if($logged_in && $results)
+    					// {
+							// 	header('Location: Balance/Balance/Balance.php');
+    					// }
 
-    					if($logged_in && $results)
-    					{
-    						header('Location: Balance/Balance/Balance.php');
-    					}
-
-    				?>
+    			?>
 
 
 
