@@ -99,8 +99,16 @@ print_r($_SESSION);
                     }
                     else
                     {
-                      echo htmlspecialchars($balance);
-                  }
+                      $toString = "{$balance}";
+                      if(strpos($toString, '.') === false)
+                      {
+                        echo "{$balance}.00";
+                      }
+                      else
+                      {
+                        echo htmlspecialchars($balance);
+                      }
+                    }
 
                   ?>
 
@@ -128,7 +136,16 @@ print_r($_SESSION);
                     }
                     else
                     {
-                      echo htmlspecialchars($saving);
+                      $toString = "{$saving}";
+                      if(strpos($toString, '.') === false)
+                      {
+                        echo "{$saving}.00";
+                      }
+                      else
+                      {
+                        echo htmlspecialchars($saving);
+                      }
+
                     }
 
 
