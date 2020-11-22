@@ -2,6 +2,7 @@
 
 session_start();
 
+print_r($_SESSION);
 
 // these are our login values associated with the AWS
     // database instance, found here:
@@ -22,18 +23,19 @@ session_start();
     // test display of host connection info
     // echo $mysqli->host_info . "\n";
 
-    $setBalance = "SELECT userCheckingAccountBalance
-    FROM userRegistration
-    WHERE userName = '{$_SESSION['userName']}' ";
+    $user = $_SESSION['username'];
 
+    $setBalance = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = $user ";
+    $setSaving = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = $user ";
 
     $results = mysqli_query($mysqli, $setBalance);
+    $results2 = mysqli_query($mysqli, $setSaving);
 
     $row = mysqli_fetch_assoc($results);
+    $row2 = mysqli_fetch_assoc($results2);
 
     $balance = $row['userCheckingAccountBalance'];
-
-
+    $saving = $row2['userSavingsAccountBalance'];
 
 ?>
 
@@ -87,7 +89,15 @@ session_start();
             <!-- Replace hard coded balance with php code -->
             <div class="barLayout">Checking Accounts</div>
             <div class="contentLayout">
-                <div class="availableBalance">$<?php echo htmlspecialchars($balance); ?>
+                <div class="availableBalance">
+                  $
+                  <?php
+                  // prints user's checking
+                    echo htmlspecialchars($balance);
+
+                  ?>
+
+
                     <br>
                     <a style="font-size: 50%;">Available Balance</a>
                 </div>
@@ -101,7 +111,15 @@ session_start();
             <!-- Replace hard coded balance with php code -->
             <div class="barLayout">Savings Accounts</div>
             <div class="contentLayout">
-                <div class="availableBalance">$0.000
+                <div class="availableBalance">
+                  $
+                  <?php
+                  // prints user's saving
+                    echo htmlspecialchars($saving);
+
+                  ?>
+
+
                     <br>
                     <a style="font-size: 50%;">Available Balance</a>
                 </div>
@@ -111,7 +129,7 @@ session_start();
 
         </section>
 
-  
+
 
     </body>
 </html>

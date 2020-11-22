@@ -3,6 +3,8 @@
 
 session_start();
 
+print_r($_SESSION);
+
 	$logged_in  = false;
 
 	if (isset($_POST["userlogin"]) && isset($_POST["loginpassword"]))
