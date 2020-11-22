@@ -9,8 +9,7 @@ session_start();
 			{
 				if ($_POST["userlogin"] && $_POST["loginpassword"])
 				{
-					$_SESSION["username"] = $_POST["userlogin"];
-					$_SESSION["password"] = $_POST["loginpassword"];
+
 
 
 					//create connection
@@ -50,8 +49,14 @@ session_start();
                 {
 									//Logged in Should change page here
                   $logged_in = true;
-                  $sql = "SELECT * FROM userRegistration";
-                  $results = mysqli_query($conn, $sql);
+
+									$_SESSION["username"] = $_POST["userlogin"];
+									$_SESSION["password"] = $_POST["loginpassword"];
+
+									header('Location: ../Balance/Balance.php');
+
+                  // $sql = "SELECT * FROM userRegistration";
+                  // $results = mysqli_query($conn, $sql);
                 }
                 else
                 {
