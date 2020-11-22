@@ -125,7 +125,8 @@ session_start();
   </head>
 
   <body>
-
+    <!-- Enables javaScript -->
+    <script src="Checker.js"></script>
     <header>
       <meta name="viewport" content="width=device-width">
         <img id = "logo" src="logo.png"/>
@@ -141,7 +142,7 @@ session_start();
     <br>
     Last Name: -->
 
-      <form action="" method="post">
+      <form action="" method="post" name = "myForm">
 
         <div class = "row">
           <!-- LEFT -->
@@ -228,7 +229,8 @@ session_start();
           <!-- Can some one explain why the Create Account button is pointing to this html file? -->
           <!-- I set it to point to CreatPin.php file -->
           <center>
-            <input id ="CreateButton" onclick="location.href='../PinPages/CreatePin.php'" type="submit" value = "Create Account">
+            <button id = "CreateButton" type = 'submit' onclick="return submission();" value = "Create Account" > submit </button>
+            <!-- <input id ="CreateButton" onclick="location.href='../PinPages/CreatePin.php'" type="submit" value = "Create Account" onclick="return submission();" > -->
           </center>
 
       </form>
