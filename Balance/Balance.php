@@ -92,8 +92,15 @@ print_r($_SESSION);
                 <div class="availableBalance">
                   $
                   <?php
-                  // prints user's checking
-                    echo htmlspecialchars($balance);
+                    // prints user's checking
+                    if($balance === '')
+                    {
+                      echo "0.00";
+                    }
+                    else
+                    {
+                      echo htmlspecialchars($balance);
+                  }
 
                   ?>
 
@@ -115,7 +122,15 @@ print_r($_SESSION);
                   $
                   <?php
                   // prints user's saving
-                    echo htmlspecialchars($saving);
+                    if($saving === '')
+                    {
+                      echo "0.00";
+                    }
+                    else
+                    {
+                      echo htmlspecialchars($saving);
+                    }
+
 
                   ?>
 
