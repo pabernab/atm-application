@@ -113,7 +113,7 @@ $pinCorrect = false;
         <!-- Values here just for demonstration -->
         <div class="textbox">
             <form method="POST">
-                <input class="resizeTextbox" type="text" id="pinValue" name="pinValue">
+                <input class="resizeTextbox" type="password" id="pinValue" name="pinValue" maxlength="4">
 
                        <!-- Continue button -->
         <!-- replace '#' with url link -->

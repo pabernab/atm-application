@@ -93,14 +93,14 @@ print_r($_SESSION);
                   $
                   <?php
                     // prints user's checking
-                    if($balance === '')
+                    if($balance === '')//Checks if nothing inside database
                     {
                       echo "0.00";
                     }
                     else
                     {
                       $toString = "{$balance}";
-                      if(strpos($toString, '.') === false)
+                      if(strpos($toString, '.') === false)//Checks if there isn't any decimals
                       {
                         echo "{$balance}.00";
                       }
