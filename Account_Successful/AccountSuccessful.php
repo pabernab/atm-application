@@ -32,7 +32,7 @@ $username = '$_SESSION[userName]';
 
     $setAccountNumber = "UPDATE userRegistration 
     SET CheckingAccountNumber = $checkingNumber, userRoutingNumber = $accountNumber, userCheckingAccountBalance = 0
-    WHERE userName = '{$_SESSION['userName']}' ";
+    WHERE userName = '{$_SESSION['username']}' ";
 
 
     $results = mysqli_query($mysqli, $setAccountNumber);

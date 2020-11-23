@@ -25,8 +25,8 @@ print_r($_SESSION);
 
     $user = $_SESSION['username'];
 
-    $setBalance = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = $user ";
-    $setSaving = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = $user ";
+    $setBalance = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = '{$_SESSION['username']}' ";
+    $setSaving = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = '{$_SESSION['username']}' ";
 
     $results = mysqli_query($mysqli, $setBalance);
     $results2 = mysqli_query($mysqli, $setSaving);
