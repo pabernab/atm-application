@@ -160,8 +160,9 @@ print_r($_SESSION);
             </div>
 
         </section>
-
-
-
+        <center>
+          <!-- Logout -->
+          <!-- <button  onclick="return logout();" >Logout</button> -->
+      </center>
     </body>
 </html>

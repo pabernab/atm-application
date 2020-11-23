@@ -7,26 +7,23 @@ function submission()
   let pass1 = document.forms["myForm"]["userPassword"].value;
   let pass2 = document.forms["myForm"]["repassword"].value;
 
-  if(!email.includes("@") || !email.includes(".com"))
+  if (firstname === "" || lastname === "" || email === ""  || username === "" || pass1 === "" || pass2 === "" )
+  {
+    alert("please fill entry");
+     return false;
+  }
+
+  if(!email.includes("@") && (!email.includes(".com") ||  !email.includes(".net")))
   {
     alert("Invalid email");
     return false;
   }
 
-  if (firstname === "" || lastname === "" || email === ""  || username === "" || pass1 === "" || pass2 === "" )
-  {
-    alert("meh");
-     return false;
-  }
-
   //Checks password dont match or not
-  if(pass1 === pass2)
+  if(pass1 !== pass2)
   {
-    alert("hit");
-  }
-  else
-  {
-    alert("The passwords don't match");
+    alert("The passwords don't match each other.");
+    return false;
   }
 
   //Checks if email is valid
@@ -47,5 +44,5 @@ function submission()
 
 
   //Refresh page
-    return false;
+    return true;
 }

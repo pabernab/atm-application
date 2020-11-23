@@ -1,0 +1,6 @@
+function logout()
+{
+  
+
+  return true;
+}
