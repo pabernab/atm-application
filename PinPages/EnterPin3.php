@@ -47,7 +47,7 @@ $pinCorrect = false;
                 if ($row["userPinNumber"] === $pinValue)
                 {
                   $pinCorrect = true;
-                  header('Location: ../Account_Creation/Deposit.php');
+                  header('Location: ../Account_Creation/OpenCloseAccount.php');
                 }
 
                 else
