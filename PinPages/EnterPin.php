@@ -36,7 +36,7 @@ $pinCorrect = false;
         $pinValue = $_POST["pinValue"];
 
 
-        $setPin = "SELECT userPinNumber FROM userRegistration WHERE userName = '$userName';";
+        $setPin = "SELECT userPinNumber FROM userRegistration WHERE userName = $userName";
 
 
         $results = mysqli_query($mysqli, $setPin);
