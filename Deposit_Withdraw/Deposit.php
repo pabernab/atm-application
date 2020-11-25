@@ -19,35 +19,36 @@ if ($conn->connect_errno) {
   echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
 }
 
+$name = $_SESSION['username'];
+
 // When you change this make sure it change Name to userName
-$sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = '{$_SESSION['userName']}'";
-$sql2 = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = '{$_SESSION['userName']}'";
+$sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = $name ";
+$sql2 = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = $name";
 
 if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 {
-  if(!empty($_POST["picture"]))
+
+  if(!empty($_FILES["userFile"]['name']))
   {
     $input = $_POST["amount"];
     $typeAcc = $_POST["AccountNumber"];
 
-    //PICTUREFILE
-    $pictureFile = $_POST["picture"];
-
 
     //UPLOADS FILE INTO FILE PATH IMAGES
-    $info = pathinfo($_FILES['picture']['name']);
+    $info = pathinfo($_FILES['userFile']['name']);
     $ext = $info['extension']; // get the extension of the file
 
     //PUT RANDOMIZED NUMBER HERE
-    $name = 2837838383;
+
+    $rand = rand(1000000,9999999);
+
+    $name = $rand;
 
     $newname = "{$name}.".$ext;
     $target = 'images/'.$newname;
-    move_uploaded_file( $_FILES['picture']['tmp_name'], $target);
+    move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
 
     //THIS UPLOADS FILE INTO IMAGE FOLDER IN Deposit_Withdraw
-
-
 
 
     if($typeAcc === 'Checking')//WHEN USER SELECTS CHECKING ACCOUNT
@@ -59,13 +60,17 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
         //Updated value
         $num = $row1["userCheckingAccountBalance"] + $input;
         // PLEASE CHECK
-        $sqlUpdate = "UPDATE userRegistration SET userCheckingAccountBalance = $num WHERE userName = '{$_SESSION['userName']}'";
+        $sqlUpdate = "UPDATE userRegistration SET userCheckingAccountBalance = $num WHERE userName = $name";
 
         $stmt = $conn->prepare($sqlUpdate);
         $stmt->execute();
               //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
-        mysqli_close($conn);
 
+        $_SESSION["amount"] = $num;
+        $_SESSION["ordernumber"] = $name;
+
+        mysqli_close($conn);
+        header("Location: confirmation.php");
         //GO TO NEXT PAGE HERE
         }
         catch (PDOException $e)
@@ -85,13 +90,15 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           //Updated value
           $num = $row2["userSavingsAccountBalance"] + $input;
             // PLEASE CHECK
-          $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = '{$_SESSION['userName']}'";
+          $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = $name";
+
+          $_SESSION["amount"] = $num;
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
           //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
            mysqli_close($conn);
-
+           header("Location: confirmation.php");
            //Go to NEXT PAGE HERE
         }
           catch (PDOException $e)
@@ -100,7 +107,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           }
         }
       }
-  }
+    }
   }
 
 
@@ -137,7 +144,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
         <br>
       </p>
 
-      <form action="/Deposit_Withdraw1/atm-application/Deposit.php" method="post">
+      <form action="" method="POST" enctype='multipart/form-data'>
         <p class = "regularFont">
           <label for="AccountNumber">Choose an account:</label>
           <select name="AccountNumber">
@@ -153,7 +160,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
         Please input png/jpeg file
       <!-- <label for="myfile">Select a file:</label> -->
       </p>
-      <input type="file" name= "picture" accept= "image/png, image/jpeg">
+      <input type="file" name= "userFile">
 
       <p class = "regularFont">
         Put in value between 0.00 to 4000.00
@@ -202,11 +209,10 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
         {
           echo '<span style="color:RED;text-align:center;">ERROR: You did not select which account.</span>';
         }
-        if(empty($_POST["picture"]))
+        else if(empty($_FILES["userFile"]['name']))
         {
           echo '<span style="color:RED;text-align:center;">ERROR: Please Upload file.</span>';
         }
-
       }
 
       ?>
@@ -215,13 +221,13 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
       <br>
 
       <input type = "number" name = "amount" min = "0.00" max = "4000.00" step = "0.01">
-      <input type = "submit" value = "submit">
+      <input type = "submit" value = "submit" name = 'upload_btn'>
     </form>
 
 
       <br>
 
-      <input type="submit" value = "Go Back">
+      <button onclick = "window.location = '../Balance/Balance.php';">Go Back</button>
 
 
 
