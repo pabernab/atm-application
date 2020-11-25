@@ -48,8 +48,9 @@
         ?>
       </p>
 
-      <form>
+      <form action="../Balance/Balance.php">
         <input type="submit" value = "Return to Homepage">
+        
       </form>
     </center>
 
