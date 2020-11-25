@@ -51,6 +51,8 @@ print_r($_SESSION);
                 {
 									//Logged in Should change page here
                   $logged_in = true;
+									//PASSES userName into Session
+		  					$_SESSION["userName"] = $_POST["userlogin"];
 
                   // "username"
 									$_SESSION["userName"] = $_POST["userlogin"];
