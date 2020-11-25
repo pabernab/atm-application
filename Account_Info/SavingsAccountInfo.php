@@ -28,7 +28,7 @@ print_r($_SESSION);
     $savingsAccountNumber = "SELECT savingsAccountNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
     $userRoutingNumber = "SELECT userRoutingNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
 
-    $results = mysqli_query($mysqli, $savingsAccountNumber);¡
+    $results = mysqli_query($mysqli, $savingsAccountNumber);
     $results2 = mysqli_query($mysqli, $userRoutingNumber);
 
     $row = mysqli_fetch_assoc($results);
