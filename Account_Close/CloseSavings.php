@@ -23,12 +23,12 @@ print_r($_SESSION);
     // test display of host connection info
     // echo $mysqli->host_info . "\n";
 
-    $user = $_SESSION['userName'];
+    $user = $_SESSION['username'];
 
-    $savingsAccountNumber = "SELECT savingsAccountNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
-    $userRoutingNumber = "SELECT userRoutingNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
+    $savingsAccountNumber = "SELECT savingsAccountNumber FROM userRegistration WHERE userName = '{$_SESSION['username']}' ";
+    $userRoutingNumber = "SELECT userRoutingNumber FROM userRegistration WHERE userName = '{$_SESSION['username']}' ";
 
-    $results = mysqli_query($mysqli, $savingsAccountNumber);¡
+    $results = mysqli_query($mysqli, $savingsAccountNumber);
     $results2 = mysqli_query($mysqli, $userRoutingNumber);
 
     $row = mysqli_fetch_assoc($results);
@@ -69,7 +69,7 @@ print_r($_SESSION);
         <div id="graybar"></div>
 
         <!-- thank you message -->
-        <div class="greeting">Savings Account Information</div>
+        <div class="greeting">Savings Account Closed</div>
 
         <!-- details: account/routing number/types -->
         <!-- Remove hardcode numbers & type, values should be from the the database -->

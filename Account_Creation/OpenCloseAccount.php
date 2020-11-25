@@ -49,11 +49,11 @@
 
 
     <!-- Checking Button -->
-    <button id = "checking" onclick="location.href='../Account_Successful/AccountSuccessful.php'"
+    <button id = "checking" onclick="location.href='../Account_Close/CloseChecking.php'"
      type="button" name="button">Checking</button>
 
     <!-- Savings Button -->
-    <button id = "savings" onclick="location.href='../Account_Successful/AccountSuccessful.php'"
+    <button id = "savings" onclick="location.href='../Account_Close/CloseSavings.php'"
      type="button" name="button">Savings</button>
 
   </div>
