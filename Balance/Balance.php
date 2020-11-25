@@ -117,7 +117,7 @@ print_r($_SESSION);
                     <a style="font-size: 50%;">Available Balance</a>
                 </div>
                 <div class="transferMoney"><a href="../PinPages/EnterPin.php">Transfer Money</a></div>
-                <div class="transferMoney"><a href="#">Account Info</a></div>
+                <div class="transferMoney"><a href="../Account_Info/CheckingAccountInfo.php">Account Info</a></div>
             </div>
 
 
@@ -156,7 +156,7 @@ print_r($_SESSION);
                     <a style="font-size: 50%;">Available Balance</a>
                 </div>
                 <div class="transferMoney"><a href="../PinPages/EnterPin.php">Transfer Money</a></div>
-                <div class="transferMoney"><a href="#">Account Info</a></div>
+                <div class="transferMoney"><a href="../Account_Info/SavingsAccountInfo.php">Account Info</a></div>
             </div>
 
         </section>
