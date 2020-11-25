@@ -18,14 +18,17 @@ $mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname,
 if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
+// pull user name from login / registration form
+$userName = $_SESSION["userName"];
 
-// accept form value
-// @paul use sessions to change this checkingAccountNumber
-$findAccountBalance = 'SELECT userCheckingAccountBalance from userRegistration where checkingAccountNumber = "23481698419";';
+// query to find current user's balance
+$findAccountBalance = "SELECT userCheckingAccountBalance from userRegistration where userName = '$userName';";
 
+// query to find 
 $resultBalance = mysqli_query($mysqli, $findAccountBalance);
 
 $userBalance = 0;
+// query to find current user's balance and link it to variable $userBalance
 if ($resultBalance->num_rows > 0 ){
 
     $row = $resultBalance->fetch_assoc();
@@ -37,54 +40,96 @@ if ($resultBalance->num_rows > 0 ){
 else {
     echo "<br> Row is 0.";
 }
+
+// grabbing these from user login or user registration
 $transferValue = $_POST["entryValue"];
 $accountNumber = $_POST["inputValue"];
 
-echo "<br> TransferValue:   $transferValue <br>";
-echo "<br> AccountNumber: $accountNumber <br>";
+// echo "<br> TransferValue:   $transferValue <br>";
+// echo "<br> AccountNumber: $accountNumber <br>";
 
-echo "<br> Transfer value: " . $transferValue . "<br>Account number: " . $accountNumber . "<br>";
+// echo "<br> Transfer value: " . $transferValue . "<br>Account number: " . $accountNumber . "<br>";
+
+// variables to save for later
 $currentBalance = $userBalance;
 $postBalance = $currentBalance - $transferValue;
 
-// need to somehow track current user so we know who to 
-// modify value of ? 
-$updateBalances = 
+// sql query to update current user's balance
+$updateCurrentUserBalances = 
+
 "UPDATE userRegistration
 SET userCheckingAccountBalance = $currentBalance - $transferValue
-WHERE checkingAccountNumber = '$accountNumber';";
+WHERE userName = '$userName';";
+
+
+$findTransferUserAccountBalance = 
+"SELECT userCheckingAccountBalance 
+FROM userRegistration 
+WHERE checkingAccountNumber = $accountNumber;";
+
+$findTransferUserBalance = mysqli_query($mysqli, $findTransferUserAccountBalance);
+
+$transferUserAccountBalance = 0;
+
+// sql query to find the transfer recipient 
+if ($findTransferUserBalance->num_rows > 0 ){
+
+    $row = $findTransferUserBalance->fetch_assoc();
+
+    echo "<br>UserBalance: " . $row["userCheckingAccountBalance"];
+    $transferUserAccountBalance = $row["userCheckingAccountBalance"];
+    
+}
+else {
+    echo "<br> Row is 0.";
+}
+
+// sql query to add to transfer recipient 
+$updateTransferUserBalances =
+
+"UPDATE userRegistration
+SET userCheckingAccountBalance = $transferUserAccountBalance + $transferValue
+WHERE checkingAccountNumber = $accountNumber;";
+
 
 echo "Updating balance<br><br>" . "Current Balance: $currentBalance <br>" . "Post Transfer Balance: $postBalance <br>";
 
 // querying our connected database with the given data points
 // inserting form information
-$results = mysqli_query($mysqli, $updateBalances);
 
-
-if ($currentBalance > $transferValue){
-
+if ($currentBalance >= $transferValue){
+    $results = mysqli_query($mysqli, $updateCurrentUserBalances);
+    
+    // if we were able to remove funds from the user 
     if ($results){
-        echo "<br>";
-        echo "\n\nTransfer complete. Balance has been updated.\n\n";
-        echo "<br>";
-        header('Location: ../transactionconfirmation/transactionconfirmation.php');
+        
+        // then we can add the money to the transfer recipient
+        $transferResults = mysqli_query($mysqli, $updateTransferUserBalances);
+
+        // if we sucessfully removed funds from the user and transferred to the recipient
+        if ($transferResults){
+                
+            // send user to transaction confirmation page
+            header('Location: ../Transaction_Confirmation/transactionconfirmation.php');
+            echo "Sending you to transaction confirmation.";
+        }
         
     }
     
-    // in the event we somehow were unable to insert the information
-    // thus not being able to create the account
+    // couldn't transfer funds for some reason
     else {
         echo "<br>";
         echo "Error: Information not inserted into database.";
         echo "<br>";
-        
+        header('Location: AccountName.php');
         echo "<br>";
     }
 
 }
 else {
-
-    echo "Current balance must exceed transfer value. <br>";
+    // if the user tries to transfer more funds than they have in balance
+    echo "Current balance must exceed or equal transfer value. <br>";
+    header('Location: AccountName.php');
 }
 
 
