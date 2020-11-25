@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+print_r($_SESSION);
 
 $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
 $serverUserName = 'butteadmin';
@@ -14,9 +17,11 @@ if ($conn->connect_errno) {
   echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
 }
 
+$name = $_SESSION['userName'];
+
 // When you change this make sure it change Name to userName
-$sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = 'AllenB'";
-$sql2 = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = 'AllenB'";
+$sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = $name";
+$sql2 = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = $name";
 
 if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 {
@@ -35,13 +40,17 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           //Updated value
           $num = $row1["userCheckingAccountBalance"] - $input;
             // PLEASE CHECK
-          $sqlUpdate = "UPDATE userRegistration SET userCheckingAccountBalance = $num WHERE userName = 'AllenB'";
+          $sqlUpdate = "UPDATE userRegistration SET userCheckingAccountBalance = $num WHERE userName = $name";
+
+          $orders = rand(1000000,9999999);
+          $_SESSION["ordernumber"] = $orders;
+          $_SESSION["amount"] = $num;
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
           //END CONNECTION
            mysqli_close($conn);
-
+           header("Location: confirmation.php");
            //GO to next Page here
         }
         catch (PDOException $e)
@@ -62,13 +71,17 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           //Updated value
           $num = $row2["userSavingsAccountBalance"] - $input;
             // PLEASE CHECK
-          $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = 'AllenB'";
+          $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = $name";
+
+          $orders = rand(1000000,9999999);
+          $_SESSION["ordernumber"] = $order;
+          $_SESSION["amount"] = $num;
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
           //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
           mysqli_close($conn);
-
+          header("Location: confirmation.php");
           // Go to next page here
         }
         catch (PDOException $e)
@@ -141,7 +154,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
     <!-- When you take out money -->
     <!-- ALSO CHECK DIRECTORY -->
-    <form action="/Deposit_Withdraw1/atm-application/Withdraw.php" method="post">
+    <form action="" method="post">
       <p class = "regularFont">
       <label for="AccountNumber">Choose an account:</label>
       <select name="AccountNumber">
@@ -195,7 +208,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
       <br>
 
-      <input type="submit" value = "Go Back">
+      <button onclick = "window.location = '../Balance/Balance.php';">Go Back</button>
 
 
 
