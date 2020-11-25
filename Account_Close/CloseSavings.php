@@ -23,10 +23,10 @@ print_r($_SESSION);
     // test display of host connection info
     // echo $mysqli->host_info . "\n";
 
-    $user = $_SESSION['username'];
+    $user = $_SESSION['userName'];
 
-    $savingsAccountNumber = "SELECT savingsAccountNumber FROM userRegistration WHERE userName = '{$_SESSION['username']}' ";
-    $userRoutingNumber = "SELECT userRoutingNumber FROM userRegistration WHERE userName = '{$_SESSION['username']}' ";
+    $savingsAccountNumber = "SELECT savingsAccountNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
+    $userRoutingNumber = "SELECT userRoutingNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
 
     $results = mysqli_query($mysqli, $savingsAccountNumber);
     $results2 = mysqli_query($mysqli, $userRoutingNumber);
