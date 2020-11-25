@@ -18,10 +18,12 @@ $mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname,
 if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }
+$userName = $_SESSION["userName"];
 
+// echo 'userName is ' . $userName;
 // accept form value
 // @paul use sessions to change this checkingAccountNumber
-$findAccountBalance = 'SELECT userCheckingAccountBalance from userRegistration where checkingAccountNumber = "23481698419";';
+$findAccountBalance = "SELECT userCheckingAccountBalance from userRegistration where userName = '$userName';";
 
 $resultBalance = mysqli_query($mysqli, $findAccountBalance);
 
@@ -37,6 +39,8 @@ if ($resultBalance->num_rows > 0 ){
 else {
     echo "<br> Row is 0.";
 }
+
+//$userBalance = 0;
 $transferValue = $_POST["entryValue"];
 $accountNumber = $_POST["inputValue"];
 
@@ -46,28 +50,61 @@ echo "<br> AccountNumber: $accountNumber <br>";
 echo "<br> Transfer value: " . $transferValue . "<br>Account number: " . $accountNumber . "<br>";
 $currentBalance = $userBalance;
 $postBalance = $currentBalance - $transferValue;
-
+//echo "<br>" . $userName . "<br>";
 // need to somehow track current user so we know who to 
 // modify value of ? 
-$updateBalances = 
+$updateCurrentUserBalances = 
+
 "UPDATE userRegistration
 SET userCheckingAccountBalance = $currentBalance - $transferValue
-WHERE checkingAccountNumber = '$accountNumber';";
+WHERE userName = '$userName';";
+
+
+$findTransferUserAccountBalance = 
+"SELECT userCheckingAccountBalance 
+FROM userRegistration 
+WHERE checkingAccountNumber = $accountNumber;";
+
+$findTransferUserBalance = mysqli_query($mysqli, $findTransferUserAccountBalance);
+
+$transferUserAccountBalance = 0;
+
+if ($findTransferUserBalance->num_rows > 0 ){
+
+    $row = $findTransferUserBalance->fetch_assoc();
+
+    echo "<br>UserBalance: " . $row["userCheckingAccountBalance"];
+    $transferUserAccountBalance = $row["userCheckingAccountBalance"];
+    
+}
+else {
+    echo "<br> Row is 0.";
+}
+
+$updateTransferUserBalances =
+
+"UPDATE userRegistration
+SET userCheckingAccountBalance = $transferUserAccountBalance + $transferValue
+WHERE checkingAccountNumber = $accountNumber;";
+
 
 echo "Updating balance<br><br>" . "Current Balance: $currentBalance <br>" . "Post Transfer Balance: $postBalance <br>";
 
 // querying our connected database with the given data points
 // inserting form information
-$results = mysqli_query($mysqli, $updateBalances);
 
-
-if ($currentBalance > $transferValue){
-
+if ($currentBalance >= $transferValue){
+    $results = mysqli_query($mysqli, $updateCurrentUserBalances);
+    
     if ($results){
-        echo "<br>";
-        echo "\n\nTransfer complete. Balance has been updated.\n\n";
-        echo "<br>";
-        header('Location: ../transactionconfirmation/transactionconfirmation.php');
+        
+        $transferResults = mysqli_query($mysqli, $updateTransferUserBalances);
+
+        if ($transferResults){
+
+            header('Location: ../Transaction_Confirmation/transactionconfirmation.php');
+            echo "Sending you to transaction confirmation.";
+        }
         
     }
     
@@ -77,7 +114,7 @@ if ($currentBalance > $transferValue){
         echo "<br>";
         echo "Error: Information not inserted into database.";
         echo "<br>";
-        
+        header('Location: AccountName.php');
         echo "<br>";
     }
 
@@ -85,6 +122,7 @@ if ($currentBalance > $transferValue){
 else {
 
     echo "Current balance must exceed transfer value. <br>";
+    header('Location: AccountName.php');
 }
 
 
