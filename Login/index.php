@@ -52,10 +52,10 @@ print_r($_SESSION);
 									//Logged in Should change page here
                   $logged_in = true;
 
-									$_SESSION["username"] = $_POST["userlogin"];
-									$_SESSION["password"] = $_POST["loginpassword"];
+		  $_SESSION["userName"] = $_POST["userlogin"];
+		  $_SESSION["password"] = $_POST["loginpassword"];
 
-									header('Location: ../Balance/Balance.php');
+		  header('Location: ../Balance/Balance.php');
 
                   // $sql = "SELECT * FROM userRegistration";
                   // $results = mysqli_query($conn, $sql);
