@@ -89,7 +89,7 @@ $pinCorrect = false;
 <html>
     <head>
         <meta charset = "utf-8">
-        <title>Account Successful</title>
+        <title>Pin Validation</title>
         <link rel = "stylesheet" href = "../Pin/Pin.css">
     </head>
 
@@ -114,15 +114,16 @@ $pinCorrect = false;
         <div class="textbox">
             <form method="POST">
                 <input class="resizeTextbox" type="text" id="pinValue" name="pinValue">
-
-                       <!-- Continue button -->
-        <!-- replace '#' with url link -->
-        <div class="homepageDiv">
-            <button href="#" type="submit" class="homepageButton">Continue</button>
-        </div>
+                 <!-- Continue button -->
+                <div class="homepageDiv">
+                    <button href="#" type="submit" class="homepageButton">Continue</button>
+                </div>
             </form>
+            
+                <!-- Back button -->
+                <div>
+                    <button class="homepageButton" onclick="location.href='../Balance/Balance.php'">Back</button>
+                </div>
         </div>
-
-
     </body>
 </html>

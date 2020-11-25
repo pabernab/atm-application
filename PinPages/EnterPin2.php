@@ -89,7 +89,7 @@ $pinCorrect = false;
 <html>
     <head>
         <meta charset = "utf-8">
-        <title>Account Successful</title>
+        <title>Pin Validation</title>
         <link rel = "stylesheet" href = "../Pin/Pin.css">
     </head>
 
@@ -118,6 +118,7 @@ $pinCorrect = false;
                        <!-- Continue button -->
         <!-- replace '#' with url link -->
         <div class="homepageDiv">
+            <button onclick="location.href='../Balance/Balance.php'" class="homepageButton">Back</button>
             <button href="#" type="submit" class="homepageButton">Continue</button>
         </div>
             </form>
