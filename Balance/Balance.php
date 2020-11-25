@@ -23,10 +23,10 @@ print_r($_SESSION);
     // test display of host connection info
     // echo $mysqli->host_info . "\n";
 
-    $user = $_SESSION['username'];
+    $user = $_SESSION['userName'];
 
-    $setBalance = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = '{$_SESSION['username']}' ";
-    $setSaving = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = '{$_SESSION['username']}' ";
+    $setBalance = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
+    $setSaving = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
 
     $results = mysqli_query($mysqli, $setBalance);
     $results2 = mysqli_query($mysqli, $setSaving);

@@ -54,9 +54,7 @@ session_start();
                 $userFirstName = $_POST["userFirstName"];
                 $userLastName = $_POST["userLastName"];
 
-                $_SESSION["username"] = $userName;
-                $_SESSION["userPassword"] = $userPassword;
-
+                $_SESSION["userName"] = $userName;
 
                 // simple sql syntax to insert into our registration
                 // database, formatted for visual clarity

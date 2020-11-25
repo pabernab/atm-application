@@ -19,7 +19,7 @@ if ($conn->connect_errno) {
   echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
 }
 
-$name = $_SESSION['username'];
+$name = $_SESSION['userName'];
 
 // When you change this make sure it change Name to userName
 $sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = $name ";
@@ -42,9 +42,12 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
     $rand = rand(1000000,9999999);
 
-    $name = $rand;
+    $order= $rand;
 
-    $newname = "{$name}.".$ext;
+    $upload = "INSERT into checkDeposit(userName,filePath) VALUES ($name,$order)";
+
+
+    $newname = "{$order}.".$ext;
     $target = 'images/'.$newname;
     move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
 
@@ -67,7 +70,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
               //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
 
         $_SESSION["amount"] = $num;
-        $_SESSION["ordernumber"] = $name;
+        $_SESSION["ordernumber"] = $order;
 
         mysqli_close($conn);
         header("Location: confirmation.php");
@@ -93,6 +96,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = $name";
 
           $_SESSION["amount"] = $num;
+          $_SESSION["ordernumber"] = $order;
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
