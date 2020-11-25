@@ -54,7 +54,7 @@ session_start();
                 $userFirstName = $_POST["userFirstName"];
                 $userLastName = $_POST["userLastName"];
 
-                $_SESSION["username"] = $userName;
+                $_SESSION["userName"] = $userName;
                 $_SESSION["userPassword"] = $userPassword;
 
 

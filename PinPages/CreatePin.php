@@ -27,14 +27,14 @@ $pinValue = '2222';
     // echo $mysqli->host_info . "\n";
 
 
-
+    $userName = $_SESSION["userName"];
     if(isset($_POST["pinValue"]))
     {
 
         $pinValue = $_POST["pinValue"];
 
 
-        $setPin = "UPDATE userRegistration SET userPinNumber = '$pinValue' WHERE userName = '{$_SESSION['userName']}' ";
+        $setPin = "UPDATE userRegistration SET userPinNumber = $pinValue WHERE userName = '$userName'";
 
 
         $results = mysqli_query($mysqli, $setPin);

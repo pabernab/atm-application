@@ -5,7 +5,7 @@ session_start();
 
 print_r($_SESSION);
 
-
+$userName = $_SESSION["userName"];
 
  // these are our login values associated with the AWS
     // database instance, found here:
@@ -36,7 +36,7 @@ $pinCorrect = false;
         $pinValue = $_POST["pinValue"];
 
 
-        $setPin = "SELECT userPinNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
+        $setPin = "SELECT userPinNumber FROM userRegistration WHERE userName = '$userName';";
 
 
         $results = mysqli_query($mysqli, $setPin);

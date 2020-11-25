@@ -31,10 +31,10 @@ print_r($_SESSION);
 						die("Connection failed: " . mysqli_connect_error());
 					}
 
-					$username = $_POST["userlogin"];
+					$userName = $_POST["userlogin"];
 					$password = $_POST["loginpassword"];
 
-          $sql = "SELECT userPassword FROM userRegistration WHERE userName = '$username'";
+          $sql = "SELECT userPassword FROM userRegistration WHERE userName = '$userName'";
 
           $results = mysqli_query($conn, $sql);
 
@@ -52,7 +52,8 @@ print_r($_SESSION);
 									//Logged in Should change page here
                   $logged_in = true;
 
-									$_SESSION["username"] = $_POST["userlogin"];
+                  // "username"
+									$_SESSION["userName"] = $_POST["userlogin"];
 									$_SESSION["password"] = $_POST["loginpassword"];
 
 									header('Location: ../Balance/Balance.php');

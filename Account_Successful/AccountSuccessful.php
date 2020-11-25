@@ -4,12 +4,12 @@
 session_start();
 
 
-
+print_r($_SESSION);
 $numb = rand(123456789101112, 200000000000000);
 $numb2 = rand(123456789101112, 200000000000000);
 $accountNumber = strval($numb);
 $checkingNumber = strval($numb2);
-$username = '$_SESSION[userName]';
+$userName = $_SESSION["userName"];
 
  // these are our login values associated with the AWS
     // database instance, found here:
@@ -32,7 +32,7 @@ $username = '$_SESSION[userName]';
 
     $setAccountNumber = "UPDATE userRegistration 
     SET CheckingAccountNumber = $checkingNumber, userRoutingNumber = $accountNumber, userCheckingAccountBalance = 0
-    WHERE userName = '{$_SESSION['username']}' ";
+    WHERE userName = '{$_SESSION['userName']}' ";
 
 
     $results = mysqli_query($mysqli, $setAccountNumber);
