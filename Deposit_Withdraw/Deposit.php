@@ -46,6 +46,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
     $upload = "INSERT into checkDeposit(userName,filePath) VALUES ($name,$order)";
 
+    $results = mysqli_query($conn, $upload);
 
     $newname = "{$order}.".$ext;
     $target = 'images/'.$newname;
