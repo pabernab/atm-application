@@ -77,7 +77,7 @@ print_r($_SESSION);
         <div id="column"><a class="nav_column" href="../PinPages/EnterPin.php">Transfer</a></div>
 
 
-        <div id="column"><a class="nav_column" href="../PinPages/EnterPin.php">Open/Close Account</a></div>
+        <div id="column"><a class="nav_column" href="../PinPages/EnterPin3.php">Open/Close Account</a></div>
 
 
         <div id="column"></div>
