@@ -32,21 +32,20 @@
      type="button" name="button">Checking</button>
 
     <!-- Savings Button -->
-    <button id = "savings" onclick="location.href='../Account_Successful/AccountSuccessful.php'"
+    <button id = "savings" onclick="location.href='../Account_Successful/SavingsAccountSuccessful.php'"
      type="button" name="button">Savings</button>
 
   </div>
 
-  <h1>What kind of account are you looking to close?</h1>
-
-  <div id = buttonLayout>
 
 
 
 <!-- *************** ************************************************************************-->
 
     <!-- CLOSE ACCOUNTS -->
+    <h1>What kind of account are you looking to close?</h1>
 
+    <div id = buttonLayout>
 
     <!-- Checking Button -->
     <button id = "checking" onclick="location.href='../Account_Close/CloseChecking.php'"

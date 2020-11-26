@@ -25,7 +25,7 @@
      type="button" name="button">Checking</button>
 
     <!-- Savings Button -->
-    <button id = "savings" onclick="location.href='../Account_Successful/AccountSuccessful.php'"
+    <button id = "savings" onclick="location.href='../Account_Successful/SavingsAccountSuccessful.php'"
      type="button" name="button">Savings</button>
 
   </div>
