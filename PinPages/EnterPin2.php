@@ -90,7 +90,7 @@ $pinCorrect = false;
     <head>
         <meta charset = "utf-8">
         <title>Pin Validation</title>
-        <link rel = "stylesheet" href = "../Pin/Pin.css">
+        <link rel = "stylesheet" href = "../Pin/Pin.css?v=<?php echo time(); ?>">
     </head>
 
 

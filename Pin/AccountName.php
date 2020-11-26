@@ -2,7 +2,7 @@
     <head>
         <meta charset = "utf-8">
         <title>Account Successful</title>
-        <link rel = "stylesheet" href = "Pin.css">
+        <link rel = "stylesheet" href = "Pin.css?v=<?php echo time(); ?>">
     </head>
 
 

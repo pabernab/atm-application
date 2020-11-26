@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="AccountCreationStyles.css">
+    <link rel="stylesheet" href="AccountCreationStyles.css?v=<?php echo time(); ?>">
     <title></title>
   </head>
   <body>

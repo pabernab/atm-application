@@ -63,7 +63,7 @@ $pinValue = '2222';
     <head>
         <meta charset = "utf-8">
         <title>PIN Creation</title>
-        <link rel = "stylesheet" href = "../Pin/Pin.css">
+        <link rel = "stylesheet" href = "../Pin/Pin.css?v=<?php echo time(); ?>">
     </head>
 
 

@@ -108,7 +108,7 @@ print_r($_SESSION);
   <head>
     <meta charset = "utf-8">
     <title>Login Page</title>
-    <link rel = "stylesheet" href = "Login.css">
+    <link rel = "stylesheet" href = "Login.css?v=<?php echo time(); ?>">
   </head>
   <body>
 

@@ -124,7 +124,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
 <html>
   <head>
-    <link rel = "stylesheet" href = "Style.css">
+    <link rel = "stylesheet" href = "Style.css?v=<?php echo time(); ?>">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
 
     <title> Deposit </title>

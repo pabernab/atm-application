@@ -90,7 +90,7 @@ $pinCorrect = false;
     <head>
         <meta charset = "utf-8">
         <title>Pin Validation</title>
-        <link rel = "stylesheet" href = "../Pin/Pin.css">
+        <link rel = "stylesheet" href = "../Pin/Pin.css?v=<?php echo time(); ?>">
     </head>
 
 
@@ -113,7 +113,7 @@ $pinCorrect = false;
         <!-- Values here just for demonstration -->
         <div class="textbox">
             <form method="POST">
-                <input class="resizeTextbox" type="text" id="pinValue" name="pinValue">
+                <input class="resizeTextbox" type="password" id="pinValue" name="pinValue" maxlength="4">
                  <!-- Continue button -->
                 <div class="homepageDiv">
                     <button href="#" type="submit" class="homepageButton">Continue</button>

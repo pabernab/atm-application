@@ -72,7 +72,7 @@ $userName = $_SESSION["userName"];
     <head>
         <meta charset = "utf-8">
         <title>Account Successful</title>
-        <link rel = "stylesheet" href = "AccountSuccessful.css">
+        <link rel = "stylesheet" href = "AccountSuccessful.css?v=<?php echo time(); ?>">
     </head>
 
     <?php

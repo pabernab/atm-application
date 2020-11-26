@@ -118,7 +118,7 @@ session_start();
 <html>
   <head>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
-    <link rel = "stylesheet" href = "Regi-styles.css">
+    <link rel = "stylesheet" href = "Regi-styles.css?v=<?php echo time(); ?>">
 
     <title> Registration</title>
 
