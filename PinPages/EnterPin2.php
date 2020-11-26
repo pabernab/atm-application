@@ -47,7 +47,7 @@ $pinCorrect = false;
                 if ($row["userPinNumber"] === $pinValue)
                 {
                   $pinCorrect = true;
-                  header('Location: ../Deposit_Withdraw/Withdraw.php');
+                  header('Location: ../Deposit_Withdraw/ChoicePage.php');
                 }
 
                 else
