@@ -116,12 +116,15 @@ $pinCorrect = false;
                 <input class="resizeTextbox" type="password" id="pinValue" name="pinValue" maxlength="4">
 
                        <!-- Continue button -->
-        <!-- replace '#' with url link -->
-        <div class="homepageDiv">
-            <button onclick="location.href='../Balance/Balance.php'" class="homepageButton">Back</button>
-            <button href="#" type="submit" class="homepageButton">Continue</button>
-        </div>
+                <div class="homepageDiv">
+                    <button href="#" type="submit" class="homepageButton">Continue</button>
+                </div>
             </form>
+
+                <!-- Back button -->
+                <div>
+                    <button class="homepageButton" onclick="location.href='../Balance/Balance.php'">Back</button>
+                </div>
         </div>
 
 
