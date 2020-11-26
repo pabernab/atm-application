@@ -123,7 +123,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
       </p>
 
       <p class = "regularFont">
-        Put in value between 0.00 to 4000.00
+        Put in value between 0.01 to 4000.00
       </p>
 
       <p class = "regularFont">
@@ -201,7 +201,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
       <br>
       <br>
 
-      <input type = "number" name = "amount" min = "0.00" max = "4000.00" step = "0.01">
+      <input type = "number" name = "amount" min = "0.01" max = "4000.00" step = "0.01">
       <input type = "submit" value = "submit">
     </form>
 
