@@ -32,14 +32,14 @@
         }
 
         $amountTransferred = $_SESSION["entryValue"];
-        echo 'Amount transferred: ' . $amountTransferred . "<br>";
+        echo 'Amount transferred: $' . $amountTransferred . "<br>";
 
 
         ?>
       </p>
 
       <p class = "regularFont">
-        Type: Deposit
+        Type: Transfer
         <br>
         <br>
         <?php
