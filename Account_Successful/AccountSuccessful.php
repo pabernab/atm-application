@@ -95,14 +95,14 @@ print_r($_SESSION);
         <div id="graybar"></div>
 
         <!-- thank you message -->
-        <div class="greeting">Thank you for opening an account with us!</div>
+        <div class="greeting">Thank you for opening a checking account with us!</div>
 
         <!-- details: account/routing number/types -->
         <!-- Remove hardcode numbers & type, values should be from the the database -->
         <!-- Values here just for demonstration -->
         <div class="details">
             <div class="detailsElement">Details:</div>
-            <div class="detailsElement">Acccount Number: <?php echo htmlspecialchars($checkingNumber); ?></div>
+            <div class="detailsElement">Checking Acccount Number: <?php echo htmlspecialchars($checkingNumber); ?></div>
             <div class="detailsElement">Routing Number: <?php echo htmlspecialchars($accountNumber); ?></div>
             <div>Type: <?php echo htmlspecialchars($type); ?></div>
         </div>
