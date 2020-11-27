@@ -22,8 +22,8 @@ if ($conn->connect_errno) {
 $name = $_SESSION['userName'];
 
 // When you change this make sure it change Name to userName
-$sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = $name ";
-$sql2 = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = $name";
+$sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = '$name'";
+$sql2 = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = '$name'";
 
 if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 {
