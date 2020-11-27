@@ -40,7 +40,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           //Updated value
           $num = $row1["userCheckingAccountBalance"] - $input;
             // PLEASE CHECK
-          $sqlUpdate = "UPDATE userRegistration SET userCheckingAccountBalance = $num WHERE userName = $name";
+          $sqlUpdate = "UPDATE userRegistration SET userCheckingAccountBalance = $num WHERE userName = '$name'";
 
           $orders = rand(1000000,9999999);
           $_SESSION["ordernumber"] = $orders;
@@ -71,7 +71,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           //Updated value
           $num = $row2["userSavingsAccountBalance"] - $input;
             // PLEASE CHECK
-          $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = $name";
+          $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = '$name'";
 
           $orders = rand(1000000,9999999);
           $_SESSION["ordernumber"] = $order;
