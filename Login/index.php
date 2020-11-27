@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -5,7 +6,7 @@ session_start();
 
 print_r($_SESSION);
 
-	$logged_in  = false;
+	$login  = "";
 
 	if (isset($_POST["userlogin"]) && isset($_POST["loginpassword"]))
 			{
@@ -45,6 +46,7 @@ print_r($_SESSION);
 								if($row === null)//If database doesnt have a user input
 								{
 									echo "Username you entered does not appear in the database.";
+									$login  = "false";
 								}
 
                 else if ($row["userPassword"] === $password)
@@ -66,6 +68,7 @@ print_r($_SESSION);
                 else
                 {
                   echo "password incorrect";
+									$login  = "false";
                 }
           }
 
@@ -190,3 +193,16 @@ print_r($_SESSION);
 
   </body>
 </html>
+
+
+<script>
+
+var login = "<?php echo $login ?>";
+
+
+if(login === "false")
+{
+	alert("Either Username or password are wrong or Does not exist in Database");
+}
+
+</script>
