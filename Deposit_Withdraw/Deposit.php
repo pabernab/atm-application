@@ -162,10 +162,10 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
     <!-- File input -->
       <p class = "regularFont">
-        Please input png/jpeg file
+        Please input png file
       <!-- <label for="myfile">Select a file:</label> -->
       </p>
-      <input type="file" name= "userFile">
+      <input type="file" name= "userFile" accept = "image/png">
 
       <p class = "regularFont">
         Put in value between 0.01 to 4000.00

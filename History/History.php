@@ -2,9 +2,6 @@
 
 session_start();
 
-print_r($_SESSION);
-
-
 
 $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
 $serverUserName = 'butteadmin';
@@ -28,7 +25,7 @@ $sql1 = "SELECT COUNT(*) filePath FROM checkDeposit where userName = '$name'";
 $results1 = mysqli_query($conn,$sql1);
 $max = mysqli_fetch_assoc($results1);
 //puts results into an array
-$sql = "SELECT filePath,typess,amount FROM checkDeposit where userName = '$name'";
+$sql = "SELECT filePath,typess,amount,accountType FROM checkDeposit where userName = '$name'";
 $results = mysqli_query($conn,$sql);
 $rows = array();
 
@@ -36,6 +33,8 @@ while($row = mysqli_fetch_assoc($results))
 {
   $rows[] = $row;
 }
+
+print_r($rows);
 
 ?>
 
@@ -85,8 +84,8 @@ This is your transaction so far.
 
 <table id="myTable">
   <tr>
-    <td>Name</td>
-    <td>Number</td>
+    <td>Order Number</td>
+    <td>Account Type</td>
     <td>Type</td>
     <td>Amount</td>
   </tr>
@@ -120,8 +119,10 @@ while(parseInt(max) > counter)
   var cell2 = row.insertCell(1);
   var cell3 = row.insertCell(2);
   var cell4 = row.insertCell(3);
-  cell1.innerHTML = "<?php echo $name ?>";
-  cell2.innerHTML = rows[counter]['filePath'];
+
+
+  cell1.innerHTML = "#"+rows[counter]['filePath'];
+  cell2.innerHTML = rows[counter]['accountType'];
   cell3.innerHTML = rows[counter]['typess'];
   cell4.innerHTML = '$ ' + rows[counter]['amount'];
 
