@@ -65,3 +65,25 @@ p.regularAmount
   font-family: 'Roboto', sans-serif;
   font-size: 65;
 }
+
+
+h1{
+  padding-top: 7%;
+  padding-bottom: 5%;
+}
+
+.choiceButton{
+  background-color: white;
+  font-size: 150%;
+  color: deepskyblue;
+  padding: 1% 9% 1% 9%;
+  border-radius: 35px;
+  border-style: groove;
+  cursor: pointer;
+}
+
+.choiceButton:hover{
+  background-color: #008CBA;
+  color: white;
+  transition-duration: 0.4s;
+}

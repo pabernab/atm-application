@@ -164,6 +164,17 @@ print_r($_SESSION);
                 <div class="transferMoney"><a href="../Account_Info/SavingsAccountInfo.php">Account Info</a></div>
             </div>
 
+
+
+            <br>
+            <!-- Transaction History -->
+            <!-- Replace # in href tag to go to your page Allen -->
+            <div class="barLayout">Transactions History</div>
+            <div class="contentLayout">
+                <div>Complete history ready to view: <a href="#">Complete History</a></div>
+            </div>
+
+
         </section>
         <center>
           <!-- Logout -->
