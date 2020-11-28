@@ -41,11 +41,27 @@ else {
     echo "<br> Row is 0.";
 }
 
+$currentUserCheckingAccountNumber = 
+"SELECT checkingAccountNumber from userRegistration
+WHERE userName = '$userName';";
+
+$currentUserCheckingResult = mysqli_query($mysqli, $currentUserCheckingAccountNumber);
+
+$currentChecking = 0;
+if ($currentUserCheckingResult->num_rows > 0){
+
+    $row = $currentUserCheckingResult->fetch_assoc();
+
+    $currentChecking = $row["checkingAccountNumber"];
+}
+
+echo "<br> currentChecking = " . $currentChecking . "<br>";
+
 //$userBalance = 0;
 // grabbing these from user login or user registration
 $transferValue = $_POST["entryValue"];
 $accountNumber = $_POST["inputValue"];
-
+echo "<br> recipientAccountNumber = " . $accountNumber . "<br>";
 // echo "<br> TransferValue:   $transferValue <br>";
 // echo "<br> AccountNumber: $accountNumber <br>";
 
@@ -98,7 +114,7 @@ echo "Updating balance<br><br>" . "Current Balance: $currentBalance <br>" . "Pos
 // querying our connected database with the given data points
 // inserting form information
 
-if ($currentBalance >= $transferValue){
+if ($currentBalance >= $transferValue && $currentChecking != $accountNumber){
     $results = mysqli_query($mysqli, $updateCurrentUserBalances);
     
     // if we were able to remove funds from the user 
