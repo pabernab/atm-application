@@ -48,6 +48,7 @@ print_r($_SESSION);
     <head>
         <meta charset = "utf-8">
         <title>Balance</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
         <link rel = "stylesheet" href = "Balance.css?v=<?php echo time(); ?>">
     </head>
 
@@ -58,9 +59,12 @@ print_r($_SESSION);
     <body>
         <!-- bank logo -->
         <header>
+          <div id="top">
             <meta name="viewport" content="width=device-width">
             <img id = "logo" src="logo.png"/>
             <a class="logoutbutton" href="logout.php">Logout</a>
+  </div>
+            
         </header>
 
         <!-- gray bar -->
