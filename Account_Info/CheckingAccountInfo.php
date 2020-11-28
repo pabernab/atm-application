@@ -48,6 +48,7 @@ print_r($_SESSION);
     <head>
         <meta charset = "utf-8">
         <title>Checking Account Information</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
         <link rel = "stylesheet" href = "../Account_Successful/AccountSuccessful.css?v=<?php echo time(); ?>">
     </head>
 

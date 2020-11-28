@@ -41,6 +41,8 @@ body{
     padding: 5%;
     /* background-color: burlywood;  */
     font-size: 250%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
 }
 
 .details{
@@ -48,10 +50,13 @@ body{
     /* background-color: #72D5A0;  */
     font-size: 100%;
     border-spacing: 100px 100px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 }
 
 .detailsElement{
     padding-bottom: 3%;
+    font-family: 'Roboto', sans-serif;
 }
 
 .homepageDiv{
