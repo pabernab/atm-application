@@ -18,16 +18,16 @@
       <!-- TitleScreen -->
 
       <center>
-        <h1>What do you want to do?</h1>
+        <h1>Would you like to make a deposit or withdrawal today?</h1>
 
   <div id = buttonLayout>
 
-    <!-- Checking Button -->
-    <button id = "checking" onclick="location.href='Deposit.php'"
+    <!-- Checking Button -->  
+    <button class = "choiceButton" onclick="location.href='Deposit.php'"
      type="button" name="button">Deposit</button>
 
     <!-- Savings Button -->
-    <button id = "savings" onclick="location.href='Withdraw.php'"
+    <button class = "choiceButton" onclick="location.href='Withdraw.php'"
      type="button" name="button">Withdraw</button>
      </center>
   </div>
