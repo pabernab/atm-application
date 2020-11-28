@@ -62,10 +62,13 @@ print_r($_SESSION);
           <div id="top">
             <meta name="viewport" content="width=device-width">
             <img id = "logo" src="logo.png"/>
-            <a class="logoutbutton" href="logout.php">Logout</a>
+         
   </div>
             
         </header>
+
+
+        <a class="logoutbutton" href="logout.php">Logout</a>
 
         <!-- gray bar -->
         <div id="graybar"></div>
@@ -171,7 +174,7 @@ print_r($_SESSION);
             <!-- Replace # in href tag to go to your page Allen -->
             <div class="barLayout">Transactions History</div>
             <div class="contentLayout">
-                <div>Complete history ready to view: <a href="#">Complete History</a></div>
+                <div id = "history" >Complete history ready to view: <a href="#">Complete History</a></div>
             </div>
 
 
