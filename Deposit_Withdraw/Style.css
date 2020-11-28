@@ -13,6 +13,12 @@ header
 background: linear-gradient(0deg, rgba(16,177,117,1) 0%, rgba(6,100,51,1) 100%);
 }
 
+h1
+{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 350;
+}
+
 #graybar
 {
   background: #9AA29F;
@@ -41,14 +47,18 @@ input[type=submit]
   width: 15%;
   height: 7%;
   background-color: white;
-  color: rgb(	30,144,255);
+  color:  #008CBA;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 17;
   border-radius: 30px;
   border-color: gray;
 }
+
 input[type=submit]:hover {
+  background-color: #008CBA;
+  color: white;
+  transition-duration: 0.4s;
 
 }
 
@@ -70,6 +80,23 @@ p.regularAmount
 h1{
   padding-top: 7%;
   padding-bottom: 5%;
+}
+
+
+.homepageButton{
+  background-color: white;
+  font-size: large;
+  color: deepskyblue;
+  padding: 1% 9% 1% 9%;
+  border-radius: 35px;
+  border-style: groove;
+  cursor: pointer;
+}
+
+.homepageButton:hover{
+  background-color: #008CBA;
+  color: white;
+  transition-duration: 0.4s;
 }
 
 .choiceButton{

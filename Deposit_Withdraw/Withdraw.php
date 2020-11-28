@@ -220,7 +220,9 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
       <br>
 
-      <button onclick = "window.location = '../Balance/Balance.php';">Go Back</button>
+      <div>
+                    <button class="homepageButton" onclick="location.href='../Balance/Balance.php'">Back</button>
+                </div>
 
 
 
