@@ -1,0 +1,89 @@
+body, header
+{
+  margin: 0;
+  padding: 0;
+}
+
+header
+{
+  margin: 0;
+  padding: 0;
+  height: 125px;
+  background: rgb(16,177,117);
+background: linear-gradient(0deg, rgba(16,177,117,1) 0%, rgba(6,100,51,1) 100%);
+}
+
+#graybar
+{
+  background: #9AA29F;
+  border-color: #9AA29F;
+  border-width: thick;
+
+  width:auto;
+  height: 10px;
+}
+
+#logo
+{
+
+display: block;
+margin-left: auto;
+margin-right: auto;
+padding-top: 10px;
+  width: 95px;
+  height: 95px;
+
+
+}
+
+input[type=submit]
+{
+  width: 15%;
+  height: 7%;
+  background-color: white;
+  color: rgb(	30,144,255);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 17;
+  border-radius: 30px;
+  border-color: gray;
+}
+input[type=submit]:hover {
+
+}
+
+p.regularFont
+{
+  font-weight: lighter;
+  font-family: 'Roboto', sans-serif;
+  font-size: 30;
+}
+
+p.regularAmount
+{
+  font-weight: 350;
+  font-family: 'Roboto', sans-serif;
+  font-size: 65;
+}
+
+
+h1{
+  padding-top: 7%;
+  padding-bottom: 5%;
+}
+
+.choiceButton{
+  background-color: white;
+  font-size: 150%;
+  color: deepskyblue;
+  padding: 1% 9% 1% 9%;
+  border-radius: 35px;
+  border-style: groove;
+  cursor: pointer;
+}
+
+.choiceButton:hover{
+  background-color: #008CBA;
+  color: white;
+  transition-duration: 0.4s;
+}

@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+
+print_r($_SESSION);
+
+
+
 $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
 $serverUserName = 'butteadmin';
 $serverPassword = 'buttecmpe131';
@@ -9,6 +15,7 @@ $dbname = 'registration';
 //create connection
 $conn = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
 
+$name = $_SESSION['userName'];
 
 //check connection
 if (!$conn)
@@ -17,11 +24,11 @@ if (!$conn)
 }
 
 //counts number of rows
-$sql1 = "SELECT COUNT(*) filePath FROM checkDeposit where userName = 'AllenB'";
+$sql1 = "SELECT COUNT(*) filePath FROM checkDeposit where userName = '$name'";
 $results1 = mysqli_query($conn,$sql1);
 $max = mysqli_fetch_assoc($results1);
 //puts results into an array
-$sql = "SELECT filePath,typess,amount FROM checkDeposit where userName = 'AllenB'";
+$sql = "SELECT filePath,typess,amount FROM checkDeposit where userName = '$name'";
 $results = mysqli_query($conn,$sql);
 $rows = array();
 
@@ -32,35 +39,64 @@ while($row = mysqli_fetch_assoc($results))
 
 ?>
 
-
 <html>
-<head>
-<style>
+  <head>
+    <link rel = "stylesheet" href = "Style.css?v=<?php echo time(); ?>">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
 
-table, td
-{
-  border: 1px solid black;
-}
+    <title> Deposit </title>
 
-</style>
-</head>
-<body>
+    <style>
+
+    table, td
+    {
+      border: 1px solid black;
+    }
+
+    </style>
+
+
+  </head>
+
+  <body>
+
+    <header>
+        <img id = "logo" src="logo.png"/>
+    </header>
+
+    <div id="graybar">
+    </div>
+
+    <br><br>
+    <!-- TITLE -->
+<center>
+
+<br>
+
+This is your transaction so far.
+
+<br><br>
+
+<br>
+
+
 
 <!-- Sets up table -->
-<center>
+
 <table id="myTable">
   <tr>
     <td>Name</td>
     <td>Number</td>
     <td>Type</td>
-    <td>amount</td>
+    <td>Amount</td>
   </tr>
 </table>
-</center>
+
 <br>
+<br><br>
 
-
-
+<button onclick = "window.location = '../Balance/Balance.php';">Go Back</button>
+</center>
 </body>
 </html>
 
@@ -70,7 +106,6 @@ table, td
 <script type = 'text/javascript'>
 
 var rows = <?php echo json_encode($rows); ?>;
-alert(rows[0]['filePath']);
 
 
 var counter = 0;
@@ -85,7 +120,7 @@ while(parseInt(max) > counter)
   var cell2 = row.insertCell(1);
   var cell3 = row.insertCell(2);
   var cell4 = row.insertCell(3);
-  cell1.innerHTML = "AllenB";
+  cell1.innerHTML = "<?php echo $name ?>";
   cell2.innerHTML = rows[counter]['filePath'];
   cell3.innerHTML = rows[counter]['typess'];
   cell4.innerHTML = '$ ' + rows[counter]['amount'];

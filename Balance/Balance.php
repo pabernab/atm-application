@@ -64,7 +64,7 @@ print_r($_SESSION);
             <img id = "logo" src="logo.png"/>
             <a class="logoutbutton" href="logout.php">Logout</a>
   </div>
-            
+
         </header>
 
         <!-- gray bar -->
@@ -171,7 +171,7 @@ print_r($_SESSION);
             <!-- Replace # in href tag to go to your page Allen -->
             <div class="barLayout">Transactions History</div>
             <div class="contentLayout">
-                <div>Complete history ready to view: <a href="#">Complete History</a></div>
+                <div>Complete history ready to view: <a href="../History/History.php">Complete History</a></div>
             </div>
 
 
