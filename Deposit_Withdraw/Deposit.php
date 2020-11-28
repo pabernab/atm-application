@@ -44,7 +44,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
     $order= $rand;
 
-    $upload = "INSERT into checkDeposit(userName,filePath) VALUES ($name,$order)";
+    $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$order,'Deposit',$input,'$typeAcc')";
 
     $results = mysqli_query($conn, $upload);
 
