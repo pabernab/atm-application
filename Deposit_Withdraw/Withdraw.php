@@ -28,6 +28,9 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
   $input = $_POST["amount"];
   $typeAcc = $_POST["AccountNumber"];
 
+
+
+
   if($typeAcc === 'Checking')
   {
       $results1 = mysqli_query($conn,$sql1);
@@ -45,6 +48,11 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           $orders = rand(1000000,9999999);
           $_SESSION["ordernumber"] = $orders;
           $_SESSION["amount"] = $num;
+
+          $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$orders,'Withdraw',$input,'$typeAcc')";
+
+          $results = mysqli_query($conn, $upload);
+
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
@@ -76,6 +84,10 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           $orders = rand(1000000,9999999);
           $_SESSION["ordernumber"] = $order;
           $_SESSION["amount"] = $num;
+
+          $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$orders,'Withdraw',$input,'$typeAcc')";
+
+          $results = mysqli_query($conn, $upload);
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
