@@ -23,10 +23,19 @@ print_r($_SESSION);
     // test display of host connection info
     // echo $mysqli->host_info . "\n";
 
-    $user = $_SESSION['userName'];
+    $userName = $_SESSION['userName'];
 
-    $checkingAccountNumber = "SELECT checkingAccountNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
-    $userRoutingNumber = "SELECT userRoutingNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
+    // sql string to find current user's checking account number
+    $checkingAccountNumber = 
+    "SELECT checkingAccountNumber 
+    FROM userRegistration 
+    WHERE userName = '$userName' ";
+
+    // sql string to find current user's routing number
+    $userRoutingNumber = 
+    "SELECT userRoutingNumber 
+    FROM userRegistration 
+    WHERE userName = '$userName' ";
 
     $results = mysqli_query($mysqli, $checkingAccountNumber);
     $results2 = mysqli_query($mysqli, $userRoutingNumber);
@@ -34,9 +43,26 @@ print_r($_SESSION);
     $row = mysqli_fetch_assoc($results);
     $row2 = mysqli_fetch_assoc($results2);
 
-    $accountNumber = $row['checkingAccountNumber'];
+    $previousAccountNumber = $row['checkingAccountNumber'];
     $routingNumber = $row2['userRoutingNumber'];
 
+
+    $setCheckingToZero = 
+    "UPDATE userRegistration
+    SET checkingAccountNumber = NULL
+    WHERE userName = '$userName';";
+
+    $checkingSetToZeroResult = mysqli_query($mysqli, $setCheckingToZero);
+
+    if ($checkingSetToZeroResult){
+
+        echo "<br> checking set to 0.";
+
+    }
+    else {
+        echo "<br> Couldn't delete account.";
+    }
+    $accountNumber = $row['checkingAccountNumber'];
 ?>
 
 
@@ -51,12 +77,7 @@ print_r($_SESSION);
         <link rel = "stylesheet" href = "../Account_Successful/AccountSuccessful.css?v=<?php echo time(); ?>">
     </head>
 
-    <?php
-
-print_r($_SESSION);
-
-
-?>
+    
     <body>
         <!-- bank logo -->
         <header>
