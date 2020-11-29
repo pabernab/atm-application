@@ -44,7 +44,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
     $order= $rand;
 
-    $upload = "INSERT into checkDeposit(userName,filePath) VALUES ($name,$order)";
+    $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$order,'Deposit',$input,'$typeAcc')";
 
     $results = mysqli_query($conn, $upload);
 
@@ -162,10 +162,10 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
     <!-- File input -->
       <p class = "regularFont">
-        Please input png/jpeg file
+        Please input png file
       <!-- <label for="myfile">Select a file:</label> -->
       </p>
-      <input type="file" name= "userFile">
+      <input type="file" name= "userFile" accept = "image/png">
 
       <p class = "regularFont">
         Put in value between 0.01 to 4000.00
@@ -232,7 +232,9 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
       <br>
 
-      <button onclick = "window.location = '../Balance/Balance.php';">Go Back</button>
+      <div>
+                    <button class="homepageButton" onclick="location.href='../Balance/Balance.php'">Back</button>
+                </div>
 
 
 

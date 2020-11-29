@@ -37,6 +37,8 @@ body{
 .greeting{
     text-align: center;
     padding: 5%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
     /* background-color: burlywood;  */
     font-size: 250%;
 }

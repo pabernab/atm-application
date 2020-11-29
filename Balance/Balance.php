@@ -48,6 +48,7 @@ print_r($_SESSION);
     <head>
         <meta charset = "utf-8">
         <title>Balance</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
         <link rel = "stylesheet" href = "Balance.css?v=<?php echo time(); ?>">
     </head>
 
@@ -58,10 +59,16 @@ print_r($_SESSION);
     <body>
         <!-- bank logo -->
         <header>
+          <div id="top">
             <meta name="viewport" content="width=device-width">
             <img id = "logo" src="logo.png"/>
-            <a class="logoutbutton" href="logout.php">Logout</a>
+           <a id="logoutbutton" href="logout.php">Logout</a>
+         
+  </div>
+
         </header>
+
+
 
         <!-- gray bar -->
         <div id="graybar"></div>
@@ -159,6 +166,20 @@ print_r($_SESSION);
                 <div class="transferMoney"><a href="../PinPages/EnterPin.php">Transfer Money</a></div>
                 <div class="transferMoney"><a href="../Account_Info/SavingsAccountInfo.php">Account Info</a></div>
             </div>
+
+
+
+            <br>
+            <!-- Transaction History -->
+            <!-- Replace # in href tag to go to your page Allen -->
+            <div class="barLayout">Transactions History</div>
+            <div class="contentLayout">
+                <div id = "history" >Complete history ready to view: <a href="../History/History.php">Complete History</a></div>
+
+               
+
+            </div>
+
 
         </section>
         <center>

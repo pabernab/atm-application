@@ -28,11 +28,11 @@
   <div id = buttonLayout>
 
     <!-- Checking Button -->
-    <button id = "checking" onclick="location.href='../Account_Successful/AccountSuccessful.php'"
+    <button class="button" onclick="location.href='../Account_Successful/AccountSuccessful.php'"
      type="button" name="button">Checking</button>
 
     <!-- Savings Button -->
-    <button id = "savings" onclick="location.href='../Account_Successful/SavingsAccountSuccessful.php'"
+    <button class="button" onclick="location.href='../Account_Successful/SavingsAccountSuccessful.php'"
      type="button" name="button">Savings</button>
 
   </div>
@@ -48,13 +48,18 @@
     <div id = buttonLayout>
 
     <!-- Checking Button -->
-    <button id = "checking" onclick="location.href='../Account_Close/CloseChecking.php'"
+    <button class="button" onclick="location.href='../Account_Close/CloseChecking.php'"
      type="button" name="button">Checking</button>
 
     <!-- Savings Button -->
-    <button id = "savings" onclick="location.href='../Account_Close/CloseSavings.php'"
+    <button class="button" onclick="location.href='../Account_Close/CloseSavings.php'"
      type="button" name="button">Savings</button>
 
+  </div>
+
+  <!-- Back button to the balance page.  -->
+  <div class="backButton">
+      <button class="homepageButton" onclick="location.href='../Balance/Balance.php'">Back</button>
   </div>
 
   </body>

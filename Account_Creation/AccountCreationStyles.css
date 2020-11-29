@@ -28,12 +28,12 @@ button
 {
   font-family: 'Roboto', sans-serif;
   padding: 0;
-  margin-left: 380px;
+  margin-left: 20%;
   display: inline-block;
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 20%;
   background-color: white;
-  /* border-radius: 50px; */
+  border-radius: 50px; 
   color: #007BE6;
   font-size: 35px;
 
@@ -108,4 +108,27 @@ padding-top: 10px;
   height: 95px;
 
 
+}
+
+
+.backButton{
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.homepageButton{
+  background-color: white;
+  font-size: large;
+  color: deepskyblue;
+  padding: 1% 9% 1% 9%;
+  border-radius: 35px;
+  border-style: groove;
+  cursor: pointer;
+}
+
+.homepageButton:hover{
+  background-color: #008CBA;
+  color: white;
+  transition-duration: 0.4s;
 }
