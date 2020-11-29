@@ -1,97 +1,20 @@
-
-
 <?php
 session_start();
 
 print_r($_SESSION);
-
-$userName = $_SESSION["userName"];
-
- // these are our login values associated with the AWS
-    // database instance, found here:
-    // https://us-west-1.console.aws.amazon.com/rds/home?region=us-west-1#database:id=mysqldb;is-cluster=false
-    $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
-    $serverUserName = 'butteadmin';
-    $serverPassword = 'buttecmpe131';
-    $dbname = 'registration';
-
-    // creating a new server connection using our preset AWS login values
-    $mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
-
-    // simple error catch if we are unable to connect to the MySQL Database
-    if ($mysqli->connect_errno) {
-        echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-    }
-
-    // test display of host connection info
-    // echo $mysqli->host_info . "\n";
-
-
-
-$pinCorrect = false;
-
-    if(isset($_POST["pinValue"]))
-    {
-
-        $pinValue = $_POST["pinValue"];
-
-
-        $setPin = "SELECT userPinNumber FROM userRegistration WHERE userName = '$userName';";
-
-
-        $results = mysqli_query($mysqli, $setPin);
-
-        if ($results)
-        {
-            $row = mysqli_fetch_assoc($results);
-                if ($row["userPinNumber"] === $pinValue)
-                {
-                  $pinCorrect = true;
-                  header('Location: ../Pin/AccountName.php');
-                }
-
-                else
-                {
-                    echo "The pin entered is incorrect.";
-                }
-
-        }
-
-        else
-        {
-            echo "Something isnt working";
-        }
-
-    }
-
-
-
-
-    // making sure we were able to insert the information properly into
-    // our MySQL database
-
-
-
-
-
-
-
-
-
-
-
-
-
- ?>
-
-
-
+?>
 <html>
     <head>
         <meta charset = "utf-8">
         <title>Pin Validation</title>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
         <link rel = "stylesheet" href = "../Pin/Pin.css?v=<?php echo time(); ?>">
+        <script>
+        
+            let jsAlert = () => alert("The pin you entered is incorrect!");
+            
+        </script>
+
     </head>
 
 
@@ -128,3 +51,94 @@ $pinCorrect = false;
         </div>
     </body>
 </html>
+
+
+<?php
+
+
+$userName = $_SESSION["userName"];
+
+ // these are our login values associated with the AWS
+    // database instance, found here:
+    // https://us-west-1.console.aws.amazon.com/rds/home?region=us-west-1#database:id=mysqldb;is-cluster=false
+    $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
+    $serverUserName = 'butteadmin';
+    $serverPassword = 'buttecmpe131';
+    $dbname = 'registration';
+
+    // creating a new server connection using our preset AWS login values
+    $mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
+
+    // simple error catch if we are unable to connect to the MySQL Database
+    if ($mysqli->connect_errno) {
+        echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+
+    // test display of host connection info
+    // echo $mysqli->host_info . "\n";
+
+      
+
+$pinCorrect = false;
+
+    if(isset($_POST["pinValue"]))
+    {
+
+        $pinValue = $_POST["pinValue"];
+
+
+        $setPin = "SELECT userPinNumber FROM userRegistration WHERE userName = '$userName';";
+
+
+        $results = mysqli_query($mysqli, $setPin);
+
+        if ($results)
+        {
+            $row = mysqli_fetch_assoc($results);
+                if ($row["userPinNumber"] === $pinValue)
+                {
+                  $pinCorrect = true;
+                  header('Location: ../Pin/AccountName.php');
+                }
+
+                else
+                {
+                    echo '<script type="text/javascript">',
+                         'jsAlert();',
+                         '</script>'
+                    ; 
+                    echo "The pin entered is incorrect.";
+                }
+
+        }
+
+        else
+        {
+            echo "Something isnt working";
+        }
+
+    }
+
+
+
+
+    // making sure we were able to insert the information properly into
+    // our MySQL database
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ?>
+
+
+
+

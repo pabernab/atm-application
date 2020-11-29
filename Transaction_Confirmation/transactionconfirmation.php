@@ -43,6 +43,9 @@
         <br>
         <br>
         <?php
+        
+        // generate a random ID for the user
+        // and print it
         $randomID = (string) rand(1000000000, 9999999999);
         echo 'Transaction ID: ' . $randomID . "<br>";
         ?>

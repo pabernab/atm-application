@@ -3,6 +3,12 @@
         <meta charset = "utf-8">
         <title>Account Successful</title>
         <link rel = "stylesheet" href = "Pin.css?v=<?php echo time(); ?>">
+        <script>
+
+            let jsAlert = () => alert("We were unable to transfer the funds. 
+                                      "Please ensure you have sufficient balance and that the 
+                                      "desired recipient's account number is accurate.");
+        </script>
     </head>
 
 
@@ -27,7 +33,7 @@
             $_SESSION["entryValue"] = $_POST["entryValue"];
             $_SESSION["inputValue"] = $_POST["inputValue"];
         }
-
+        
         
         ?>
         <!-- details: account/routing number/types -->

@@ -1,3 +1,5 @@
+
+
 <?php
 session_start();
 if(isset($_POST["entryValue"]) && isset($_POST["inputValue"])){
@@ -5,7 +7,6 @@ if(isset($_POST["entryValue"]) && isset($_POST["inputValue"])){
     $_SESSION["entryValue"] = $_POST["entryValue"];
     $_SESSION["inputValue"] = $_POST["inputValue"];
 }
-
 
 $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
 $serverUserName = 'butteadmin';
@@ -22,12 +23,16 @@ if ($mysqli->connect_errno) {
 $userName = $_SESSION["userName"];
 
 // query to find current user's balance
-$findAccountBalance = "SELECT userCheckingAccountBalance from userRegistration where userName = '$userName';";
+$findAccountBalance = 
+"SELECT userCheckingAccountBalance 
+FROM userRegistration WHERE userName = '$userName';"
+;
 
 // query to find 
 $resultBalance = mysqli_query($mysqli, $findAccountBalance);
 
 $userBalance = 0;
+
 // query to find current user's balance and link it to variable $userBalance
 if ($resultBalance->num_rows > 0 ){
 
@@ -43,11 +48,15 @@ else {
 
 $currentUserCheckingAccountNumber = 
 "SELECT checkingAccountNumber from userRegistration
-WHERE userName = '$userName';";
+WHERE userName = '$userName';"
+;
 
 $currentUserCheckingResult = mysqli_query($mysqli, $currentUserCheckingAccountNumber);
 
 $currentChecking = 0;
+
+// query to find current user's checking account
+// number and link it to variable $currentChecking
 if ($currentUserCheckingResult->num_rows > 0){
 
     $row = $currentUserCheckingResult->fetch_assoc();
@@ -55,34 +64,34 @@ if ($currentUserCheckingResult->num_rows > 0){
     $currentChecking = $row["checkingAccountNumber"];
 }
 
-echo "<br> currentChecking = " . $currentChecking . "<br>";
 
 //$userBalance = 0;
+
 // grabbing these from user login or user registration
 $transferValue = $_POST["entryValue"];
 $accountNumber = $_POST["inputValue"];
-echo "<br> recipientAccountNumber = " . $accountNumber . "<br>";
-// echo "<br> TransferValue:   $transferValue <br>";
-// echo "<br> AccountNumber: $accountNumber <br>";
 
-// echo "<br> Transfer value: " . $transferValue . "<br>Account number: " . $accountNumber . "<br>";
+
 
 // variables to save for later
 $currentBalance = $userBalance;
-$postBalance = $currentBalance - $transferValue;
+
 
 // sql query to update current user's balance
 $updateCurrentUserBalances = 
 
 "UPDATE userRegistration
 SET userCheckingAccountBalance = $currentBalance - $transferValue
-WHERE userName = '$userName';";
+WHERE userName = '$userName';"
+
+;
 
 
 $findTransferUserAccountBalance = 
 "SELECT userCheckingAccountBalance 
 FROM userRegistration 
-WHERE checkingAccountNumber = $accountNumber;";
+WHERE checkingAccountNumber = $accountNumber;"
+;
 
 $findTransferUserBalance = mysqli_query($mysqli, $findTransferUserAccountBalance);
 
@@ -106,15 +115,21 @@ $updateTransferUserBalances =
 
 "UPDATE userRegistration
 SET userCheckingAccountBalance = $transferUserAccountBalance + $transferValue
-WHERE checkingAccountNumber = $accountNumber;";
+WHERE checkingAccountNumber = $accountNumber;"
+
+;
 
 
-echo "Updating balance<br><br>" . "Current Balance: $currentBalance <br>" . "Post Transfer Balance: $postBalance <br>";
 
-// querying our connected database with the given data points
-// inserting form information
+
+// check that the current user's balance exceeds or equals the desire
+// transfer value
+// ALSO
+// ensure current user is not sending money to themselves
 
 if ($currentBalance >= $transferValue && $currentChecking != $accountNumber){
+
+    // remove funds from current user
     $results = mysqli_query($mysqli, $updateCurrentUserBalances);
     
     // if we were able to remove funds from the user 
@@ -126,7 +141,7 @@ if ($currentBalance >= $transferValue && $currentChecking != $accountNumber){
         // if we sucessfully removed funds from the user and transferred to the recipient
         if ($transferResults){
                 
-            // send user to transaction confirmation page
+            // then we send user to transaction confirmation page
             header('Location: ../Transaction_Confirmation/transactionconfirmation.php');
             echo "Sending you to transaction confirmation.";
         }
@@ -135,9 +150,10 @@ if ($currentBalance >= $transferValue && $currentChecking != $accountNumber){
     
     // couldn't transfer funds for some reason
     else {
-        echo "<br>";
-        echo "Error: Information not inserted into database.";
-        echo "<br>";
+        // echo '<script type="text/javascript">',
+        //                  'jsAlert();',
+        //                  '</script>'
+        // ; 
         header('Location: AccountName.php');
         echo "<br>";
     }
@@ -145,8 +161,13 @@ if ($currentBalance >= $transferValue && $currentChecking != $accountNumber){
 }
 else {
     // if the user tries to transfer more funds than they have in balance
-    echo "Current balance must exceed or equal transfer value. <br>";
+    
+    // echo '<script type="text/javascript">',
+    //                      'jsAlert();',
+    //                      '</script>'
+    // ; 
     header('Location: AccountName.php');
+    echo "<br";
 }
 
 
