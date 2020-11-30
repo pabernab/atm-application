@@ -32,7 +32,9 @@
         }
 
         $amountTransferred = $_SESSION["entryValue"];
+        $tranfserAccount = $_SESSION["inputValue"];
         echo 'Amount transferred: $' . $amountTransferred . "<br>";
+        echo 'To: Account Number: ' .$tranfserAccount . "<br>";
 
 
         ?>

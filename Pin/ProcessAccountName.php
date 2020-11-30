@@ -122,6 +122,10 @@ WHERE checkingAccountNumber = $accountNumber;"
 
 
 
+
+
+
+
 // check that the current user's balance exceeds or equals the desire
 // transfer value
 // ALSO

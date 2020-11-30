@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+unset($_SESSION["entryValue"]);
+unset($_SESSION["inputValue"]);
 
 print_r($_SESSION);
 
@@ -82,7 +84,7 @@ print_r($_SESSION);
 
         <div id="column"><a class="nav_column" href="../PinPages/EnterPin2.php">Deposit/Withdrawal</a></div>
 
-        <div id="column"><a class="nav_column" href="../PinPages/EnterPin.php">Transfer</a></div>
+        <div id="column"><a class="nav_column" href="../PinPages/EnterPin.php">Send Money</a></div>
 
 
         <div id="column"><a class="nav_column" href="../PinPages/EnterPin3.php">Open/Close Account</a></div>
@@ -124,7 +126,7 @@ print_r($_SESSION);
                     <br>
                     <a style="font-size: 50%;">Available Balance</a>
                 </div>
-                <div class="transferMoney"><a href="../PinPages/EnterPin.php">Transfer Money</a></div>
+                <div class="transferMoney"><a href="../PinPages/EnterPin5.php">Transfer Funds to Savings</a></div>
                 <div class="transferMoney"><a href="../Account_Info/CheckingAccountInfo.php">Account Info</a></div>
             </div>
 
@@ -163,7 +165,7 @@ print_r($_SESSION);
                     <br>
                     <a style="font-size: 50%;">Available Balance</a>
                 </div>
-                <div class="transferMoney"><a href="../PinPages/EnterPin.php">Transfer Money</a></div>
+                <div class="transferMoney"><a href="../PinPages/EnterPin4.php">Transfer Funds to Checking</a></div>
                 <div class="transferMoney"><a href="../Account_Info/SavingsAccountInfo.php">Account Info</a></div>
             </div>
 

@@ -2,6 +2,7 @@
     <head>
         <meta charset = "utf-8">
         <title>Account Successful</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
         <link rel = "stylesheet" href = "Pin.css?v=<?php echo time(); ?>">
         <script>
 
@@ -55,8 +56,15 @@
                 <!-- replace '#' with url link -->
                 <div class="homepageDiv">
                     <button href="#" class="homepageButton" type="submit">Continue</button>
+                
                 </div>
+
+         
             </form>
+
+            <div class="homepageDiv">
+            <button class="homepageButton" onclick="location.href='../Balance/Balance.php'">Return to Homepage</button>
+        </div>
         </div>
 
 
