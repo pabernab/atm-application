@@ -84,13 +84,13 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
     }
     else if($typeAcc === 'Savings')//WHEN USER SELECTS SAVINGS ACCOUNT
     {
-      $results2 = mysqli_query($conn,$sql2);
-      $row2 = mysqli_fetch_assoc($results2);
 
-      if($row2["userSavingsAccountBalance"] >= $input)
-      {
+
+
         try
         {
+          $results2 = mysqli_query($conn,$sql2);
+          $row2 = mysqli_fetch_assoc($results2);
           //Updated value
           $num = $row2["userSavingsAccountBalance"] + $input;
             // PLEASE CHECK
@@ -110,7 +110,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           {
             echo $sql . "<br>" . $e->getMessage();
           }
-        }
+
       }
     }
   }

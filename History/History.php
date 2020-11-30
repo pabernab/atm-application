@@ -44,7 +44,7 @@ while($row = mysqli_fetch_assoc($results))
     <title> Deposit </title>
 
     <style>
-
+    /* Edit table */
     table, td
     {
       border: 1px solid black;
@@ -83,10 +83,10 @@ This is your transaction so far.
 
 <table id="myTable">
   <tr>
-    <td>Order Number</td>
-    <td>Account Type</td>
-    <td>Type</td>
-    <td>Amount</td>
+    <th>Order Number</th>
+    <th>Account Type</th>
+    <th>Type</th>
+    <th>Amount</th>
   </tr>
 </table>
 
@@ -117,7 +117,7 @@ Please Enter Order Number
 
 <br>
 
-<button onclick = "window.location = '../Balance/Balance.php';">Go Back</button>
+<button class = "button" onclick = "window.location = '../Balance/Balance.php';">Go Back</button>
 </center>
 </body>
 </html>
