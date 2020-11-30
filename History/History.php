@@ -41,7 +41,7 @@ while($row = mysqli_fetch_assoc($results))
     <link rel = "stylesheet" href = "Style.css?v=<?php echo time(); ?>">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
 
-    <title> Deposit </title>
+    <title> History Page </title>
 
     <style>
     /* Edit table */
@@ -70,9 +70,9 @@ while($row = mysqli_fetch_assoc($results))
 <center>
 
 <br>
-
+<p class = "regularFont">
 This is your transaction so far.
-
+</p>
 <br><br>
 
 <br>
@@ -91,12 +91,13 @@ This is your transaction so far.
 </table>
 
 <br>
-
+<p class = "regularFont">
 View Deposit check Png file
 <br><br>
-Please Enter Order Number
 
-<br>
+Please Enter Order Number
+</p>
+
 
 <form action="" method="post" name = "order">
 
