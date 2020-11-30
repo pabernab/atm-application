@@ -137,8 +137,7 @@ if ($currentBalance >= $transferValue){
         //                  'jsAlert();',
         //                  '</script>'
         // ; 
-        header('Location: AccountName.php');
-        echo "<br>";
+        echo '<span style="color:RED;text-align:center;">ERROR: The amount you entered is greater than the amount you have.</span>';
     }
 
 }
@@ -149,8 +148,7 @@ else {
     //                      'jsAlert();',
     //                      '</script>'
     // ; 
-    header('Location: AccountName.php');
-    echo "<br";
+    echo '<span style="color:RED;text-align:center;">ERROR: The amount you entered is greater than the amount you have.</span>';
 }
 
 

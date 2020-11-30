@@ -3,6 +3,8 @@
 session_start();
 unset($_SESSION["entryValue"]);
 unset($_SESSION["inputValue"]);
+unset($_SESSION["ordernumber"]);
+unset($_SESSION["amount"]);
 
 print_r($_SESSION);
 
