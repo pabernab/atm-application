@@ -95,7 +95,7 @@
         // Get the value of the input field with id="entryValue"
         x = document.getElementById("entryValue").value;
 
-        if (x == null)
+        if (x == '')
         {
             alert("Please input a valid number.");
             return false;
