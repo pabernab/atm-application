@@ -41,7 +41,7 @@ while($row = mysqli_fetch_assoc($results))
     <link rel = "stylesheet" href = "Style.css?v=<?php echo time(); ?>">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
 
-    <title> Deposit </title>
+    <title> History Page </title>
 
     <style>
     /* Edit table */
