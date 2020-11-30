@@ -49,7 +49,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           $_SESSION["ordernumber"] = $orders;
           $_SESSION["amount"] = $num;
 
-          $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$orders,'Withdraw',$input,'$typeAcc')";
+          $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$orders,'Withdraw',-$input,'$typeAcc')";
 
           $results = mysqli_query($conn, $upload);
 
@@ -85,7 +85,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           $_SESSION["ordernumber"] = $order;
           $_SESSION["amount"] = $num;
 
-          $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$orders,'Withdraw',$input,'$typeAcc')";
+          $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$orders,'Withdraw',-$input,'$typeAcc')";
 
           $results = mysqli_query($conn, $upload);
 
