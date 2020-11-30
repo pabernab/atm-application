@@ -1,3 +1,29 @@
+<?php
+
+
+session_start();
+
+print_r($_SESSION);
+
+//CONNECTING SERVER
+$serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
+$serverUserName = 'butteadmin';
+$serverPassword = 'buttecmpe131';
+$dbname = 'registration';
+
+// creating a new server connection using our preset AWS login values
+$conn = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
+
+// simple error catch if we are unable to connect to the MySQL Database
+if ($conn->connect_errno) {
+  echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
+}
+
+$name = $_SESSION['userName'];
+$randomID = $_SESSION["ordernumber"];
+?>
+
+
 <html>
   <head>
     <link rel = "stylesheet" href = "Style.css?v=<?php echo time(); ?>">
@@ -24,7 +50,6 @@
 
       <p class = "regularAmount">
         <?php
-        session_start();
         if(isset($_POST["entryValue"]) && isset($_POST["inputValue"])){
 
           $_SESSION["entryValue"] = $_POST["entryValue"];
@@ -34,7 +59,7 @@
         $amountTransferred = $_SESSION["entryValue"];
         $tranfserAccount = $_SESSION["inputValue"];
         echo 'Amount transferred: $' . $amountTransferred . "<br>";
-        echo 'To: Account Number: ' .$tranfserAccount . "<br>";
+        echo 'To Account Number: ' .$tranfserAccount . "<br>";
 
 
         ?>
@@ -44,18 +69,15 @@
         Type: Transfer
         <br>
         <br>
+        Transaction ID:
         <?php
-        
-        // generate a random ID for the user
-        // and print it
-        $randomID = (string) rand(1000000000, 9999999999);
-        echo 'Transaction ID: ' . $randomID . "<br>";
+          echo $randomID ;
         ?>
       </p>
-
+      <br>
       <form action="../Balance/Balance.php">
         <input type="submit" value = "Return to Homepage">
-        
+
       </form>
     </center>
 
