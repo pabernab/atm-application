@@ -34,8 +34,6 @@ while($row = mysqli_fetch_assoc($results))
   $rows[] = $row;
 }
 
-print_r($rows);
-
 ?>
 
 <html>
@@ -58,6 +56,7 @@ print_r($rows);
   </head>
 
   <body>
+    <script src="Checker.js"></script>
 
     <header>
         <img id = "logo" src="logo.png"/>
@@ -92,7 +91,31 @@ This is your transaction so far.
 </table>
 
 <br>
+
+View Deposit check Png file
 <br><br>
+Please Enter Order Number
+
+<br>
+
+<form action="" method="post" name = "order">
+
+  <input type="text" name="number" required>
+  <button type = 'submit' onclick="return submission();" > View </button>
+
+  <br>
+  <br>
+
+  <div id = "myImage" ></div>
+
+
+
+
+
+</form>
+
+
+<br>
 
 <button onclick = "window.location = '../Balance/Balance.php';">Go Back</button>
 </center>
