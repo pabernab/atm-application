@@ -67,7 +67,7 @@ print_r($_SESSION);
             <meta name="viewport" content="width=device-width">
             <img id = "logo" src="logo.png"/>
            <a id="logoutbutton" href="logout.php">Logout</a>
-         
+
   </div>
 
         </header>
@@ -102,23 +102,31 @@ print_r($_SESSION);
             <div class="barLayout">Checking Accounts</div>
             <div class="contentLayout">
                 <div class="availableBalance">
-                  $
+
                   <?php
-                    // prints user's checking
-                    if($balance === '')//Checks if nothing inside database
+                  // prints user's saving
+                    if($balance === '0')
                     {
-                      echo "0.00";
+                      echo "$0.00";
                     }
                     else
                     {
                       $toString = "{$balance}";
-                      if(strpos($toString, '.') === false)//Checks if there isn't any decimals
+                      if("null")
                       {
+                        echo "Account Not created";
+                      }
+
+
+                      else if(strpos($toString, '.') === false)
+                      {
+                        echo '$ ';
+
                         echo "{$balance}.00";
                       }
                       else
                       {
-                        echo htmlspecialchars($balance);
+                        echo '$ ' + $balance;
                       }
                     }
 
@@ -139,25 +147,31 @@ print_r($_SESSION);
             <div class="barLayout">Savings Accounts</div>
             <div class="contentLayout">
                 <div class="availableBalance">
-                  $
+
                   <?php
                   // prints user's saving
-                    if($saving === '')
+                    if($saving === '0')
                     {
-                      echo "0.00";
+                      echo "$0.00";
                     }
                     else
                     {
+
                       $toString = "{$saving}";
-                      if(strpos($toString, '.') === false)
+
+                      if("null")
                       {
+                        echo "Account Not created";
+                      }
+                      else if(strpos($toString, '.') === false)
+                      {
+                        echo '$ ';
                         echo "{$saving}.00";
                       }
                       else
                       {
-                        echo htmlspecialchars($saving);
+                        echo '$ ' + $saving;
                       }
-
                     }
 
 
@@ -180,7 +194,7 @@ print_r($_SESSION);
             <div class="contentLayout">
                 <div id = "history" >Complete history ready to view: <a href="../History/History.php">Complete History</a></div>
 
-               
+
 
             </div>
 
