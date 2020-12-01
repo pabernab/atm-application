@@ -48,6 +48,16 @@ print_r($_SESSION);
 
     $savingsSetToZeroResult = mysqli_query($mysqli, $setSavingsToZero);
 
+
+    // Set savings balance to 0 when close account
+    $setSavingsBalanceToZero = 
+    "UPDATE userRegistration
+    SET userSavingsAccountBalance = ''
+    WHERE userName = '$userName';";
+
+    $savingsBalanceSetToZeroResult = mysqli_query($mysqli, $setSavingsBalanceToZero);
+
+
     if ($savingsSetToZeroResult){
 
         echo "<br> savings set to 0.";
