@@ -49,7 +49,7 @@ print_r($_SESSION);
 
     $setCheckingToZero = 
     "UPDATE userRegistration
-    SET checkingAccountNumber = ''
+    SET checkingAccountNumber = NULL
     WHERE userName = '$userName';";
 
     $checkingSetToZeroResult = mysqli_query($mysqli, $setCheckingToZero);
@@ -57,7 +57,7 @@ print_r($_SESSION);
     // Set savings balance to 0 when close account
     $setCheckingBalanceToZero = 
     "UPDATE userRegistration
-    SET userCheckingAccountBalance = NULL
+    SET userCheckingAccountBalance = ''
     WHERE userName = '$userName';";
 
     $checkingBalanceSetToZeroResult = mysqli_query($mysqli, $setCheckingBalanceToZero);
