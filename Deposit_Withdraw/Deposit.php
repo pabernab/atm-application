@@ -40,17 +40,17 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
     //PUT RANDOMIZED NUMBER HERE
 
-    $rand = rand(1000000,9999999);
-
-    $order= $rand;
-
-    $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$order,'Deposit',$input,'$typeAcc')";
-
-    $results = mysqli_query($conn, $upload);
-
-    $newname = "{$order}.".$ext;
-    $target = 'images/'.$newname;
-    move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
+    // $rand = rand(1000000,9999999);
+    //
+    // $order= $rand;
+    //
+    // $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$order,'Deposit',$input,'$typeAcc')";
+    //
+    // $results = mysqli_query($conn, $upload);
+    //
+    // $newname = "{$order}.".$ext;
+    // $target = 'images/'.$newname;
+    // move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
 
     //THIS UPLOADS FILE INTO IMAGE FOLDER IN Deposit_Withdraw
 
@@ -71,7 +71,20 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
               //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
 
         $_SESSION["amount"] = $num;
+
+
+        $rand = rand(1000000,9999999);
+
+        $order= $rand;
         $_SESSION["ordernumber"] = $order;
+        $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$order,'Deposit',$input,'$typeAcc')";
+
+        $results = mysqli_query($conn, $upload);
+
+        $newname = "{$order}.".$ext;
+        $target = 'images/'.$newname;
+        move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
+
 
         mysqli_close($conn);
         header("Location: confirmation.php");
@@ -97,10 +110,26 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
           $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = '$name'";
 
           $_SESSION["amount"] = $num;
-          $_SESSION["ordernumber"] = $order;
+
 
           $stmt = $conn->prepare($sqlUpdate);
           $stmt->execute();
+
+          $rand = rand(1000000,9999999);
+          
+          $order= $rand;
+          $_SESSION["ordernumber"] = $order;
+          $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$order,'Deposit',$input,'$typeAcc')";
+
+          $results = mysqli_query($conn, $upload);
+
+          $newname = "{$order}.".$ext;
+          $target = 'images/'.$newname;
+          move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
+
+
+
+
           //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
            mysqli_close($conn);
            header("Location: confirmation.php");
