@@ -36,7 +36,12 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
       $results1 = mysqli_query($conn,$sql1);
       $row1 = mysqli_fetch_assoc($results1);
 
-      if($row1["userCheckingAccountBalance"] >= $input)
+      if($row1["userCheckingAccountBalance"] === "")
+      {
+        //Checking doesn't exist
+      }
+
+      else if($row1["userCheckingAccountBalance"] >= $input)
       {
         try
         {
@@ -71,6 +76,11 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
     {
       $results2 = mysqli_query($conn,$sql2);
       $row2 = mysqli_fetch_assoc($results2);
+
+      if($row2["userSavingsAccountBalance"] === "")
+      {
+        //Savings Does not exist
+      }
 
       if($row2["userSavingsAccountBalance"] >= $input)
       {
@@ -142,20 +152,40 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
 
       <!-- SHOWS AMOUNT FOR USER -->
-      Checking account: $
+      Checking account:
       <?php
         $results1 = mysqli_query($conn,$sql1);
         $row1 = mysqli_fetch_assoc($results1);
-        echo $row1["userCheckingAccountBalance"];
+
+        if($row1["userCheckingAccountBalance"] === "")
+        {
+            echo "Account Needs to be created.";
+        }
+        else
+        {
+            echo "$ ";
+            echo $row1["userCheckingAccountBalance"];
+        }
+
+
       ?>
 
       <br>
 
-      Savings account: $
+      Savings account:
       <?php
         $results2 = mysqli_query($conn,$sql2);
         $row2 = mysqli_fetch_assoc($results2);
-        echo $row2["userSavingsAccountBalance"];
+
+        if($row2["userSavingsAccountBalance"] === "")
+        {
+            echo "Account Needs to be created.";
+        }
+        else
+        {
+            echo "$ ";
+            echo $row1["userSavingsAccountBalance"];
+        }
       ?>
       <br>
     </p>
@@ -193,6 +223,11 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
       {
         echo '<span style="color:RED;text-align:center;">ERROR: You did not select which account.</span>';
       }
+      else if($row1["userCheckingAccountBalance"] === "" || $row2["userSavingsAccountBalance"] === "")
+      {
+        echo '<span style="color:RED;text-align:center;">ERROR: Account you selected needs to be created.</span>';
+      }
+
       //If user puts in more than account number
       else if($row1["userCheckingAccountBalance"] < $input)
       {
