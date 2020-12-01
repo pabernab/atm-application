@@ -112,7 +112,7 @@ print_r($_SESSION);
                     else
                     {
                       $toString = "{$balance}";
-                      if("null")
+                      if($toString === "")
                       {
                         echo "Account Not created";
                       }
@@ -159,7 +159,7 @@ print_r($_SESSION);
 
                       $toString = "{$saving}";
 
-                      if("null")
+                      if($toString === "")
                       {
                         echo "Account Not created";
                       }

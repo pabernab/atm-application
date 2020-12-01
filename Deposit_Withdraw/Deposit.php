@@ -24,129 +24,126 @@ $name = $_SESSION['userName'];
 // When you change this make sure it change Name to userName
 $sql1 = "SELECT userCheckingAccountBalance FROM userRegistration WHERE userName = '$name'";
 $sql2 = "SELECT userSavingsAccountBalance FROM userRegistration WHERE userName = '$name'";
+//Checker
+$checkSQL = "SELECT userCheckingAccountBalance, userSavingsAccountBalance FROM userRegistration WHERE userName = '$name'";
 
 if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 {
+  $input = $_POST["amount"];
+  $typeAcc = $_POST["AccountNumber"];
 
   if(!empty($_FILES["userFile"]['name']))
   {
-    $input = $_POST["amount"];
-    $typeAcc = $_POST["AccountNumber"];
-
-
-    //UPLOADS FILE INTO FILE PATH IMAGES
-    $info = pathinfo($_FILES['userFile']['name']);
-    $ext = $info['extension']; // get the extension of the file
-
-    //PUT RANDOMIZED NUMBER HERE
-
-    // $rand = rand(1000000,9999999);
-    //
-    // $order= $rand;
-    //
-    // $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$order,'Deposit',$input,'$typeAcc')";
-    //
-    // $results = mysqli_query($conn, $upload);
-    //
-    // $newname = "{$order}.".$ext;
-    // $target = 'images/'.$newname;
-    // move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
-
-    //THIS UPLOADS FILE INTO IMAGE FOLDER IN Deposit_Withdraw
-
+    //checker if account is null
+    $checkAcc = mysqli_query($conn, $checkSQL);
+    $cCheck = mysqli_fetch_assoc($checkAcc);
 
     if($typeAcc === 'Checking')//WHEN USER SELECTS CHECKING ACCOUNT
     {
-      try
-      {
-        $results1 = mysqli_query($conn,$sql1);
-        $row1 = mysqli_fetch_assoc($results1);
-        //Updated value
-        $num = $row1["userCheckingAccountBalance"] + $input;
-        // PLEASE CHECK
-        $sqlUpdate = "UPDATE userRegistration SET userCheckingAccountBalance = $num WHERE userName = '$name'";
 
-        $stmt = $conn->prepare($sqlUpdate);
-        $stmt->execute();
-              //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
-
-        $_SESSION["amount"] = $num;
-
-
-        $rand = rand(1000000,9999999);
-
-        $order= $rand;
-        $_SESSION["ordernumber"] = $order;
-        $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$order,'Deposit',$input,'$typeAcc')";
-
-        $results = mysqli_query($conn, $upload);
-
-        $newname = "{$order}.".$ext;
-        $target = 'images/'.$newname;
-        move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
-
-
-        mysqli_close($conn);
-        header("Location: confirmation.php");
-        //GO TO NEXT PAGE HERE
-        }
-        catch (PDOException $e)
+        if($cCheck['userCheckingAccountBalance'] == "")//if checking is null
         {
-          echo $sql . "<br>" . $e->getMessage();
+          //CHECKING ACCOUNT DOES NOT EXIST
         }
-    }
+        else
+        {
+          try
+          {
+            $results1 = mysqli_query($conn,$sql1);
+            $row1 = mysqli_fetch_assoc($results1);
+            //Updated value
+            $num = $row1["userCheckingAccountBalance"] + $input;
+            // PLEASE CHECK
+            $sqlUpdate = "UPDATE userRegistration SET userCheckingAccountBalance = $num WHERE userName = '$name'";
+
+            $stmt = $conn->prepare($sqlUpdate);
+            $stmt->execute();
+                  //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
+
+            $_SESSION["amount"] = $num;
+
+
+            $rand = rand(1000000,9999999);
+
+            $order= $rand;
+            $_SESSION["ordernumber"] = $order;
+            $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$order,'Deposit',$input,'$typeAcc')";
+
+            $results = mysqli_query($conn, $upload);
+
+            $newname = "{$order}.".$ext;
+            $target = 'images/'.$newname;
+            move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
+
+
+            mysqli_close($conn);
+            header("Location: confirmation.php");
+            //GO TO NEXT PAGE HERE
+            }
+            catch (PDOException $e)
+            {
+              echo $sql . "<br>" . $e->getMessage();
+            }
+        }
+      }
+
     else if($typeAcc === 'Savings')//WHEN USER SELECTS SAVINGS ACCOUNT
     {
+      $checkAcc = mysqli_query($conn, $checkSQL);
+      $cCheck = mysqli_fetch_assoc($checkAcc);
 
-
-
-        try
+        if($cCheck['userSavingsAccountBalance'] == "")//if checking is null
         {
-          $results2 = mysqli_query($conn,$sql2);
-          $row2 = mysqli_fetch_assoc($results2);
-          //Updated value
-          $num = $row2["userSavingsAccountBalance"] + $input;
-            // PLEASE CHECK
-          $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = '$name'";
-
-          $_SESSION["amount"] = $num;
-
-
-          $stmt = $conn->prepare($sqlUpdate);
-          $stmt->execute();
-
-          $rand = rand(1000000,9999999);
-          
-          $order= $rand;
-          $_SESSION["ordernumber"] = $order;
-          $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$order,'Deposit',$input,'$typeAcc')";
-
-          $results = mysqli_query($conn, $upload);
-
-          $newname = "{$order}.".$ext;
-          $target = 'images/'.$newname;
-          move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
-
-
-
-
-          //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
-           mysqli_close($conn);
-           header("Location: confirmation.php");
-           //Go to NEXT PAGE HERE
+          //Savings Account DOES NOT EXIST
         }
-          catch (PDOException $e)
+        else
+        {
+          try
           {
-            echo $sql . "<br>" . $e->getMessage();
+            $results2 = mysqli_query($conn,$sql2);
+            $row2 = mysqli_fetch_assoc($results2);
+            //Updated value
+            $num = $row2["userSavingsAccountBalance"] + $input;
+              // PLEASE CHECK
+            $sqlUpdate = "UPDATE userRegistration SET userSavingsAccountBalance = $num WHERE userName = '$name'";
+
+            $_SESSION["amount"] = $num;
+
+
+            $stmt = $conn->prepare($sqlUpdate);
+            $stmt->execute();
+
+            $rand = rand(1000000,9999999);
+
+            $order= $rand;
+            $_SESSION["ordernumber"] = $order;
+            $upload = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$name',$order,'Deposit',$input,'$typeAcc')";
+
+            $results = mysqli_query($conn, $upload);
+
+            $newname = "{$order}.".$ext;
+            $target = 'images/'.$newname;
+            move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
+
+
+
+
+            //END CONNECTION (MAKE SURE YOU UNCOMMENT THIS) -------------------
+             mysqli_close($conn);
+             header("Location: confirmation.php");
+             //Go to NEXT PAGE HERE
           }
+            catch (PDOException $e)
+            {
+              echo $sql . "<br>" . $e->getMessage();
+            }
+        }
 
       }
     }
-  }
+    }
 
 
-//END CONNECTION
-// mysqli_close($mysqli);
 
 
 ?>
@@ -203,20 +200,40 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
 
     <p class = "regularFont">
     <!-- SHOWS AMOUNT FOR USER -->
-    Checking account: $
+    Checking account:
     <?php
       $results1 = mysqli_query($conn,$sql1);
       $row1 = mysqli_fetch_assoc($results1);
-      echo $row1["userCheckingAccountBalance"];
+
+      if($row1["userCheckingAccountBalance"] === "")
+      {
+          echo "Account Needs to be created.";
+      }
+      else
+      {
+          echo "$ ";
+          echo $row1["userCheckingAccountBalance"];
+      }
+
+
     ?>
 
     <br>
 
-    Savings account: $
+    Savings account:
     <?php
       $results2 = mysqli_query($conn,$sql2);
       $row2 = mysqli_fetch_assoc($results2);
-      echo $row2["userSavingsAccountBalance"];
+
+      if($row2["userSavingsAccountBalance"] === "")
+      {
+          echo "Account Needs to be created.";
+      }
+      else
+      {
+          echo "$ ";
+          echo $row1["userSavingsAccountBalance"];
+      }
     ?>
     <br>
 
@@ -236,6 +253,9 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
       $results2 = mysqli_query($conn,$sql2);
       $row2 = mysqli_fetch_assoc($results2);
 
+      $checkAcc = mysqli_query($conn, $checkSQL);
+      $cCheck = mysqli_fetch_assoc($checkAcc);
+
       //If user did not select account
       if(isset($_POST["AccountNumber"]) )
       {
@@ -246,6 +266,10 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
         else if(empty($_FILES["userFile"]['name']))
         {
           echo '<span style="color:RED;text-align:center;">ERROR: Please Upload file.</span>';
+        }
+        else if($cCheck['userCheckingAccountBalance'] === "" || $cCheck['userSavingsAccountBalance'] === "")
+        {
+          echo '<span style="color:RED;text-align:center;">ERROR: Account you selected needs to be created.</span>';
         }
       }
 
