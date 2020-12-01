@@ -23,10 +23,13 @@ print_r($_SESSION);
     // test display of host connection info
     // echo $mysqli->host_info . "\n";
 
-    $user = $_SESSION['userName'];
+    $userName = $_SESSION['userName'];
 
-    $savingsAccountNumber = "SELECT savingsAccountNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
-    $userRoutingNumber = "SELECT userRoutingNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
+    // sql string to find current user's checking account number
+    $savingsAccountNumber = "SELECT savingsAccountNumber FROM userRegistration WHERE userName = '$userName' ";
+
+    // sql string to find current user's routing number
+    $userRoutingNumber = "SELECT userRoutingNumber FROM userRegistration WHERE userName = '$userName' ";
 
     $results = mysqli_query($mysqli, $savingsAccountNumber);
     $results2 = mysqli_query($mysqli, $userRoutingNumber);
@@ -34,9 +37,26 @@ print_r($_SESSION);
     $row = mysqli_fetch_assoc($results);
     $row2 = mysqli_fetch_assoc($results2);
 
-    $savingsNumber = $row['savingsAccountNumber'];
+    $previousAccountNumber = $row['savingsAccountNumber'];
     $routingNumber = $row2['userRoutingNumber'];
 
+
+    $setSavingsToZero = 
+    "UPDATE userRegistration
+    SET savingsAccountNumber = NULL
+    WHERE userName = '$userName';";
+
+    $savingsSetToZeroResult = mysqli_query($mysqli, $setSavingsToZero);
+
+    if ($savingsSetToZeroResult){
+
+        echo "<br> savings set to 0.";
+
+    }
+    else {
+        echo "<br> Couldn't delete account.";
+    }
+    $savingsAccountNumber = $row['savingsAccountNumber'];
 ?>
 
 
@@ -76,7 +96,7 @@ print_r($_SESSION);
         <!-- Values here just for demonstration -->
         <div class="details">
             <div class="detailsElement">Details:</div>
-            <div class="detailsElement">Acccount Number: <?php echo htmlspecialchars($savingsNumber); ?></div>
+            <div class="detailsElement">Acccount Number: <?php echo htmlspecialchars($savingsAccountNumber); ?></div>
             <div class="detailsElement">Routing Number: <?php echo htmlspecialchars($routingNumber); ?></div>
             <div>Type: Savings</div>
         </div>
