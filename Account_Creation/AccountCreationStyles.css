@@ -24,7 +24,9 @@ header
   background: linear-gradient(0deg, rgba(16,177,117,1) 0%, rgba(6,100,51,1) 100%);
 }
 
-button
+
+/* do not remove the period before 'button' */
+.button
 {
   font-family: 'Roboto', sans-serif;
   padding: 0;
@@ -38,6 +40,7 @@ button
   font-size: 35px;
 
 }
+
 
 #buttonLayout
 {
