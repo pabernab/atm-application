@@ -22,11 +22,11 @@
 
     <!-- Checking Button -->
     <button id = "checking" onclick="location.href='../Account_Successful/AccountSuccessful.php'"
-     type="button" name="button">Checking</button>
+     type="button" class= "button" name="button">Checking</button>
 
     <!-- Savings Button -->
     <button id = "savings" onclick="location.href='../Account_Successful/SavingsAccountSuccessful.php'"
-     type="button" name="button">Savings</button>
+     type="button" class = "button" name="button">Savings</button>
 
   </div>
 
