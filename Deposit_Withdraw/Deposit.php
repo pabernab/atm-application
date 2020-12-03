@@ -71,7 +71,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
             $results = mysqli_query($conn, $upload);
 
             $newname = "{$order}.".$ext;
-            $target = 'images/'.$newname;
+            $target = 'images/'.$newname.'png';
             move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
 
 
@@ -121,7 +121,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
             $results = mysqli_query($conn, $upload);
 
             $newname = "{$order}.".$ext;
-            $target = 'images/'.$newname;
+            $target = 'images/'.$newname.'png';
             move_uploaded_file( $_FILES['userFile']['tmp_name'], $target);
 
 
