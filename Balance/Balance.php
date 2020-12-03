@@ -24,7 +24,7 @@ if( ! empty($_SESSION['errorTwo']))
   unset($_SESSION['errorTwo']);
 }
 
-print_r($_SESSION);
+
 
 // these are our login values associated with the AWS
     // database instance, found here:
