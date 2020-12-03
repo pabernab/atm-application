@@ -3,7 +3,7 @@
 <?php
 session_start();
 if(isset($_POST["entryValue"]) && isset($_POST["inputValue"])){
-
+    
     $_SESSION["entryValue"] = $_POST["entryValue"];
     $_SESSION["inputValue"] = $_POST["inputValue"];
 }
@@ -18,6 +18,21 @@ $mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname,
 
 if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+
+// grabbing these from user login or user registration
+$transferValue = $_POST["entryValue"];
+$accountNumber = $_POST["inputValue"];
+
+$mysqli->query(
+"SELECT checkingAccountNumber 
+FROM userRegistration 
+WHERE checkingAccountNumber = $accountNumber;");
+
+$accountExists = true;
+if ($mysqli->affected_rows == 0 || $mysqli->affected_rows == -1){
+    $accountExists = false;
+    
 }
 // pull user name from login / registration form
 $userName = $_SESSION["userName"];
@@ -67,12 +82,6 @@ if ($currentUserCheckingResult->num_rows > 0){
 
 //$userBalance = 0;
 
-// grabbing these from user login or user registration
-$transferValue = $_POST["entryValue"];
-$accountNumber = $_POST["inputValue"];
-
-
-
 // variables to save for later
 $currentBalance = $userBalance;
 
@@ -106,9 +115,8 @@ if ($findTransferUserBalance->num_rows > 0 ){
     $transferUserAccountBalance = $row["userCheckingAccountBalance"];
 
 }
-else {
-    echo "<br> Row is 0.";
-}
+
+
 
 // sql query to add to transfer recipient
 $updateTransferUserBalances =
@@ -119,76 +127,103 @@ WHERE checkingAccountNumber = $accountNumber;"
 
 ;
 
-
-
-
-
-
-
-
 // check that the current user's balance exceeds or equals the desire
 // transfer value
 // ALSO
 // ensure current user is not sending money to themselves
+// ALSO
+// ensure recipient account exists
+if ($currentBalance >= $transferValue){
 
-if ($currentBalance >= $transferValue && $currentChecking != $accountNumber){
+    if ($currentChecking != $accountNumber){
 
-    // remove funds from current user
-    $results = mysqli_query($mysqli, $updateCurrentUserBalances);
-
-    // if we were able to remove funds from the user
-    if ($results){
-
-        // then we can add the money to the transfer recipient
-        $transferResults = mysqli_query($mysqli, $updateTransferUserBalances);
-
-        // if we sucessfully removed funds from the user and transferred to the recipient
-        if ($transferResults){
-
-          //Sets OrderID
-          $randomID = rand(1000000,9999999);
-          $_SESSION["ordernumber"] = $randomID;
-          // Grabs accountNumber's name
-          $sqlTo = "SELECT userName FROM userRegistration where checkingAccountNumber = $accountNumber";
-          $result1 = mysqli_query($mysqli, $sqlTo);
-          $row1 = mysqli_fetch_assoc($result1);
-
-          $accName = $row1['userName'];
-
-          //Adds to History
-          $sql1 = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$accName',$randomID,'Transfer',$transferValue,'Checking')";
-          $results1 = mysqli_query($mysqli, $sql1);
-          $sql2 = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$userName',$randomID,'Transfer',-$transferValue,'Checking')";
-          $results2 = mysqli_query($mysqli, $sql2);
-
-
-            // then we send user to transaction confirmation page
-            header('Location: ../Transaction_Confirmation/transactionconfirmation.php');
-            echo "Sending you to transaction confirmation.";
+        if ($accountExists == true){
+            
+            $results = mysqli_query($mysqli, $updateCurrentUserBalances);
+        
+            // if we were able to remove funds from the user
+            if ($results){
+        
+                // then we can add the money to the transfer recipient
+                $transferResults = mysqli_query($mysqli, $updateTransferUserBalances);
+        
+                // if we sucessfully removed funds from the user and transferred to the recipient
+                if ($transferResults){
+        
+                  //Sets OrderID
+                  $randomID = rand(1000000,9999999);
+                  $_SESSION["ordernumber"] = $randomID;
+                  // Grabs accountNumber's name
+                  $sqlTo = "SELECT userName FROM userRegistration where checkingAccountNumber = $accountNumber";
+                  $result1 = mysqli_query($mysqli, $sqlTo);
+                  $row1 = mysqli_fetch_assoc($result1);
+        
+                  $accName = $row1['userName'];
+        
+                  //Adds to History
+                  $sql1 = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$accName',$randomID,'Transfer',$transferValue,'Checking')";
+                  $results1 = mysqli_query($mysqli, $sql1);
+                  $sql2 = "INSERT into checkDeposit(userName,filePath,typess,amount,accountType) VALUES ('$userName',$randomID,'Transfer',-$transferValue,'Checking')";
+                  $results2 = mysqli_query($mysqli, $sql2);
+        
+        
+                    // then we send user to transaction confirmation page
+                    header('Location: ../Transaction_Confirmation/transactionconfirmation.php');
+                    //echo "Sending you to transaction confirmation.";
+                }
+        
+            }
+            // couldn't transfer funds for some reason
+            else {
+                echo "<script> alert('Unable to transfer funds to recipient account.');
+                window.setTimeout(() =>{
+                    window.location.href = 'AccountName.php';
+        
+                }, 0);
+                </script>";
+            }
+        }
+        else {
+             // alerts user 
+            // timeout set to 
+            echo "<script> alert('The account number you entered is invalid. Please enter a valid recipient account number.');
+            window.setTimeout(() =>{
+                window.location.href = 'AccountName.php';
+    
+            }, 0);
+            </script>";
         }
 
     }
-
-    // couldn't transfer funds for some reason
     else {
-        // echo '<script type="text/javascript">',
-        //                  'jsAlert();',
-        //                  '</script>'
-        // ;
-        header('Location: AccountName.php');
-        echo "<br>";
+        // alerts user 
+        // timeout set to 
+        echo "<script> alert('You cannot send money to yourself. Please enter a valid, non-null recipient account number (that is not your own number.');
+        window.setTimeout(() =>{
+            window.location.href = 'AccountName.php';
+
+        }, 0);
+        </script>";
     }
+    // remove funds from current user
+
 
 }
 else {
     // if the user tries to transfer more funds than they have in balance
 
-    // echo '<script type="text/javascript">',
-    //                      'jsAlert();',
-    //                      '</script>'
-    // ;
-    header('Location: AccountName.php');
-    echo "<br";
+    // alerts user 
+    // timeout set to 0 for shortest redirect time
+    echo "<script> 
+    
+    alert('You do not possess sufficient balance. Please enter a value less than or equal to your current balance.');
+    window.setTimeout(() =>{
+        window.location.href = 'AccountName.php';
+
+    }, 0);
+    </script>";
+    
+    
 }
 
 
