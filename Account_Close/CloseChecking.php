@@ -47,6 +47,19 @@ print_r($_SESSION);
     $routingNumber = $row2['userRoutingNumber'];
 
 
+    if($results->num_rows > 0)
+    {
+        if(empty($previousAccountNumber))
+        {
+            $_SESSION['error'] = "Error! No Checking Account to Close. ";
+            header('Location: ../Balance/Balance.php');
+        }
+    }
+
+    else{
+        
+    }
+
     $setCheckingToZero = 
     "UPDATE userRegistration
     SET checkingAccountNumber = NULL
