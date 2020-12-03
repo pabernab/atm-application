@@ -40,6 +40,19 @@ print_r($_SESSION);
     $previousAccountNumber = $row['savingsAccountNumber'];
     $routingNumber = $row2['userRoutingNumber'];
 
+    if($results->num_rows > 0)
+    {
+        if(empty($previousAccountNumber))
+        {
+            // echo "Error! No Savings Account to Close. ";
+            $_SESSION['error'] = "Error! No Savings Account to Close. ";
+            header('Location: ../Balance/Balance.php');
+        }
+    }
+
+    else{
+        
+    }
 
     $setSavingsToZero =
     "UPDATE userRegistration
