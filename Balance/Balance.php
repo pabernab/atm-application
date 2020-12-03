@@ -6,6 +6,24 @@ unset($_SESSION["inputValue"]);
 unset($_SESSION["ordernumber"]);
 unset($_SESSION["amount"]);
 
+if( ! empty($_SESSION['error']))
+{
+  
+  echo "<script>";
+   echo "alert('You do not have a checking account on file. Please open one before proceeding with the transaction.');";
+   echo "</script>";
+  unset($_SESSION['error']);
+}
+
+if( ! empty($_SESSION['errorTwo']))
+{
+ 
+  echo "<script>";
+   echo "alert('You do not have a savings account on file. Please open one before proceeding with the transaction.');";
+   echo "</script>";
+  unset($_SESSION['errorTwo']);
+}
+
 print_r($_SESSION);
 
 // these are our login values associated with the AWS

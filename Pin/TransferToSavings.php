@@ -45,6 +45,54 @@
         FROM userRegistration WHERE userName = '$userName';"
         ;
 
+         //finding the associated savings/checking number
+         $findCheckingAccountNumber =
+         "SELECT checkingAccountNumber
+         FROM userRegistration WHERE userName = '$userName';"
+         ;
+ 
+         $resultAccount = mysqli_query($mysqli,$findCheckingAccountNumber);
+         $accountNumber = 0;
+ 
+         if($resultAccount->num_rows > 0)
+         {
+             $r = $resultAccount->fetch_assoc();
+             $accountNumber = $r["checkingAccountNumber"];
+             if(is_null($accountNumber))
+             {
+                 $_SESSION['error'] = "You do not have a checking account. Please make one before proceeding with the transaction.";
+                 header('Location: ../Balance/Balance.php');
+             }
+         }
+ 
+         else{
+             
+         }
+
+            //finding the associated savings/checking number
+            $findSavingsAccountNumber =
+            "SELECT savingsAccountNumber
+            FROM userRegistration WHERE userName = '$userName';"
+            ;
+    
+            $resultAccount = mysqli_query($mysqli,$findSavingsAccountNumber);
+            $accountNumber = 0;
+    
+            if($resultAccount->num_rows > 0)
+            {
+                $r = $resultAccount->fetch_assoc();
+                $accountNumber = $r["savingsAccountNumber"];
+                if(is_null($accountNumber))
+                {
+                    $_SESSION['errorTwo'] = "You do not have a savings account. Please make one before proceeding with the transaction.";
+                    header('Location: ../Balance/Balance.php');
+                }
+            }
+    
+            else{
+                
+            }
+
         // query to find 
         $resultBalance = mysqli_query($mysqli, $findAccountBalance);
 
