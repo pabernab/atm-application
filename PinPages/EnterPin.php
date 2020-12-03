@@ -37,7 +37,7 @@ session_start();
         <!-- Values here just for demonstration -->
         <div class="textbox">
             <form method="POST">
-                <input class="resizeTextbox" type="password" id="pinValue" name="pinValue" maxlength="4">
+                <input class="resizeTextbox" type="password" id="pinValue" name="pinValue" maxlength="4" pattern = ".{4}" title="The PIN must be 4 characters long.">
                  <!-- Continue button -->
                 <div class="homepageDiv">
                     <button href="#" type="submit" class="homepageButton">Continue</button>
