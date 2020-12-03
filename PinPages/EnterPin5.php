@@ -52,7 +52,9 @@ $pinCorrect = false;
 
                 else
                 {
-                    echo "The pin entered is incorrect.";
+                    echo "<script>";
+                    echo "alert('The pin is incorrect.');";
+                    echo "</script>";
                 }
 
         }

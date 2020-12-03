@@ -9,11 +9,6 @@ session_start();
         <title>Pin Validation</title>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;500;700&display=swap" rel="stylesheet">
         <link rel = "stylesheet" href = "../Pin/Pin.css?v=<?php echo time(); ?>">
-        <script>
-        
-            let jsAlert = () => alert("The pin you entered is incorrect!");
-            
-        </script>
 
     </head>
 
@@ -49,6 +44,19 @@ session_start();
                     <button class="homepageButton" onclick="location.href='../Balance/Balance.php'">Back</button>
                 </div>
         </div>
+
+        <script>
+            function checkPin()
+            {
+                var x = document.getElementById("pinValue").value;
+            }
+
+
+
+        </script>
+
+
+
     </body>
 </html>
 
@@ -92,6 +100,8 @@ $pinCorrect = false;
 
         $results = mysqli_query($mysqli, $setPin);
 
+        $pin  = 0;
+
         if ($results)
         {
             $row = mysqli_fetch_assoc($results);
@@ -103,11 +113,10 @@ $pinCorrect = false;
 
                 else
                 {
-                    echo '<script type="text/javascript">',
-                         'jsAlert();',
-                         '</script>'
-                    ; 
-                    echo "The pin entered is incorrect.";
+                    
+                    echo "<script>";
+                    echo "alert('The pin is incorrect.');";
+                    echo "</script>";
                 }
 
         }

@@ -4,7 +4,7 @@
 session_start();
 
 
-print_r($_SESSION);
+
 $numb = rand(123456789101112, 200000000000000);
 $numb2 = rand(123456789101112, 200000000000000);
 $accountNumber = strval($numb);
