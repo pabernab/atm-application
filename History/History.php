@@ -34,6 +34,8 @@ while($row = mysqli_fetch_assoc($results))
   $rows[] = $row;
 }
 
+
+
 ?>
 
 <html>
@@ -102,18 +104,48 @@ Please Enter Order Number
 <form action="" method="post" name = "order">
 
   <input type="text" name="number" required>
-  <button type = 'submit' onclick="return submission();" > View </button>
+  <input type = 'submit' value = "view">
 
   <br>
   <br>
 
-  <div id = "myImage" ></div>
-
-
-
+  <!-- <div id = "myImage" ></div> -->
 
 
 </form>
+
+<?php
+
+if(isset($_POST['number']))
+{
+  $ordernumber = $_POST['number'];
+
+  $checker = "SELECT userName FROM checkDeposit WHERE filePath = '$ordernumber'";
+  $output = mysqli_query($conn,$checker);
+
+
+  if($output)
+  {
+    $AccName = mysqli_fetch_assoc($output);
+
+    if($AccName === null)
+    {
+
+      echo "Order is not a Deposit or Order does not exist.";
+    }
+    else
+    {
+      $filepath = '../Deposit_Withdraw/images/'.$ordernumber.'.png';
+      echo '<img src="'.$filepath.'"/>';
+    }
+  }
+
+}
+
+
+ ?>
+
+
 
 
 <br>
@@ -145,7 +177,7 @@ while(parseInt(max) > counter)
   var cell4 = row.insertCell(3);
 
 
-  cell1.innerHTML = "#"+rows[counter]['filePath'];
+  cell1.innerHTML = rows[counter]['filePath'];
   cell2.innerHTML = rows[counter]['accountType'];
   cell3.innerHTML = rows[counter]['typess'];
   cell4.innerHTML = '$ ' + rows[counter]['amount'];
