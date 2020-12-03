@@ -2,8 +2,6 @@
 
 session_start();
 
-print_r($_SESSION);
-
 $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
 $serverUserName = 'butteadmin';
 $serverPassword = 'buttecmpe131';
@@ -184,7 +182,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
         else
         {
             echo "$ ";
-            echo $row1["userSavingsAccountBalance"];
+            echo $row2["userSavingsAccountBalance"];
         }
       ?>
       <br>

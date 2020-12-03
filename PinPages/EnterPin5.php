@@ -52,7 +52,9 @@ $pinCorrect = false;
 
                 else
                 {
-                    echo "The pin entered is incorrect.";
+                    echo "<script>";
+                    echo "alert('The pin is incorrect.');";
+                    echo "</script>";
                 }
 
         }
@@ -114,7 +116,7 @@ $pinCorrect = false;
         <!-- Values here just for demonstration -->
         <div class="textbox">
             <form method="POST">
-                <input class="resizeTextbox" type="password" id="pinValue" name="pinValue" maxlength="4">
+                <input class="resizeTextbox" type="password" id="pinValue" name="pinValue" maxlength="4" pattern = ".{4}" title="The PIN must be 4 characters long.">
 
                        <!-- Continue button -->
                 <div class="homepageDiv">

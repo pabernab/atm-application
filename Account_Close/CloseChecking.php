@@ -2,7 +2,7 @@
 
 session_start();
 
-print_r($_SESSION);
+
 
 // these are our login values associated with the AWS
     // database instance, found here:
@@ -26,15 +26,15 @@ print_r($_SESSION);
     $userName = $_SESSION['userName'];
 
     // sql string to find current user's checking account number
-    $checkingAccountNumber = 
-    "SELECT checkingAccountNumber 
-    FROM userRegistration 
+    $checkingAccountNumber =
+    "SELECT checkingAccountNumber
+    FROM userRegistration
     WHERE userName = '$userName' ";
 
     // sql string to find current user's routing number
-    $userRoutingNumber = 
-    "SELECT userRoutingNumber 
-    FROM userRegistration 
+    $userRoutingNumber =
+    "SELECT userRoutingNumber
+    FROM userRegistration
     WHERE userName = '$userName' ";
 
     $results = mysqli_query($mysqli, $checkingAccountNumber);
@@ -46,32 +46,48 @@ print_r($_SESSION);
     $previousAccountNumber = $row['checkingAccountNumber'];
     $routingNumber = $row2['userRoutingNumber'];
 
-
-    $setCheckingToZero = 
-    "UPDATE userRegistration
-    SET checkingAccountNumber = NULL
-    WHERE userName = '$userName';";
-
-    $checkingSetToZeroResult = mysqli_query($mysqli, $setCheckingToZero);
-
-    // Set savings balance to 0 when close account
-    $setCheckingBalanceToZero = 
-    "UPDATE userRegistration
-    SET userCheckingAccountBalance = ''
-    WHERE userName = '$userName';";
-
-    $checkingBalanceSetToZeroResult = mysqli_query($mysqli, $setCheckingBalanceToZero);
-
-
-    if ($checkingSetToZeroResult){
-
-        echo "<br> checking set to 0.";
-
+    if($results->num_rows > 0)
+    {
+        if(empty($previousAccountNumber))
+        {
+            $_SESSION['error'] = "Error! No Checking Account to Close. ";
+            header('Location: ../Balance/Balance.php');
+        }
+        else {
+            $setCheckingToZero = 
+            "UPDATE userRegistration
+            SET checkingAccountNumber = NULL
+            WHERE userName = '$userName';";
+        
+            $checkingSetToZeroResult = mysqli_query($mysqli, $setCheckingToZero);
+        
+            // Set savings balance to 0 when close account
+            $setCheckingBalanceToZero = 
+            "UPDATE userRegistration
+            SET userCheckingAccountBalance = ''
+            WHERE userName = '$userName';";
+        
+            $checkingBalanceSetToZeroResult = mysqli_query($mysqli, $setCheckingBalanceToZero);
+            $eraseHistory = "DELETE from checkDeposit WHERE userName = '$userName' and accountType = 'Checking'";
+            mysqli_query($mysqli, $eraseHistory);
+        
+        
+            if ($checkingSetToZeroResult){
+        
+                echo "<br> checking set to 0.";
+        
+            }
+            else {
+                echo "<br> Couldn't delete account.";
+            }
+            $accountNumber = $row['checkingAccountNumber'];
+        }
     }
-    else {
-        echo "<br> Couldn't delete account.";
+
+    else{
+    
     }
-    $accountNumber = $row['checkingAccountNumber'];
+
 ?>
 
 
@@ -86,7 +102,7 @@ print_r($_SESSION);
         <link rel = "stylesheet" href = "../Account_Successful/AccountSuccessful.css?v=<?php echo time(); ?>">
     </head>
 
-    
+
     <body>
         <!-- bank logo -->
         <header>

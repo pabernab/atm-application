@@ -4,6 +4,17 @@
 <?php
 
 session_start();
+
+if(! empty($_SESSION['error']))
+{
+  echo "<script>";
+  echo "alert('There is already an account associated with this username. Please try again.');";
+  echo "</script>";
+ unset($_SESSION['error']);
+}
+
+
+
     // these are our login values associated with the AWS
     // database instance, found here:
     // https://us-west-1.console.aws.amazon.com/rds/home?region=us-west-1#database:id=mysqldb;is-cluster=false
@@ -87,20 +98,16 @@ session_start();
                 // in the event we somehow were unable to insert the information
                 // thus not being able to create the account
                 else {
-                    echo "<br>";
-                    echo "Error: Information not inserted into database.";
-                    echo "<br>";
-                    echo "Those login credentials already exist in our database.";
-                    echo "<br>";
+                  $_SESSION['error'] = true; 
+                   header('Location: Registration.php');
                 }
             }
 
             // if passwords don't match
             else {
-
-                echo "<br>";
-                echo "Both passwords must match.";
-                echo "<br>";
+              //password is checked by js. if it reaches this then something is definitely wrong
+              echo('Something went wrong');
+                
             }
 
     }
@@ -229,6 +236,7 @@ session_start();
           <!-- Can some one explain why the Create Account button is pointing to this html file? -->
           <!-- I set it to point to CreatPin.php file -->
           <center>
+            <button id = "CreateButton" onclick="location.href='../Login/index.php'"> Back </button>
             <button id = "CreateButton" type = 'submit' onclick="return submission();" value = "Create Account" > Create Account </button>
             <!-- <input id ="CreateButton" onclick="location.href='../PinPages/CreatePin.php'" type="submit" value = "Create Account" onclick="return submission();" > -->
           </center>

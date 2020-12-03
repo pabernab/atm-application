@@ -24,6 +24,24 @@ if( ! empty($_SESSION['errorTwo']))
   unset($_SESSION['errorTwo']);
 }
 
+if( ! empty($_SESSION['errorThree']))
+{
+
+  echo "<script>";
+   echo "alert('Checking Account Already Existed.');";
+   echo "</script>";
+  unset($_SESSION['errorThree']);
+}
+
+if( ! empty($_SESSION['errorFour']))
+{
+
+  echo "<script>";
+   echo "alert('Savings Account Already Existed.');";
+   echo "</script>";
+  unset($_SESSION['errorFour']);
+}
+
 
 
 // these are our login values associated with the AWS

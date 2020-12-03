@@ -2,7 +2,7 @@
 
 session_start();
 
-print_r($_SESSION);
+
 
 // these are our login values associated with the AWS
     // database instance, found here:
@@ -40,33 +40,49 @@ print_r($_SESSION);
     $previousAccountNumber = $row['savingsAccountNumber'];
     $routingNumber = $row2['userRoutingNumber'];
 
+    if($results->num_rows > 0)
+    {
+        if(empty($previousAccountNumber))
+        {
+            // echo "Error! No Savings Account to Close. ";
+            $_SESSION['errorTwo'] = "Error! No Savings Account to Close. ";
+            header('Location: ../Balance/Balance.php');
+        }
+        else {
+            $setSavingsToZero = 
+            "UPDATE userRegistration
+            SET savingsAccountNumber = NULL
+            WHERE userName = '$userName';";
+    
+            $savingsSetToZeroResult = mysqli_query($mysqli, $setSavingsToZero);
+    
+    
+            // Set savings balance to 0 when close account
+            $setSavingsBalanceToZero = 
+            "UPDATE userRegistration
+            SET userSavingsAccountBalance = ''
+            WHERE userName = '$userName';";
+    
+            $savingsBalanceSetToZeroResult = mysqli_query($mysqli, $setSavingsBalanceToZero);
+    
+    
+            if ($savingsSetToZeroResult){
+    
+                echo "<br> savings set to 0.";
+    
+            }
+            else {
+                echo "<br> Couldn't delete account.";
+            }
+            $savingsAccountNumber = $row['savingsAccountNumber'];
+        }
+    }
 
-    $setSavingsToZero = 
-    "UPDATE userRegistration
-    SET savingsAccountNumber = NULL
-    WHERE userName = '$userName';";
-
-    $savingsSetToZeroResult = mysqli_query($mysqli, $setSavingsToZero);
-
-
-    // Set savings balance to 0 when close account
-    $setSavingsBalanceToZero = 
-    "UPDATE userRegistration
-    SET userSavingsAccountBalance = ''
-    WHERE userName = '$userName';";
-
-    $savingsBalanceSetToZeroResult = mysqli_query($mysqli, $setSavingsBalanceToZero);
-
-
-    if ($savingsSetToZeroResult){
-
-        echo "<br> savings set to 0.";
+    else{
 
     }
-    else {
-        echo "<br> Couldn't delete account.";
-    }
-    $savingsAccountNumber = $row['savingsAccountNumber'];
+
+    
 ?>
 
 

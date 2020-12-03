@@ -2,7 +2,7 @@
 
 session_start();
 
-print_r($_SESSION);
+
 
 // these are our login values associated with the AWS
     // database instance, found here:
@@ -54,7 +54,7 @@ print_r($_SESSION);
 
     <?php
 
-print_r($_SESSION);
+
 
 
 ?>

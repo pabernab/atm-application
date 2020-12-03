@@ -70,7 +70,7 @@ session_start();
       </p>
 
 
-      <button onclick = "window.location = '../Balance/Balance.php';">Return to Homepage</button>
+      <button class = "homepageButton" onclick = "window.location = '../Balance/Balance.php';">Return to Homepage</button>
 
     </center>
 

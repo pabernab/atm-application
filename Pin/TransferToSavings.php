@@ -123,7 +123,7 @@
 
         <div class="textbox">
             <form action="ProcessTransferToSavings.php" onsubmit="return checkValue()" method="POST">
-                <input class="resizeTextbox" type="text" id="entryValue" name="entryValue">
+                <input class="resizeTextbox" type="number" id="entryValue" name="entryValue">
                 <br>
                 <br>
                 <br>

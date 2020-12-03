@@ -4,7 +4,7 @@
 session_start();
 
 
-print_r($_SESSION);
+
 $numb = rand(123456789101112, 200000000000000);
 $numb2 = rand(123456789101112, 200000000000000);
 $accountNumber = strval($numb);
@@ -27,21 +27,44 @@ $userName = $_SESSION["userName"];
         echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
 
-    // test display of host connection info
-    // echo $mysqli->host_info . "\n";
 
-    $setAccountNumber = "UPDATE userRegistration 
-    SET CheckingAccountNumber = $checkingNumber, userRoutingNumber = $accountNumber, userCheckingAccountBalance = 0
-    WHERE userName = '{$_SESSION['userName']}' ";
+    // sql string to find current user's checking account number
+    $checkingAccountNumber = 
+    "SELECT checkingAccountNumber 
+    FROM userRegistration 
+    WHERE userName = '$userName' ";
 
+    $results = mysqli_query($mysqli, $checkingAccountNumber);
+    $row = mysqli_fetch_assoc($results);
+    $previousAccountNumber = $row['checkingAccountNumber'];
 
-    $results = mysqli_query($mysqli, $setAccountNumber);
-
-    if ($results)
+    if($results->num_rows > 0)
     {
-        echo "Information inserted.";
-        $type = "Checking";
+        if(!empty($previousAccountNumber))
+        {
+            $_SESSION['errorThree'] = "Error! No Checking Account to Close. ";
+            header('Location: ../Balance/Balance.php');
+        }
+        else {
+            $setAccountNumber = "UPDATE userRegistration 
+            SET CheckingAccountNumber = $checkingNumber, userRoutingNumber = $accountNumber, userCheckingAccountBalance = 0
+            WHERE userName = '{$_SESSION['userName']}' ";
+    
+    
+            $results = mysqli_query($mysqli, $setAccountNumber);
+    
+            if ($results)
+            {
+                echo "Information inserted.";
+            }
+        }
     }
+
+    else{
+
+    }
+
+
 
     // making sure we were able to insert the information properly into
     // our MySQL database
@@ -105,7 +128,7 @@ print_r($_SESSION);
             <div class="detailsElement">Details:</div>
             <div class="detailsElement">Checking Acccount Number: <?php echo htmlspecialchars($checkingNumber); ?></div>
             <div class="detailsElement">Routing Number: <?php echo htmlspecialchars($accountNumber); ?></div>
-            <div>Type: <?php echo htmlspecialchars($type); ?></div>
+            <div>Type: Checking</div>
         </div>
 
 
