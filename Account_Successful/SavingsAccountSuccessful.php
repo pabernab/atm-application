@@ -30,7 +30,7 @@ $userName = $_SESSION["userName"];
     $previousAccountNumber = $row['savingsAccountNumber'];
     if($results->num_rows > 0)
     {
-        if(!empty($savingsAccountNumber))
+        if(!empty($previousAccountNumber))
         {
             // echo "Error! No Savings Account to Close. ";
             $_SESSION['errorFour'] = "Error! No Savings Account to Close. ";
