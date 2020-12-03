@@ -229,6 +229,7 @@ session_start();
           <!-- Can some one explain why the Create Account button is pointing to this html file? -->
           <!-- I set it to point to CreatPin.php file -->
           <center>
+            <button id = "CreateButton" onclick="location.href='../Login/index.php'"> Back </button>
             <button id = "CreateButton" type = 'submit' onclick="return submission();" value = "Create Account" > Create Account </button>
             <!-- <input id ="CreateButton" onclick="location.href='../PinPages/CreatePin.php'" type="submit" value = "Create Account" onclick="return submission();" > -->
           </center>
