@@ -41,7 +41,7 @@ print_r($_SESSION);
     $routingNumber = $row2['userRoutingNumber'];
 
 
-    $setSavingsToZero = 
+    $setSavingsToZero =
     "UPDATE userRegistration
     SET savingsAccountNumber = NULL
     WHERE userName = '$userName';";
@@ -50,13 +50,15 @@ print_r($_SESSION);
 
 
     // Set savings balance to 0 when close account
-    $setSavingsBalanceToZero = 
+    $setSavingsBalanceToZero =
     "UPDATE userRegistration
     SET userSavingsAccountBalance = ''
     WHERE userName = '$userName';";
 
     $savingsBalanceSetToZeroResult = mysqli_query($mysqli, $setSavingsBalanceToZero);
 
+    $eraseHistory = "DELETE from checkDeposit WHERE userName = '$userName' and accountType = 'Savings'";
+    mysqli_query($mysqli, $eraseHistory);
 
     if ($savingsSetToZeroResult){
 

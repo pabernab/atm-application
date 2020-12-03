@@ -26,15 +26,15 @@ print_r($_SESSION);
     $userName = $_SESSION['userName'];
 
     // sql string to find current user's checking account number
-    $checkingAccountNumber = 
-    "SELECT checkingAccountNumber 
-    FROM userRegistration 
+    $checkingAccountNumber =
+    "SELECT checkingAccountNumber
+    FROM userRegistration
     WHERE userName = '$userName' ";
 
     // sql string to find current user's routing number
-    $userRoutingNumber = 
-    "SELECT userRoutingNumber 
-    FROM userRegistration 
+    $userRoutingNumber =
+    "SELECT userRoutingNumber
+    FROM userRegistration
     WHERE userName = '$userName' ";
 
     $results = mysqli_query($mysqli, $checkingAccountNumber);
@@ -47,7 +47,7 @@ print_r($_SESSION);
     $routingNumber = $row2['userRoutingNumber'];
 
 
-    $setCheckingToZero = 
+    $setCheckingToZero =
     "UPDATE userRegistration
     SET checkingAccountNumber = NULL
     WHERE userName = '$userName';";
@@ -55,13 +55,15 @@ print_r($_SESSION);
     $checkingSetToZeroResult = mysqli_query($mysqli, $setCheckingToZero);
 
     // Set savings balance to 0 when close account
-    $setCheckingBalanceToZero = 
+    $setCheckingBalanceToZero =
     "UPDATE userRegistration
     SET userCheckingAccountBalance = ''
     WHERE userName = '$userName';";
 
     $checkingBalanceSetToZeroResult = mysqli_query($mysqli, $setCheckingBalanceToZero);
 
+    $eraseHistory = "DELETE from checkDeposit WHERE userName = '$userName' and accountType = 'Checking'";
+    mysqli_query($mysqli, $eraseHistory);
 
     if ($checkingSetToZeroResult){
 
@@ -86,7 +88,7 @@ print_r($_SESSION);
         <link rel = "stylesheet" href = "../Account_Successful/AccountSuccessful.css?v=<?php echo time(); ?>">
     </head>
 
-    
+
     <body>
         <!-- bank logo -->
         <header>
