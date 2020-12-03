@@ -45,8 +45,36 @@ print_r($_SESSION);
         if(empty($previousAccountNumber))
         {
             // echo "Error! No Savings Account to Close. ";
-            $_SESSION['error'] = "Error! No Savings Account to Close. ";
+            $_SESSION['errorTwo'] = "Error! No Savings Account to Close. ";
             header('Location: ../Balance/Balance.php');
+        }
+        else {
+            $setSavingsToZero = 
+            "UPDATE userRegistration
+            SET savingsAccountNumber = NULL
+            WHERE userName = '$userName';";
+    
+            $savingsSetToZeroResult = mysqli_query($mysqli, $setSavingsToZero);
+    
+    
+            // Set savings balance to 0 when close account
+            $setSavingsBalanceToZero = 
+            "UPDATE userRegistration
+            SET userSavingsAccountBalance = ''
+            WHERE userName = '$userName';";
+    
+            $savingsBalanceSetToZeroResult = mysqli_query($mysqli, $setSavingsBalanceToZero);
+    
+    
+            if ($savingsSetToZeroResult){
+    
+                echo "<br> savings set to 0.";
+    
+            }
+            else {
+                echo "<br> Couldn't delete account.";
+            }
+            $savingsAccountNumber = $row['savingsAccountNumber'];
         }
     }
 
@@ -54,32 +82,7 @@ print_r($_SESSION);
         
     }
 
-    $setSavingsToZero = 
-    "UPDATE userRegistration
-    SET savingsAccountNumber = NULL
-    WHERE userName = '$userName';";
-
-    $savingsSetToZeroResult = mysqli_query($mysqli, $setSavingsToZero);
-
-
-    // Set savings balance to 0 when close account
-    $setSavingsBalanceToZero = 
-    "UPDATE userRegistration
-    SET userSavingsAccountBalance = ''
-    WHERE userName = '$userName';";
-
-    $savingsBalanceSetToZeroResult = mysqli_query($mysqli, $setSavingsBalanceToZero);
-
-
-    if ($savingsSetToZeroResult){
-
-        echo "<br> savings set to 0.";
-
-    }
-    else {
-        echo "<br> Couldn't delete account.";
-    }
-    $savingsAccountNumber = $row['savingsAccountNumber'];
+    
 ?>
 
 

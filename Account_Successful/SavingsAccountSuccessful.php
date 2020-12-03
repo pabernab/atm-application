@@ -21,29 +21,48 @@ $userName = $_SESSION["userName"];
     // creating a new server connection using our preset AWS login values
     $mysqli = new mysqli($serverEndpoint, $serverUserName, $serverPassword, $dbname, 3306);
 
-    // simple error catch if we are unable to connect to the MySQL Database
-    if ($mysqli->connect_errno) {
-        echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-    }
-
-    // test display of host connection info
-    // echo $mysqli->host_info . "\n";
-
-    $setSavingsAccountNumber = "UPDATE userRegistration SET savingsAccountNumber = $savingsNumber, userSavingsAccountBalance = 0 WHERE userName = '{$_SESSION['userName']}' ";
-    $userRoutingNumber = "SELECT userRoutingNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
-
-    $results2 = mysqli_query($mysqli, $userRoutingNumber);
-    $row2 = mysqli_fetch_assoc($results2);
-    $routingNumber = $row2['userRoutingNumber'];
-
-    $results = mysqli_query($mysqli, $setSavingsAccountNumber);
+    // sql string to find current user's checking account number
+    $savingsAccountNumber = "SELECT savingsAccountNumber FROM userRegistration WHERE userName = '$userName' ";
+    $results = mysqli_query($mysqli, $savingsAccountNumber);
+    $row = mysqli_fetch_assoc($results);
 
 
-    if ($results)
+    $previousAccountNumber = $row['savingsAccountNumber'];
+    if($results->num_rows > 0)
     {
-        echo "Information inserted.";
-        $type = "Checking";
+        if(!empty($savingsAccountNumber))
+        {
+            // echo "Error! No Savings Account to Close. ";
+            $_SESSION['errorFour'] = "Error! No Savings Account to Close. ";
+            header('Location: ../Balance/Balance.php');
+        }
+        else {
+            // test display of host connection info
+            // echo $mysqli->host_info . "\n";
+
+            $setSavingsAccountNumber = "UPDATE userRegistration SET savingsAccountNumber = $savingsNumber, userSavingsAccountBalance = 0 WHERE userName = '{$_SESSION['userName']}' ";
+            $userRoutingNumber = "SELECT userRoutingNumber FROM userRegistration WHERE userName = '{$_SESSION['userName']}' ";
+
+            $results2 = mysqli_query($mysqli, $userRoutingNumber);
+            $row2 = mysqli_fetch_assoc($results2);
+            $routingNumber = $row2['userRoutingNumber'];
+
+            $results = mysqli_query($mysqli, $setSavingsAccountNumber);
+
+
+            if ($results)
+            {
+                echo "Information inserted.";
+                $type = "Checking";
+            }
+                }
+            }
+
+    else{
+        
     }
+
+    
 
     // making sure we were able to insert the information properly into
     // our MySQL database

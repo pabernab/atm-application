@@ -54,37 +54,39 @@ print_r($_SESSION);
             $_SESSION['error'] = "Error! No Checking Account to Close. ";
             header('Location: ../Balance/Balance.php');
         }
+        else {
+            $setCheckingToZero = 
+        "UPDATE userRegistration
+        SET checkingAccountNumber = NULL
+        WHERE userName = '$userName';";
+    
+        $checkingSetToZeroResult = mysqli_query($mysqli, $setCheckingToZero);
+    
+        // Set savings balance to 0 when close account
+        $setCheckingBalanceToZero = 
+        "UPDATE userRegistration
+        SET userCheckingAccountBalance = ''
+        WHERE userName = '$userName';";
+    
+        $checkingBalanceSetToZeroResult = mysqli_query($mysqli, $setCheckingBalanceToZero);
+    
+    
+        if ($checkingSetToZeroResult){
+    
+            echo "<br> checking set to 0.";
+    
+        }
+        else {
+            echo "<br> Couldn't delete account.";
+        }
+        $accountNumber = $row['checkingAccountNumber'];
+        }
     }
 
     else{
-        
+    
     }
 
-    $setCheckingToZero = 
-    "UPDATE userRegistration
-    SET checkingAccountNumber = NULL
-    WHERE userName = '$userName';";
-
-    $checkingSetToZeroResult = mysqli_query($mysqli, $setCheckingToZero);
-
-    // Set savings balance to 0 when close account
-    $setCheckingBalanceToZero = 
-    "UPDATE userRegistration
-    SET userCheckingAccountBalance = ''
-    WHERE userName = '$userName';";
-
-    $checkingBalanceSetToZeroResult = mysqli_query($mysqli, $setCheckingBalanceToZero);
-
-
-    if ($checkingSetToZeroResult){
-
-        echo "<br> checking set to 0.";
-
-    }
-    else {
-        echo "<br> Couldn't delete account.";
-    }
-    $accountNumber = $row['checkingAccountNumber'];
 ?>
 
 
