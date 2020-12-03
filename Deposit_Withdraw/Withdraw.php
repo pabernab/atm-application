@@ -184,7 +184,7 @@ if(isset($_POST["amount"]) && isset($_POST["AccountNumber"]))
         else
         {
             echo "$ ";
-            echo $row1["userSavingsAccountBalance"];
+            echo $row2["userSavingsAccountBalance"];
         }
       ?>
       <br>
