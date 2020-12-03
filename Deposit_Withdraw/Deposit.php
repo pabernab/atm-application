@@ -3,7 +3,6 @@
 
 session_start();
 
-print_r($_SESSION);
 
 //CONNECTING SERVER
 $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';

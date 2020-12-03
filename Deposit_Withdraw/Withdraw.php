@@ -2,8 +2,6 @@
 
 session_start();
 
-print_r($_SESSION);
-
 $serverEndpoint = 'mysqldb.cjezeavsieu7.us-west-1.rds.amazonaws.com';
 $serverUserName = 'butteadmin';
 $serverPassword = 'buttecmpe131';
