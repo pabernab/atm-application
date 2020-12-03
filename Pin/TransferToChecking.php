@@ -133,7 +133,7 @@
       
         <div class="textbox">
             <form action="ProcessTransferToChecking.php" onsubmit="return checkValue()" method="POST">
-                <input class="resizeTextbox" type="text" id="entryValue" name="entryValue">
+                <input class="resizeTextbox" type="number" id="entryValue" name="entryValue">
                 <!-- Continue button -->
               <br>
               <br>
