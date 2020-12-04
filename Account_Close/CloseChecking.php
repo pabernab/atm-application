@@ -74,7 +74,7 @@ session_start();
         
             if ($checkingSetToZeroResult){
         
-                echo "<br> checking set to 0.";
+                
         
             }
             else {

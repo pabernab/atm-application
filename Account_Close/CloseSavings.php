@@ -68,7 +68,7 @@ session_start();
     
             if ($savingsSetToZeroResult){
     
-                echo "<br> savings set to 0.";
+                
     
             }
             else {
@@ -99,7 +99,7 @@ session_start();
 
     <?php
 
-print_r($_SESSION);
+
 
 
 ?>

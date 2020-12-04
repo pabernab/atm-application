@@ -55,7 +55,7 @@ $userName = $_SESSION["userName"];
     
             if ($results)
             {
-                echo "Information inserted.";
+                
             }
         }
     }
@@ -101,7 +101,7 @@ $userName = $_SESSION["userName"];
 
     <?php
 
-print_r($_SESSION);
+
 
 
 ?>

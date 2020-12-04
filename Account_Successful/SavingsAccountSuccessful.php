@@ -79,7 +79,6 @@ $userName = $_SESSION["userName"];
 
     <?php
 
-print_r($_SESSION);
 
 
 ?>
